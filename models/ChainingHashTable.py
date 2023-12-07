@@ -5,12 +5,19 @@ class ChainingHashTable:
             self.table.append([])
 
     # Inserts new item into hash table
-    def insert(self, item):
+    def insert(self, key, item):
         # Get bucket list where item will be added
         bucket = hash(item) % len(self.table)
         bucket_list = self.table[bucket]
 
-        bucket_list.append(item)
+        for kv in bucket_list:
+            if kv[0] == key:
+                kv[1] = item
+                return True
+
+        key_value = [key, item]
+        bucket_list.append(key_value)
+        return True
 
     # Searches for item with matching key in hash table
     def search(self, key):
@@ -18,11 +25,10 @@ class ChainingHashTable:
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
-        if key in bucket_list:
-            item_index = bucket_list.index(key)
-            return bucket_list[item_index]
-        else:
-            return None
+        for key_value in bucket_list:
+            if key_value[0] == key:
+                return key_value[1]
+        return None
 
     # Removes item with matching key from hash table
     def remove(self, key):
@@ -30,14 +36,14 @@ class ChainingHashTable:
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
-        if key in bucket_list:
-            bucket_list.remove(key)
+        for key_value in bucket_list:
+            if key_value[0] == key:
+                bucket_list.remove([key_value[0], key_value[1]])
 
 
 myHash = ChainingHashTable()
-myHash.insert("Adam")
-myHash.insert("Ruthy")
+myHash.insert(1, "package 1")
+myHash.insert(2, "package 2")
 
-print(myHash.search("Adam"))
-print(myHash.search("Nothing"))
+print(myHash.search("package 1"))
 print(myHash.table)
