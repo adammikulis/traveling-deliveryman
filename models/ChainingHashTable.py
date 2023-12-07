@@ -1,4 +1,4 @@
-class ChainedHashTable:
+class ChainingHashTable:
     def __init__(self, initial_capacity=40):
         self.table = []
         for i in range(initial_capacity):
@@ -34,7 +34,10 @@ class ChainedHashTable:
             bucket_list.remove(key)
 
 
-myHash = ChainedHashTable()
+myHash = ChainingHashTable()
 myHash.insert("Adam")
 myHash.insert("Ruthy")
+
+print(myHash.search("Adam"))
+print(myHash.search("Nothing"))
 print(myHash.table)
