@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/Dispatcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/distance_table.csv" afterDir="false" />
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="changed class filenames to lowercase">
+      <change beforePath="$PROJECT_DIR$/.idea/TravelingDeliveryman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TravelingDeliveryman.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Truck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +38,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.chaining_hash_table.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.package.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/adamm/PycharmProjects/TravelingDeliveryman",
-    "settings.editor.selected.configurable": "Csv.Editor.Settings"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -107,12 +106,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701976984804</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed class filenames to lowercase">
+      <option name="closed" value="true" />
+      <created>1701989860230</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701989860230</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="changed class filenames to lowercase" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed class filenames to lowercase" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
