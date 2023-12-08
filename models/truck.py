@@ -1,7 +1,10 @@
-class Truck:
-    max_packages = 16
-    average_speed = 18
+from models.chaining_hash_table import ChainingHashTable
 
-    def __init__(self, truck_number=0, package_list=[]):
+
+class Truck:
+
+    def __init__(self, truck_number=0, max_packages=16, average_speed=18):
         self.truck_number = truck_number
-        self.package_list = package_list
+        self.max_packages = max_packages
+        self.average_speed = average_speed
+        self.package_list = ChainingHashTable(max_packages)

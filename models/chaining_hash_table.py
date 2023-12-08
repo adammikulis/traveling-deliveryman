@@ -40,10 +40,3 @@ class ChainingHashTable:
             if key_value[0] == key:
                 bucket_list.remove([key_value[0], key_value[1]])
 
-
-myHash = ChainingHashTable()
-myHash.insert(1, "package 1")
-myHash.insert(2, "package 2")
-
-print(myHash.search("package 1"))
-print(myHash.table)

@@ -1,4 +1,5 @@
 from enum import Enum
+from datetime import *
 
 
 class PackageStatus(Enum):
@@ -8,7 +9,7 @@ class PackageStatus(Enum):
 
 
 class Package:
-    def __init__(self, package_id=0, address_id=0, available_time=0, delivery_deadline=0,
+    def __init__(self, package_id=0, address_id=0, available_time=time(0, 0), delivery_deadline=time(0, 0),
                  weight=0, required_truck=0, delivery_group_id=0, wrong_address=False):
         # package_table columns
         self.package_id = package_id
@@ -22,12 +23,4 @@ class Package:
 
         # status variables
         self.package_status = PackageStatus.AT_HUB
-        self.delivered_at = 0
-
-    def set_package_id(self, number):
-        self.package_id = number
-
-    def get_package_id(self):
-        return self.package_id
-
-
+        self.delivered_at = time(0, 0)
