@@ -27,4 +27,7 @@ class Package:
 
     # Printable representation of object
     def __repr__(self):
-        return f"Package(ID={self.package_id}, Deadline={self.delivery_deadline}, Status={self.package_status})"
+        if self.package_status == PackageStatus.DELIVERED:
+            return f"Package ID:{self.package_id}, Status: {self.package_status.value} at {self.delivered_at})"
+        else:
+            return f"Package ID:{self.package_id}, Status: {self.package_status.value})"
