@@ -24,3 +24,7 @@ class Package:
         # status variables
         self.package_status = PackageStatus.AT_HUB
         self.delivered_at = time(0, 0)
+
+    # Printable representation of object
+    def __repr__(self):
+        return f"Package(ID={self.package_id}, Deadline={self.delivery_deadline}, Status={self.package_status})"

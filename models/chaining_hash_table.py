@@ -4,7 +4,7 @@ class ChainingHashTable:
         for i in range(initial_capacity):
             self.table.append([])
 
-    # Inserts new item into hash table
+    # Inserts new item into hash distance_table
     def insert(self, key, item):
         # Get bucket list where item will be added
         bucket = hash(item) % len(self.table)
@@ -19,7 +19,7 @@ class ChainingHashTable:
         bucket_list.append(key_value)
         return True
 
-    # Searches for item with matching key in hash table
+    # Searches for item with matching key in hash distance_table
     def search(self, key):
         # Get bucket list where the key will be
         bucket = hash(key) % len(self.table)
@@ -30,7 +30,7 @@ class ChainingHashTable:
                 return key_value[1]
         return None
 
-    # Removes item with matching key from hash table
+    # Removes item with matching key from hash distance_table
     def remove(self, key):
         # Get bucket list where item will be removed
         bucket = hash(key) % len(self.table)
