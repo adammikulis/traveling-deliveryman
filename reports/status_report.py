@@ -1,0 +1,2 @@
+class StatusReport:
+    pass
