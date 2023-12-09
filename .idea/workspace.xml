@@ -4,25 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="updated __repr__ for package.py">
-      <change afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataloaders/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataloaders/distance_data_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/truck_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="added TruckManager and Greedy classes with many other updates">
+      <change afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/driver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/data_loaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_delivery_data.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/table_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/distance_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/chaining_hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/chaining_hash_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/distance_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/distance_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702002898879</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added TruckManager and Greedy classes with many other updates">
+      <option name="closed" value="true" />
+      <created>1702164112582</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702164112582</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,6 +193,7 @@
     <MESSAGE value="replaced __init__.py file with proper import statements" />
     <MESSAGE value="can load package data into hash table and print out objects" />
     <MESSAGE value="updated __repr__ for package.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated __repr__ for package.py" />
+    <MESSAGE value="added TruckManager and Greedy classes with many other updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="added TruckManager and Greedy classes with many other updates" />
   </component>
 </project>

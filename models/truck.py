@@ -1,6 +1,6 @@
 class Truck:
 
-    def __init__(self, truck_id=0, max_packages=16, average_speed=18, miles_driven=0):
+    def __init__(self, truck_id=None, max_packages=16, average_speed=18, miles_driven=0, assigned_driver_id=None):
         self.truck_id = truck_id
         self.max_packages = max_packages
         self.average_speed = average_speed
