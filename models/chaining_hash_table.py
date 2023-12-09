@@ -1,5 +1,7 @@
+
+# Code obtained from Webinar 1: Let's Get Hashing
 class ChainingHashTable:
-    def __init__(self, initial_capacity=40):
+    def __init__(self, initial_capacity):
         self.table = []
         for i in range(initial_capacity):
             self.table.append([])
