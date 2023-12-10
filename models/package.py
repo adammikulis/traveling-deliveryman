@@ -7,7 +7,6 @@ class PackageStatus(Enum):
     IN_TRANSIT = "In-transit"
     DELIVERED = "Delivered"
 
-
 class Package:
     def __init__(self, package_id=0, address_id=0, available_time=time(0, 0), delivery_deadline=time(0, 0),
                  weight=0, required_truck=0, delivery_group_id=0, wrong_address=False):

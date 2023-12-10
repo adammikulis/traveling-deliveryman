@@ -17,6 +17,8 @@ class Truck:
     def drive_to(self, distance):
         self.miles_driven += distance
 
+    def can_load_package(self, package):
+        return len(self.package_list) < self.max_packages and package.required_truck in [0, self.truck_id]
 
     def __repr__(self):
         return f"Truck ID: {self.truck_id} Current Packages: {self.package_list}"
