@@ -1,9 +1,4 @@
-from models import ChainingHashTable
-from models import DistanceTable
-from models import PackageStatus
-
-
-class Greedy:
+class PackageFinder:
     def __init__(self, distance_data_loader, package_data_loader):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader

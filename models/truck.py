@@ -6,13 +6,16 @@ class Truck:
         self.average_speed = average_speed
         self.miles_driven = miles_driven
         self.package_list = []
-        self.driver_id = 0
+        self.assigned_driver_id = 0
 
     def load_package(self, package_id):
         self.package_list.append(package_id)
 
     def unload_package(self, package_id):
         self.package_list.remove(package_id)
+
+    def drive_to(self, distance):
+        self.miles_driven += distance
 
 
     def __repr__(self):

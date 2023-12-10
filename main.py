@@ -1,45 +1,32 @@
-from managers import TruckManager, DriverManager
+from managers import TruckManager, DriverManager, DeliveryManager
 from models.truck import Truck
 from models import Package
-from algorithms import Greedy
+from algorithms import Greedy, PackageFinder
 
 from dataloaders import DistanceDataLoader, PackageDataLoader
 
 if __name__ == '__main__':
-
-    num_trucks = 3
-    num_drivers = 2
-    truck_list = TruckManager(num_trucks)
-    driver_list = DriverManager(num_drivers)
-
-    # Create and fill package data loader
+    # Existing code for creating and filling package and distance data loaders
     package_data_loader = PackageDataLoader()
     package_data_filepath = "data/package_data.csv"
     package_data_loader.load_package_data(package_data_filepath)
 
-    # Create and fill distance data loader
     distance_data_loader = DistanceDataLoader()
     distance_data_filepath = "data/distance_data.csv"
     distance_data_loader.load_distance_data(distance_data_filepath)
 
-    # all_distances = distance_data_loader.distance_table.get_all_distances()
-    # for distance in all_distances:
-    #     print(distance)
-    # print(package_data_loader.package_hash_table.table)
+    # Initialize PackageFinder with the package and distance data loaders
+    package_finder = PackageFinder(distance_data_loader, package_data_loader)
 
-    greedy = Greedy()
-    current_address_id = 0  # Starting address
-    total_distance = 0
+    # Initialize TruckManager and DriverManager
+    num_trucks = 3
+    truck_list = TruckManager(num_trucks)
+    num_drivers = 2
+    driver_list = DriverManager(num_drivers)
 
-    while True:
-        next_closest_package, distance = greedy.get_next_closest_package(current_address_id, package_data_loader, distance_data_loader)
+    # Delivery loop
+    greedy = Greedy(distance_data_loader, package_data_loader)
+    delivery_manager = DeliveryManager(greedy)
 
-        if next_closest_package is not None:
-            total_distance += distance
-            print(
-                f"Current Address: {current_address_id}, \tNext address: {next_closest_package.address_id},\t Next package: {next_closest_package.package_id}, \tDistance: {distance}, \tTotal Distance: {"%.1f" % total_distance}")
-            current_address_id = next_closest_package.address_id
-        else:
-            print("No more packages to deliver.")
-            break
-
+    # Start the delivery process
+    delivery_manager.deliver_packages()

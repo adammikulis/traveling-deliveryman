@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="initial greedy algorithm works and delivers all packages">
+      <change afterPath="$PROJECT_DIR$/algorithms/package_finder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/managers/delivery_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_delivery_data.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/truck_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/truck_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
