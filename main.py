@@ -25,19 +25,21 @@ if __name__ == '__main__':
     # all_distances = distance_data_loader.distance_table.get_all_distances()
     # for distance in all_distances:
     #     print(distance)
-    print(package_data_loader.package_hash_table.table)
+    # print(package_data_loader.package_hash_table.table)
 
     greedy = Greedy()
     current_address_id = 0  # Starting address
+    total_distance = 0
 
     while True:
-        next_closest_package = greedy.get_next_closest_package(current_address_id, package_data_loader,
-                                                               distance_data_loader)
+        next_closest_package, distance = greedy.get_next_closest_package(current_address_id, package_data_loader, distance_data_loader)
 
         if next_closest_package is not None:
-            print(f"Next package: {next_closest_package.package_id}, Next address: {next_closest_package.address_id}")
-            next_closest_package.deliver()  # Update package status to DELIVERED
+            total_distance += distance
+            print(
+                f"Current Address: {current_address_id}, \tNext address: {next_closest_package.address_id},\t Next package: {next_closest_package.package_id}, \tDistance: {distance}, \tTotal Distance: {"%.1f" % total_distance}")
             current_address_id = next_closest_package.address_id
         else:
             print("No more packages to deliver.")
             break
+

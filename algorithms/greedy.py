@@ -12,6 +12,7 @@ class Greedy:
         closest_distance = float('inf')
         self.closest_next_package = None
 
+        # Search for the closest package
         for package_id in package_data_loader.package_ids:
             package = package_data_loader.package_hash_table.search(package_id)
             if package is not None and package.address_id != current_address_id and package.status != PackageStatus.DELIVERED:
@@ -20,13 +21,15 @@ class Greedy:
                     closest_distance = distance
                     self.closest_next_package = package
 
-        # Update the status of the closest package to DELIVERED
+        # Deliver all packages at the closest address
         if self.closest_next_package is not None:
-            self.closest_next_package.status = PackageStatus.DELIVERED
+            delivery_address_id = self.closest_next_package.address_id
+            for package_id in package_data_loader.package_ids:
+                package = package_data_loader.package_hash_table.search(package_id)
+                if package is not None and package.address_id == delivery_address_id:
+                    package.status = PackageStatus.DELIVERED
 
-        return self.closest_next_package
-
-    # Add that distance to total distance
+        return self.closest_next_package, closest_distance
 
     # Check if truck is at capacity, if so append the distance back to the hub and move onto next truck on list
     # Load that as the next package in the list for the truck

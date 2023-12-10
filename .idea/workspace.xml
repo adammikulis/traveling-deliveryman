@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="added classes to manage truck Drivers">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="initial greedy algorithm works and delivers all packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/package_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_delivery_data.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/chaining_hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/chaining_hash_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702165373592</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="initial greedy algorithm works and delivers all packages">
+      <option name="closed" value="true" />
+      <created>1702170859190</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702170859190</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +208,7 @@
     <MESSAGE value="updated __repr__ for package.py" />
     <MESSAGE value="added TruckManager and Greedy classes with many other updates" />
     <MESSAGE value="added classes to manage truck Drivers" />
-    <option name="LAST_COMMIT_MESSAGE" value="added classes to manage truck Drivers" />
+    <MESSAGE value="initial greedy algorithm works and delivers all packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial greedy algorithm works and delivers all packages" />
   </component>
 </project>
