@@ -1,5 +1,5 @@
 
-# Code obtained from Webinar 1: Let's Get Hashing
+# Code modified from Webinar 1: Let's Get Hashing
 class ChainingHashTable:
     def __init__(self, initial_capacity):
         self.table = []
@@ -9,7 +9,7 @@ class ChainingHashTable:
     # Inserts new item into hash distance_table
     def insert(self, key, item):
         # Get bucket list where item will be added
-        bucket = hash(item) % len(self.table)
+        bucket = hash(key) % len(self.table)  # Use key for hashing rather than item for consistency
         bucket_list = self.table[bucket]
 
         for kv in bucket_list:
@@ -40,5 +40,8 @@ class ChainingHashTable:
 
         for key_value in bucket_list:
             if key_value[0] == key:
-                bucket_list.remove([key_value[0], key_value[1]])
+                bucket_list.remove(key_value)  # Remove the key-value pair directly
+                return True
+        return False
+
 
