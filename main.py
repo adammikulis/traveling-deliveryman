@@ -1,7 +1,7 @@
 from managers import TruckManager, DriverManager, DeliveryManager
 from models.truck import Truck
 from models import Package
-from algorithms import Greedy, PackageFinder
+from algorithms import Greedy
 
 from dataloaders import DistanceDataLoader, PackageDataLoader
 
@@ -14,9 +14,6 @@ if __name__ == '__main__':
     distance_data_loader = DistanceDataLoader()
     distance_data_filepath = "data/distance_data.csv"
     distance_data_loader.load_distance_data(distance_data_filepath)
-
-    # Initialize PackageFinder with the package and distance data loaders
-    package_finder = PackageFinder(distance_data_loader, package_data_loader)
 
     # Initialize TruckManager and DriverManager
     num_trucks = 3
