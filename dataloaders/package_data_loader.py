@@ -9,6 +9,8 @@ class PackageDataLoader:
         self.package_hash_table = None
         self.total_packages = 0
         self.package_ids = []
+        self.package_groups = {}
+        self.package_required_trucks = {}
 
     def initialize_hash_table(self, total_packages):
         self.package_hash_table = ChainingHashTable(total_packages)
@@ -37,9 +39,22 @@ class PackageDataLoader:
 
                 package_object = Package(package_id, address_id, available_time, delivery_deadline, weight,
                                          required_truck, delivery_group_id, wrong_address, address_available_time)
-                self.package_hash_table.insert(package_id, package_object)
 
-                self.package_ids.append(package_id)  # Used for referencing later in hash table lookup
+                self.package_hash_table.insert(package_id, package_object)
+                self.package_ids.append(package_id)  # Index used for referencing later in hash table lookup
+
+                # Store any package groups to reference for sorting
+                group_id = package_object.delivery_group_id
+                if group_id not in self.package_groups:
+                    self.package_groups[group_id] = []
+                self.package_groups[group_id].append(package_id)
+
+                # Store any required trucks to reference for sorting
+                truck_id = package_object.required_truck
+                if truck_id != 0:
+                    if truck_id not in self.package_required_trucks:
+                        self.package_required_trucks[truck_id] = []
+                    self.package_required_trucks[truck_id].append(package_id)
 
     # Used for table sizing
     def determine_total_packages(self, filename):

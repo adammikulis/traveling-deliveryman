@@ -1,50 +1,57 @@
 from models import ChainingHashTable
 from models import DistanceTable
-from models import PackageStatus
+from models import Package, PackageStatus
 
 
 class Greedy:
-    def __init__(self, distance_data_loader, package_data_loader):
+    def __init__(self, distance_data_loader, package_data_loader, truck_manager):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
+        self.truck_manager = truck_manager
+        self.sorted_packages = self.sort_packages_by_deadline()
 
-    def get_next_closest_package(self, current_address_id):
+    def sort_packages_into_trucks(self):
+        for truck in self.truck_manager.trucks:
+            # Load packages using Greedy approach on the sorted list
+            while len(truck.package_list) < truck.max_packages and self.sorted_packages:
+                next_package = self.get_next_valid_closest_package(truck.current_address, truck, sorted_packages)
+                if next_package:
+                    self.load_package_into_truck(next_package, truck)
+
+    def get_next_valid_closest_package(self, current_address_id, truck):
         closest_distance = float('inf')
-        closest_next_package = None
-        for package_id in self.package_data_loader.package_ids:
-            package = self.package_data_loader.package_hash_table.search(package_id)
-            if package and package.address_id != current_address_id and package.status != PackageStatus.DELIVERED:
+        valid_closest_package = None
+        for package in self.sorted_packages:
+            if package.address_id != current_address_id and package.status != PackageStatus.DELIVERED:
                 distance = self.distance_data_loader.distance_table.get_distance(current_address_id, package.address_id)
-                if distance < closest_distance:
+                eta = truck.calculate_eta(package.address_id)
+                if distance < closest_distance and not self.package_arrival_too_soon(package, eta):
                     closest_distance = distance
-                    closest_next_package = package
-        return closest_next_package
+                    valid_closest_package = package
+        return valid_closest_package
 
-    def sort_packages_into_trucks(self, truck_manager):
-        sorted_packages = self._sort_packages_by_priority()
-        for package in sorted_packages:
-            self._allocate_package_to_truck(package, truck_manager)
-
-    def _sort_packages_by_priority(self):
+    def sort_packages_by_deadline(self):
 
         # Searching with an index is more flexible than hard-coding 1-40
         package_id_index = self.package_data_loader.package_hash_table.get_package_id_index()
-        all_packages = [self.package_data_loader.package_hash_table.search(package_id) for package_id in package_id_index]
-        # Sort packages by delivery group, required truck, and delivery deadline
-        all_packages.sort(key=lambda package: (package.delivery_group_id == 0, package.required_truck == 0, package.delivery_deadline))
-        return all_packages
+        sorted_packages = [self.package_data_loader.package_hash_table.search(package_id) for package_id in package_id_index]
+        # Sort packages by delivery deadline
+        sorted_packages.sort(key=lambda package: package.delivery_deadline)
+        return sorted_packages
 
-    def _allocate_package_to_truck(self, package, truck_manager):
-        for truck in truck_manager.trucks:
-            if self._can_load_package(truck, package):
-                truck.load_package(package.package_id)
-                package.status = PackageStatus.IN_TRANSIT  # Update package status
-                package.truck_id = truck.truck_id
-                # print(f"Package {package.package_id} allocated to Truck {truck.truck_id}")
-                return True
-        return False  # If no truck can accommodate the package
+    def load_package_into_truck(self, package, truck):
+        if self.can_load_package(truck, package):
+            truck.load_package(package.package_id)
+            package.status = PackageStatus.IN_TRANSIT
+            package.truck_id = truck.truck_id
+            print(f"Package {package.package_id} allocated to Truck {truck.truck_id}")
+            truck.current_address = package.address_id
+            self.sorted_packages.remove(package)  # Remove the package from the sorted list after loading
 
-    def _can_load_package(self, truck, package):
+    def can_load_package(self, truck, package):
         # Check if the truck can load the package
         return (len(truck.package_list) < truck.max_packages and
                 (package.required_truck == 0 or package.required_truck == truck.truck_id))
+
+    def package_arrival_too_soon(self, package, eta):
+        return eta < package.address_available_time

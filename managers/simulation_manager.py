@@ -1,6 +1,7 @@
 from models import address, ChainingHashTable, Package, Truck
 from dataloaders import DistanceDataLoader, PackageDataLoader
-from datetime import datetime, timedelta
+from datetime import *
+
 
 class SimulationManager:
     def __init__(self, distance_data_loader, package_data_loader, truck_manager, driver_manager, dispatcher, greedy, current_time, time_step):
@@ -12,12 +13,17 @@ class SimulationManager:
         self.greedy = greedy
         self.current_time = current_time  # Track the simulation time
         self.time_step = time_step  # Time step in seconds
+        self.current_date = datetime.now().date()
 
     def advance_time(self):
         self.current_time = self.current_time + timedelta(seconds=self.time_step)
         self.update_truck_locations()
         self.update_package_statuses()
 
+    def correct_package_address(self, package_data_loader, package_id, correct_address_id):
+        package = package_data_loader.package_hash_table.search(package_id)
+        package.address_id = correct_address_id
+        package.wrong_address = False
     def update_truck_locations(self):
        pass
 

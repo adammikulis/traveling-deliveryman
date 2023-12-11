@@ -27,3 +27,6 @@ class DistanceDataLoader:
                         to_address_id = int(header[i])
                         dist = float(distance)
                         self.distance_table.set_distance(from_address_id, to_address_id, dist)
+
+    def get_distance(self, address_id_1, address_id_2):
+        return self.distance_table.get_distance(address_id_1, address_id_2)

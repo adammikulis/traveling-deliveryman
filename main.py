@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import *
 
 from managers import TruckManager, DriverManager, Dispatcher, SimulationManager
 from algorithms import Greedy
@@ -28,16 +28,22 @@ if __name__ == '__main__':
     dispatcher.assign_drivers_to_trucks()
 
     # Initialize greedy algorithm and DeliveryManager
-    greedy = Greedy(distance_data_loader, package_data_loader)
-    greedy.sort_packages_into_trucks(truck_manager)
+    greedy = Greedy(distance_data_loader, package_data_loader, truck_manager)
+    #greedy.sort_packages_into_trucks()
 
     # Initialize simulation
     current_date = datetime.now().date()
-    start_time = datetime.combine(current_date, datetime.min.time()).replace(hour=8, minute=0)
-    EOD = datetime.combine(current_date, datetime.min.time()).replace(hour=17, minute=0)
+    start_time = datetime.combine(current_date, time(8, 0))
+    EOD = datetime.combine(current_date, time(hour=17, minute=0))
     simulation_manager = SimulationManager(distance_data_loader, package_data_loader, driver_manager,
                                            truck_manager, dispatcher, greedy, start_time, 1)
 
     while simulation_manager.current_time <= EOD:
-        print(f"The time is: {simulation_manager.current_time}")
+        # print(f"The time is: {simulation_manager.current_time}")
+
+        # Used to correct a package address
+        if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
+            simulation_manager.correct_package_address(package_data_loader, 9, 19)
+
+
         simulation_manager.advance_time()
