@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="packages allocated to trucks by delivery time required">
-      <change afterPath="$PROJECT_DIR$/data/all_delivery_data_backup.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="can determine when is the earliest a truck can leave">
+      <change afterPath="$PROJECT_DIR$/managers/dispatcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_delivery_data.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/package_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/package_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/package_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/truck_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/truck_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/driver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -216,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702250526439</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="can determine when is the earliest a truck can leave">
+      <option name="closed" value="true" />
+      <created>1702315908734</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1702315908734</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,7 +246,8 @@
     <MESSAGE value="separated greedy algorithm from delivery process" />
     <MESSAGE value="removed extraneous package_finder" />
     <MESSAGE value="packages allocated to trucks by delivery time required" />
-    <option name="LAST_COMMIT_MESSAGE" value="packages allocated to trucks by delivery time required" />
+    <MESSAGE value="can determine when is the earliest a truck can leave" />
+    <option name="LAST_COMMIT_MESSAGE" value="can determine when is the earliest a truck can leave" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,28 +1,31 @@
 from datetime import time
 
-from managers import TruckManager, DriverManager, DeliveryManager
+from managers import TruckManager, DriverManager, DeliveryManager, Dispatcher
 from algorithms import Greedy
 
 from dataloaders import DistanceDataLoader, PackageDataLoader
 
 if __name__ == '__main__':
 
+    # Load all packages
     package_data_loader = PackageDataLoader()
     package_data_filepath = "data/package_data.csv"
     package_data_loader.load_package_data(package_data_filepath)
 
+    # Load all address distances
     distance_data_loader = DistanceDataLoader()
     distance_data_filepath = "data/distance_data.csv"
     distance_data_loader.load_distance_data(distance_data_filepath)
 
     # Initialize TruckManager and DriverManager
-    num_trucks = 3
-    truck_manager = TruckManager(num_trucks, distance_data_loader, package_data_loader)
     num_drivers = 2
     driver_manager = DriverManager(num_drivers)
+    num_trucks = 3
+    truck_manager = TruckManager(num_trucks, distance_data_loader, package_data_loader)
 
-    driver_manager.assign_driver_to_truck(1, 1, truck_manager)
-    driver_manager.assign_driver_to_truck(2, 2, truck_manager)
+    # Assigns unassigned drivers to open trucks
+    dispatcher = Dispatcher(driver_manager, truck_manager)
+    dispatcher.assign_drivers_to_trucks()
 
     # Initialize greedy algorithm and DeliveryManager
     greedy = Greedy(distance_data_loader, package_data_loader)

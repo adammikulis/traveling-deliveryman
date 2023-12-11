@@ -4,7 +4,7 @@ from dataloaders import DistanceDataLoader, PackageDataLoader
 
 class Truck:
 
-    def __init__(self, distance_data_loader, package_data_loader, truck_id, max_packages=16, average_speed=18, miles_driven=0, assigned_driver_id=None):
+    def __init__(self, distance_data_loader, package_data_loader, truck_id, max_packages=16, average_speed=18, miles_driven=0, assigned_driver_id=0):
         self.truck_id = truck_id
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
@@ -12,7 +12,6 @@ class Truck:
         self.average_speed = average_speed
         self.miles_driven = miles_driven
         self.package_list = []
-        self.assigned_driver_id = 0
         self.earliest_leave_time = time(0, 0)
         self.can_leave_hub = False
 
