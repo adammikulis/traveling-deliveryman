@@ -4,7 +4,7 @@ from dataloaders import DistanceDataLoader, PackageDataLoader
 
 class Truck:
 
-    def __init__(self, distance_data_loader, package_data_loader, truck_id, max_packages=16, average_speed=18, miles_driven=0, assigned_driver_id=0):
+    def __init__(self, distance_data_loader, package_data_loader, truck_id, max_packages=16, average_speed=18.0, miles_driven=0, assigned_driver_id=0):
         self.truck_id = truck_id
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
@@ -12,13 +12,13 @@ class Truck:
         self.average_speed = average_speed
         self.miles_driven = miles_driven
         self.package_list = []
+        self.special_package_list = [] # Load special packages here first to then load into package_list
 
         current_date = datetime.now().date()
         self.earliest_leave_time = datetime.combine(current_date, time(hour=8, minute=0))
         self.can_leave_hub = False
         self.current_address_id = 0
         self.next_address_id = 0
-        self.package_groups = []
 
     def calculate_eta(self, destination_address_id):
         current_location = self.current_address_id
@@ -45,6 +45,12 @@ class Truck:
     def unload_package(self, package_id):
         self.package_list.remove(package_id)
 
+    def load_special_package(self, package_id):
+        self.special_package_list.append(package_id)
+
+    def unload_special_package(self, package_id):
+        self.special_package_list.remove(package_id)
+
     def can_load_package(self, package):
         return len(self.package_list) < self.max_packages and package.required_truck in [0, self.truck_id]
 
@@ -69,7 +75,8 @@ class Truck:
     def calculate_delivery_time(self, package):
         pass
 
-
+    def is_full(self):
+        return self.max_packages == len(self.package_list) # Only full if regular list is full
 
 
     def __repr__(self):

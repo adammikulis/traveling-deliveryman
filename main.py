@@ -29,12 +29,12 @@ if __name__ == '__main__':
 
     # Initialize greedy algorithm and DeliveryManager
     greedy = Greedy(distance_data_loader, package_data_loader, truck_manager)
-    greedy.sort_packages_into_trucks()
+    greedy.sort_packages_onto_trucks()
 
     # Initialize simulation
     current_date = datetime.now().date()
     start_time = datetime.combine(current_date, time(8, 0))
-    EOD = datetime.combine(current_date, time(hour=17, minute=0))
+    EOD = datetime.combine(current_date, time(17, 0))
     simulation_manager = SimulationManager(distance_data_loader, package_data_loader, driver_manager,
                                            truck_manager, dispatcher, greedy, start_time, 1)
 

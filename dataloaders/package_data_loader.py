@@ -8,7 +8,6 @@ class PackageDataLoader:
     def __init__(self):
         self.package_hash_table = None
         self.total_packages = 0
-        self.package_ids = []
         self.package_groups = {}
         self.package_required_trucks = {}
 
@@ -41,13 +40,14 @@ class PackageDataLoader:
                                          required_truck, delivery_group_id, wrong_address, address_available_time)
 
                 self.package_hash_table.insert(package_id, package_object)
-                self.package_ids.append(package_id)  # Index used for referencing later in hash table lookup
+
 
                 # Store any package groups to reference for sorting
                 group_id = package_object.delivery_group_id
-                if group_id not in self.package_groups:
-                    self.package_groups[group_id] = []
-                self.package_groups[group_id].append(package_id)
+                if group_id != 0:
+                    if group_id not in self.package_groups:
+                        self.package_groups[group_id] = []
+                    self.package_groups[group_id].append(package_id)
 
                 # Store any required trucks to reference for sorting
                 truck_id = package_object.required_truck
