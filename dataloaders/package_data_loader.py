@@ -33,13 +33,15 @@ class PackageDataLoader:
                 required_truck = int(package[5])
                 delivery_group_id = int(package[6])
                 wrong_address = bool(package[7])
+                address_available_time = datetime.strptime(package[8], "%H:%M").time()
 
                 package_object = Package(package_id, address_id, available_time, delivery_deadline, weight,
-                                         required_truck, delivery_group_id, wrong_address)
+                                         required_truck, delivery_group_id, wrong_address, address_available_time)
                 self.package_hash_table.insert(package_id, package_object)
 
                 self.package_ids.append(package_id)  # Used for referencing later in hash table lookup
 
+    # Used for table sizing
     def determine_total_packages(self, filename):
         total_packages = 0
         with open(filename) as Packages:

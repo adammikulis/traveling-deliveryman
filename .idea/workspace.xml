@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="removed extraneous package_finder">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="packages allocated to trucks by delivery time required">
+      <change afterPath="$PROJECT_DIR$/data/all_delivery_data_backup.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dispatcher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_delivery_data.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/package_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/package_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataloaders/package_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/delivery_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/delivery_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/chaining_hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/chaining_hash_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/truck_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/truck_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
@@ -204,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702239202519</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="packages allocated to trucks by delivery time required">
+      <option name="closed" value="true" />
+      <created>1702250526439</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702250526439</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,6 +244,17 @@
     <MESSAGE value="initial greedy algorithm works and delivers all packages" />
     <MESSAGE value="separated greedy algorithm from delivery process" />
     <MESSAGE value="removed extraneous package_finder" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed extraneous package_finder" />
+    <MESSAGE value="packages allocated to trucks by delivery time required" />
+    <option name="LAST_COMMIT_MESSAGE" value="packages allocated to trucks by delivery time required" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/managers/__init__.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

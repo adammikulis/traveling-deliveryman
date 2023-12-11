@@ -1,3 +1,5 @@
+from datetime import time
+
 from managers import TruckManager, DriverManager, DeliveryManager
 from algorithms import Greedy
 
@@ -15,7 +17,7 @@ if __name__ == '__main__':
 
     # Initialize TruckManager and DriverManager
     num_trucks = 3
-    truck_manager = TruckManager(num_trucks)
+    truck_manager = TruckManager(num_trucks, distance_data_loader, package_data_loader)
     num_drivers = 2
     driver_manager = DriverManager(num_drivers)
 
@@ -26,8 +28,9 @@ if __name__ == '__main__':
     greedy = Greedy(distance_data_loader, package_data_loader)
     greedy.sort_packages_into_trucks(truck_manager)
 
+    for truck in truck_manager.trucks:
+        truck.set_earliest_leave_time()
+        truck.set_can_leave_hub(time(8, 0))
 
-    delivery_manager = DeliveryManager(greedy)
-
-    # Start the delivery process
-    delivery_manager.deliver_packages()
+        print(truck.earliest_leave_time)
+        print(truck.can_leave_hub)

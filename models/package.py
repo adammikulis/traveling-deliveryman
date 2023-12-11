@@ -9,7 +9,7 @@ class PackageStatus(Enum):
 
 class Package:
     def __init__(self, package_id=0, address_id=0, available_time=time(0, 0), delivery_deadline=time(0, 0),
-                 weight=0, required_truck=0, delivery_group_id=0, wrong_address=False):
+                 weight=0, required_truck=0, delivery_group_id=0, wrong_address=False, address_available_time=time(0,0)):
         # package_hash_table columns
         self.package_id = package_id
         self.address_id = address_id
@@ -19,6 +19,7 @@ class Package:
         self.required_truck = required_truck
         self.delivery_group_id = delivery_group_id
         self.wrong_address = wrong_address
+        self.address_available_time = address_available_time
 
         # status variables
         self.truck_id = 0
