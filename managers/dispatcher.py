@@ -9,7 +9,7 @@ class Dispatcher:
 
     def assign_driver_to_truck(self, driver_id, truck_id):
         self.assignments[driver_id] = truck_id
-        print(f"Driver {driver_id} assigned to Truck {truck_id}")
+        # print(f"Driver {driver_id} assigned to Truck {truck_id}")
 
     def assign_drivers_to_trucks(self):
         for driver in self.driver_manager.drivers:

@@ -37,8 +37,11 @@ class Truck:
                 self.earliest_leave_time = package.available_time
 
     def set_can_leave_hub(self, current_time):
-        if self.earliest_leave_time >= current_time:
+        if current_time >= self.earliest_leave_time:
             self.can_leave_hub = True
+            return True
+        else:
+            return False
 
 
     def __repr__(self):

@@ -1,31 +1,31 @@
+from models import address, ChainingHashTable, Package, Truck
+from dataloaders import DistanceDataLoader, PackageDataLoader
+from datetime import datetime, timedelta
+
 class SimulationManager:
-    def __init__(self, truck_manager, delivery_manager, time_step=1):
+    def __init__(self, distance_data_loader, package_data_loader, truck_manager, driver_manager, dispatcher, greedy, current_time, time_step):
+        self.distance_data_loader = distance_data_loader
+        self.package_data_loader = package_data_loader
         self.truck_manager = truck_manager
-        self.delivery_manager = delivery_manager
-        self.current_time = 0  # Track the simulation time
-        self.time_step = time_step  # Time step in hours
+        self.driver_manager = driver_manager
+        self.dispatcher = dispatcher
+        self.greedy = greedy
+        self.current_time = current_time  # Track the simulation time
+        self.time_step = time_step  # Time step in seconds
 
     def advance_time(self):
-        self.current_time += self.time_step
+        self.current_time = self.current_time + timedelta(seconds=self.time_step)
         self.update_truck_locations()
         self.update_package_statuses()
 
     def update_truck_locations(self):
-        for truck in self.truck_manager.trucks:
-            # Calculate the distance traveled based on time_step and speed
-            distance_traveled = truck.average_speed * self.time_step
-            truck.drive_to(distance_traveled)
-            # Update truck's location and other relevant details
+       pass
 
     def update_package_statuses(self):
-        for truck in self.truck_manager.trucks:
-            for package_id in truck.package_list:
-                package = self.delivery_manager.get_package(package_id)
-                # Update package status based on truck location, delivery deadlines, etc.
+        pass
 
     def get_package_status(self, package_id):
-        package = self.delivery_manager.get_package(package_id)
-        return package.status
+        pass
 
     def get_truck_status(self, truck_id):
         for truck in self.truck_manager.trucks:
