@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     # Initialize greedy algorithm and DeliveryManager
     greedy = Greedy(distance_data_loader, package_data_loader, truck_manager)
-    #greedy.sort_packages_into_trucks()
+    greedy.sort_packages_into_trucks()
 
     # Initialize simulation
     current_date = datetime.now().date()

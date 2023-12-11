@@ -16,11 +16,12 @@ class Truck:
         current_date = datetime.now().date()
         self.earliest_leave_time = datetime.combine(current_date, time(hour=8, minute=0))
         self.can_leave_hub = False
-        self.current_address = 0
-        self.next_address = 0
+        self.current_address_id = 0
+        self.next_address_id = 0
+        self.package_groups = []
 
     def calculate_eta(self, destination_address_id):
-        current_location = self.current_address
+        current_location = self.current_address_id
         distance_to_destination = self.distance_data_loader.get_distance(current_location, destination_address_id)
         # Ensure that distance_to_destination is a numeric value
         if distance_to_destination is None:

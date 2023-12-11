@@ -14,9 +14,11 @@ class Greedy:
         for truck in self.truck_manager.trucks:
             # Load packages using Greedy approach on the sorted list
             while len(truck.package_list) < truck.max_packages and self.sorted_packages:
-                next_package = self.get_next_valid_closest_package(truck.current_address, truck, sorted_packages)
+                next_package = self.get_next_valid_closest_package(truck.current_address_id, truck)
                 if next_package:
                     self.load_package_into_truck(next_package, truck)
+                    if next_package.delivery_group_id != 0:
+                        truck.package_groups.append(next_package.delivery_group_id)
 
     def get_next_valid_closest_package(self, current_address_id, truck):
         closest_distance = float('inf')
