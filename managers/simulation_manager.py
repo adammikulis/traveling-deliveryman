@@ -4,11 +4,11 @@ from datetime import *
 
 
 class SimulationManager:
-    def __init__(self, distance_data_loader, package_data_loader, truck_manager, driver_manager, dispatcher, greedy, current_time, time_step):
+    def __init__(self, distance_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, greedy, current_time, time_step):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
-        self.truck_manager = truck_manager
         self.driver_manager = driver_manager
+        self.truck_manager = truck_manager
         self.dispatcher = dispatcher
         self.greedy = greedy
         self.current_time = current_time  # Track the simulation time
@@ -25,7 +25,8 @@ class SimulationManager:
         package.address_id = correct_address_id
         package.wrong_address = False
     def update_truck_locations(self):
-       pass
+       for truck in self.truck_manager.trucks:
+           truck.drive()
 
     def update_package_statuses(self):
         pass
@@ -36,5 +37,5 @@ class SimulationManager:
     def get_truck_status(self, truck_id):
         for truck in self.truck_manager.trucks:
             if truck.truck_id == truck_id:
-                return truck.miles_driven, truck.package_list
+                return truck.total_miles_driven, truck.package_list
         return None

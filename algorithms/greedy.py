@@ -43,7 +43,7 @@ class Greedy:
                     truck.special_package_list.remove(next_package_id)
                 else:
                     next_package_id, is_package_special = self.get_next_combined_closest_package_id(truck)
-                    truck.package_list.append(next_package_id)
+                    truck.load_package(next_package_id)
                     if is_package_special:
                         truck.special_package_list.remove(next_package_id)
                     else:

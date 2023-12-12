@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     # Assigns unassigned drivers to open trucks
     dispatcher = Dispatcher(driver_manager, truck_manager)
-    dispatcher.assign_drivers_to_trucks()
+    dispatcher.assign_all_drivers_to_trucks()
 
     # Initialize greedy algorithm and DeliveryManager
     greedy = Greedy(distance_data_loader, package_data_loader, truck_manager)

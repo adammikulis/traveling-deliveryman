@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="redoing greedy">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_delivery_data_backup.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_delivery_data_backup.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/package_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/dispatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/dispatcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/driver_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/driver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +251,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702329248460</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="can load special packages into a special list on trucks to ensure they are there, to then be loaded onto truck's regular list">
+      <option name="closed" value="true" />
+      <created>1702338497022</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1702338497022</updated>
+    </task>
+    <task id="LOCAL-00020" summary="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline">
+      <option name="closed" value="true" />
+      <created>1702408885025</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1702408885025</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -282,7 +300,9 @@
     <MESSAGE value="created dispatcher and refactored driver/truck assignments into that" />
     <MESSAGE value="simulation now advances second-by-second" />
     <MESSAGE value="redoing greedy" />
-    <option name="LAST_COMMIT_MESSAGE" value="redoing greedy" />
+    <MESSAGE value="can load special packages into a special list on trucks to ensure they are there, to then be loaded onto truck's regular list" />
+    <MESSAGE value="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline" />
+    <option name="LAST_COMMIT_MESSAGE" value="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

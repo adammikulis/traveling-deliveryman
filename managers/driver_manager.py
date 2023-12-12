@@ -3,7 +3,7 @@ from models import Driver
 class DriverManager:
 
     def __init__(self, total_drivers):
-        self.drivers = [Driver(driver_id=i+1) for i in range(total_drivers)]
+        self.drivers = [Driver(i+1) for i in range(total_drivers)]
 
     def assign_driver_to_truck(self, driver_id, truck_id, truck_manager):
         driver = self.drivers[driver_id - 1]
