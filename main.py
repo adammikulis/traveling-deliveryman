@@ -39,11 +39,8 @@ if __name__ == '__main__':
                                            truck_manager, dispatcher, greedy, start_time, 1)
 
     while simulation_manager.current_time <= EOD:
-        # print(f"The time is: {simulation_manager.current_time}")
-
+        print(f"The time is: {simulation_manager.current_time}")
+        simulation_manager.advance_time()
         # Used to correct a package address
         if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
             simulation_manager.correct_package_address(package_data_loader, 9, 19)
-
-
-        simulation_manager.advance_time()

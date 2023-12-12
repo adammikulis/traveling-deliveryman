@@ -16,9 +16,8 @@ class SimulationManager:
         self.current_date = datetime.now().date()
 
     def advance_time(self):
-        self.current_time = self.current_time + timedelta(seconds=self.time_step)
+        self.current_time = self.current_time + timedelta(self.time_step)
         self.update_truck_locations()
-        self.update_package_statuses()
 
     def correct_package_address(self, package_data_loader, package_id, correct_address_id):
         package = package_data_loader.package_hash_table.search(package_id)
@@ -26,10 +25,8 @@ class SimulationManager:
         package.wrong_address = False
     def update_truck_locations(self):
        for truck in self.truck_manager.trucks:
-           truck.drive()
+           truck.drive_to_next_address_id(self.time_step)
 
-    def update_package_statuses(self):
-        pass
 
     def get_package_status(self, package_id):
         pass
