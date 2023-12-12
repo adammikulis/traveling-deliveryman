@@ -47,7 +47,7 @@ class Truck:
             self.drive(time_step)
 
             # If the truck reaches the next stop
-            if self.next_address_distance_driven == self.next_address_distance:
+            if abs(self.next_address_distance_driven - self.next_address_distance) < 0.001:
                 print(f"Arrived at {self.next_address_id}")
                 self.current_address_id = self.next_address_id
                 self.unload_package(self.package_list[0])
