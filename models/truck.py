@@ -56,7 +56,7 @@ class Truck:
                     self.next_address_distance = self.distance_data_loader.get_distance(self.current_address_id, 0)
 
             if self.next_address_id is not None:
-                print(f"Driving to {self.next_address_id}")
+                print(f"Truck {self.truck_id} driving to {self.next_address_id}")
                 drive_distance = self.average_speed / (60 * 60) # This utilizes a timestep of 1 second
                 self.total_miles_driven += drive_distance
                 self.next_address_distance_driven += drive_distance
