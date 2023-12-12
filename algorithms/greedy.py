@@ -29,37 +29,29 @@ class Greedy:
                 package = self.package_table.search(package_id)
                 if package_id in self.package_id_list:
                     self.truck_manager.trucks[0].load_special_package(package_id)
-                    self.package_id_list.remove(package_id)
+                    self.package_id_list.remove(package_id) # Remove from global package id list
 
     def sort_packages_onto_trucks(self):
         self.load_special_packages()  # Loads special packages into their own lists in the trucks
         for truck in self.truck_manager.trucks:
-            print(truck.special_package_list)
-            # while not truck.is_full() and (self.package_id_list or truck.special_package_list):
-            #     if len(truck.special_package_list) + len(truck.package_list) < truck.max_packages:
-            #         next_package_id = self.get_next_combined_closest_package_id(truck)
-            #         if next_package_id is not None:
-            #             package = self.package_table.search(next_package_id)
-            #             if package:  # Check if package is not None
-            #                 truck.load_package(next_package_id)
-            #                 package.truck_id = truck.truck_id
-            #                 # Remove the package ID from the relevant list
-            #                 if next_package_id in truck.special_package_list:
-            #                     truck.special_package_list.remove(next_package_id)
-            #                 else:
-            #                     # Remove from the main package list if it's not a special package
-            #                     self.package_id_list.remove(next_package_id)
-            #     else:
-            #         # Handle the case when only special packages can be loaded
-            #         next_package_id = self.get_next_closest_package_id(truck, True)
-            #         if next_package_id is not None:
-            #             package = self.package_table.search(next_package_id)
-            #             if package:  # Check if package is not None
-            #                 truck.unload_special_package(next_package_id)
-            #                 truck.load_package(next_package_id)
-            #                 package.truck_id = truck.truck_id
-            #                 truck.special_package_list.remove(next_package_id)
+            # Break loop if truck is full or if the global package_id_list and truck's special_package_list are empty
+            while not truck.is_full() and (self.package_id_list or truck.special_package_list):
+                # Forces assignment from special_package_list when combined list total is at max_capacity
+                if len(truck.package_list) + len(truck.special_package_list) == truck.max_packages:
+                    next_package_id, next_package_distance = self.get_next_closest_package_id(truck, True)
+                    truck.package_list.append(next_package_id)
+                    truck.special_package_list.remove(next_package_id)
+                else:
+                    next_package_id, is_package_special = self.get_next_combined_closest_package_id(truck)
+                    truck.package_list.append(next_package_id)
+                    if is_package_special:
+                        truck.special_package_list.remove(next_package_id)
+                    else:
+                        self.package_id_list.remove(next_package_id)
+            print(truck)
 
+
+    # Searches through global regular list or truck's special package list depending on arg
     def get_next_closest_package_id(self, truck, use_special_list=False):
         closest_distance = float('inf')
         closest_package_id = None
@@ -76,10 +68,10 @@ class Greedy:
 
         return closest_package_id, closest_distance
 
-    # Search through both special and regular package list, returning closest package
+    # Search through both special and regular package list, returning closest package and whether it is special or not
     def get_next_combined_closest_package_id(self, truck):
-        closest_regular_distance, closest_regular_package_id = self.get_next_closest_package_id(truck, False)
-        closest_special_distance, closest_special_package_id = self.get_next_closest_package_id(truck, True)
+        closest_regular_package_id, closest_regular_distance = self.get_next_closest_package_id(truck, False)
+        closest_special_package_id, closest_special_distance = self.get_next_closest_package_id(truck, True)
 
         # Check if both lists are empty
         if closest_regular_package_id is None and closest_special_package_id is None:
@@ -87,31 +79,12 @@ class Greedy:
 
         # Check if one of the lists is empty and return the package from the non-empty list
         if closest_regular_package_id is None:
-            return closest_special_package_id
+            return closest_special_package_id, True
         elif closest_special_package_id is None:
-            return closest_regular_package_id
+            return closest_regular_package_id, False
 
         # If both lists have packages, choose the package with the shortest distance
-        if closest_regular_distance is not None and (
-                closest_special_distance is None or closest_regular_distance < closest_special_distance):
-            return closest_regular_package_id
+        if closest_regular_distance is not None and (closest_special_distance is None or closest_regular_distance < closest_special_distance):
+            return closest_regular_package_id, False
         else:
-            return closest_special_package_id
-
-    #
-    # def load_package_into_truck(self, package, truck):
-    #     if self.can_load_package(truck, package):
-    #         truck.load_package(package.package_id)
-    #         package.status = PackageStatus.IN_TRANSIT
-    #         package.truck_id = truck.truck_id
-    #         print(f"Package {package.package_id} allocated to Truck {truck.truck_id}")
-    #         truck.current_address = package.address_id
-    #         self.package_id_list.remove(package)  # Remove the package from the sorted list after loading
-    #
-    # def can_load_package(self, truck, package):
-    #     # Check if the truck can load the package
-    #     return (len(truck.package_list) < truck.max_packages and
-    #             (package.required_truck == 0 or package.required_truck == truck.truck_id))
-    #
-    def package_arrival_too_soon(self, package, eta):
-        return eta < package.address_available_time
+            return closest_special_package_id, True
