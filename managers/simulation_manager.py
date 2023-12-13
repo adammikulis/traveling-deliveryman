@@ -16,7 +16,7 @@ class SimulationManager:
         self.current_date = datetime.now().date()
 
     def advance_time(self):
-        self.current_time = self.current_time + timedelta(self.time_step)
+        self.current_time = self.current_time + timedelta(0, self.time_step)
         self.update_truck_locations()
 
     def correct_package_address(self, package_data_loader, package_id, correct_address_id):

@@ -35,8 +35,8 @@ class Truck:
                     next_package_id = self.package_list[0]
                     next_package = self.package_hash_table.search(next_package_id)
                     self.next_address_id = next_package.address_id
+                    print(f"Truck {self.truck_id} driving to {self.next_address_id}")
                     self.next_address_distance = self.distance_data_loader.get_distance(self.current_address_id, self.next_address_id)
-                    print(self.next_address_distance)
 
             # Send truck back to hub if package list is empty
             else:
@@ -47,8 +47,8 @@ class Truck:
             self.drive(time_step)
 
             # If the truck reaches the next stop
-            if abs(self.next_address_distance_driven - self.next_address_distance) < 0.001:
-                print(f"Arrived at {self.next_address_id}")
+            if abs(self.next_address_distance_driven - self.next_address_distance) < 0.01:
+                print(f"Truck {self.truck_id} arrived at {self.next_address_id}")
                 self.current_address_id = self.next_address_id
                 self.unload_package(self.package_list[0])
                 self.next_address_id = None
@@ -57,11 +57,10 @@ class Truck:
 
 
     def drive(self, time_step):
-        print(f"Truck {self.truck_id} driving to {self.next_address_id}")
         drive_distance = (self.average_speed * time_step) / (60 * 60)
         self.total_miles_driven += drive_distance
         self.next_address_distance_driven += drive_distance
-        print(f"Total miles driven: {self.total_miles_driven}")
+        #print(f"Total miles driven: {self.total_miles_driven}")
 
     def load_package(self, package_id):
         self.package_list.append(package_id)
@@ -77,9 +76,6 @@ class Truck:
 
     def can_load_package(self, package):
         return len(self.package_list) < self.max_packages and package.required_truck in [0, self.truck_id]
-
-    def calculate_delivery_time(self, package):
-        pass
 
     def is_full(self):
         return self.max_packages == len(self.package_list) # Only full if regular list is full
