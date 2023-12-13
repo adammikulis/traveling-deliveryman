@@ -46,16 +46,18 @@ if __name__ == '__main__':
         #print(f"The time is: {simulation_manager.current_time}, EOD: {EOD}")
         simulation_manager.advance_time()
 
-        # Reassigns first driver that returns to final truck
+        # Reassigns first driver that returns to final truck, this only works with n trucks / n-1 drivers
         for truck in truck_manager.trucks[:-1]:
             if truck.finished_delivery_at_hub and truck_manager.trucks[-1].assigned_driver_id == 0:
-                print(f"\nAssigning Driver {truck.assigned_driver_id} to Truck {truck_manager.trucks[-1].truck_id}")
+                print(f"\nAssigning Driver {truck.assigned_driver_id} to Truck {truck_manager.trucks[-1].truck_id} at {simulation_manager.current_time.strftime("%H:%M")}")
                 dispatcher.assign_driver_to_truck(truck.assigned_driver_id, truck_manager.trucks[-1].truck_id)
                 truck.assigned_driver_id = 0
-                print(f"Truck {truck_manager.trucks[-1].truck_id} left depot at {simulation_manager.current_time.strftime("%H:%M")}\n")
 
         if simulation_manager.current_time == status_check_1 or simulation_manager.current_time == status_check_2:
+            print(f"\n***STATUS UPDATE*** Current time: {simulation_manager.current_time.strftime("%H:%M")}")
             print(f"All truck miles driven: {simulation_manager.all_truck_miles_driven:.1f}")
+            package_data_loader.print_all_package_status()
+            print("")
 
 
         # Used to correct a package address

@@ -46,5 +46,3 @@ class ChainingHashTable:
                 return True
         return False
 
-    def get_package_id_index(self):
-        return self.package_id_index

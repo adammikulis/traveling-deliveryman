@@ -21,17 +21,16 @@ class Package:
         self.truck_id = 0
         self.status = "At-hub"
         self.delivered_at = datetime.min
+        self.delivered_on_time = False
 
-    def deliver(self):
-        self.status = PackageStatus.DELIVERED
     # Printable representation of object
     def __repr__(self):
 
         # Returns current status with different overall output based on package status
         match self.status:
-            case PackageStatus.DELIVERED:
-                return f"Package ID:{self.package_id}, Status: {self.status.value} at {self.delivered_at})"
-            case PackageStatus.IN_TRANSIT:
-                return f"Package ID:{self.package_id}, Status: {self.status.value} on Truck: {self.truck_id})"
-            case PackageStatus.AT_HUB:
-                return f"Package ID:{self.package_id}, Status: {self.status.value})"
+            case "Delivered":
+                return f"Package ID:{self.package_id}, Status: Delivered at {self.delivered_at.strftime("%H:%M")}, On-time: {self.delivered_on_time}"
+            case "In-transit":
+                return f"Package ID:{self.package_id}, Status: In-transit on Truck: {self.truck_id}"
+            case "At-hub":
+                return f"Package ID:{self.package_id}, Status: At-hub"

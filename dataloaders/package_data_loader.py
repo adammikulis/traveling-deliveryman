@@ -10,6 +10,7 @@ class PackageDataLoader:
         self.total_packages = 0
         self.package_groups = {}
         self.package_required_trucks = {}
+        self.package_id_list = []  # Used for status printing
 
     def initialize_hash_table(self, total_packages):
         self.package_hash_table = ChainingHashTable(total_packages)
@@ -27,6 +28,7 @@ class PackageDataLoader:
             next(package_data)  # skips header
             for package in package_data:
                 package_id = int(package[0])
+                self.package_id_list.append(package_id)
                 address_id = int(package[1])
                 available_time = datetime.strptime(package[2], "%H:%M").time()
                 delivery_deadline = datetime.strptime(package[3], "%H:%M").time()
@@ -65,3 +67,7 @@ class PackageDataLoader:
             for i in package_data:
                 total_packages += 1
             return total_packages
+
+    def print_all_package_status(self):
+        for package_id in self.package_id_list:
+            print(self.package_hash_table.search(package_id))

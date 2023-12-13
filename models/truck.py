@@ -33,6 +33,9 @@ class Truck:
         if self.truck_has_driver() and not self.finished_delivery_at_hub:
             # If there are packages left to deliver
             if self.package_id_list:
+                for package_id in self.package_id_list:
+                    package = self.package_hash_table.search(package_id)
+                    package.status = "In-transit"
             # Get the next_address_id if there is none
                 if self.next_address_id is None:
                     next_package_id = self.package_id_list[0]
@@ -87,9 +90,10 @@ class Truck:
         package = self.package_hash_table.search(package_id)
         package.status = "Delivered"
         package.delivered_at = current_time
+        package.delivered_on_time = current_time <= package.delivery_deadline
         self.next_address_id = None
         self.next_address_distance_driven = 0.0
-        print(f"Package: {package_id}\tdelivered to Address: {self.current_address_id} \tby Truck: {self.truck_id} at {current_time.strftime("%H:%M")} Truck miles: {self.total_miles_driven:.1f}")
+        # print(f"Package: {package_id}\tdelivered to Address: {self.current_address_id} \t by Truck: {self.truck_id} at {current_time.strftime("%H:%M")} Truck miles: {self.total_miles_driven:.1f}")
 
     def load_special_package(self, package_id):
         self.special_package_id_list.append(package_id)

@@ -1,18 +1,21 @@
 from models import ChainingHashTable
 from models import DistanceTable
 from models import Package
+import random
 
 
 class Greedy:
     def __init__(self, distance_data_loader, package_data_loader, truck_manager):
+        random.seed(42)
         self.distance_data_loader = distance_data_loader
         self.distance_table = distance_data_loader.distance_table
         self.package_data_loader = package_data_loader
-        self.package_table = package_data_loader.package_hash_table
+        self.package_hash_table = package_data_loader.package_hash_table
 
         self.truck_manager = truck_manager
         self.current_address_id = 0
-        self.package_id_list = self.package_table.get_package_id_index()
+        self.package_id_list = self.package_hash_table.package_id_index
+        self.noise_factor = 0.00
         self.special_list_weight = 1 # Used to prioritize special packages
 
     def load_special_packages(self):
@@ -26,9 +29,9 @@ class Greedy:
 
         # Load grouped packages
         for group_id, package_ids in self.package_data_loader.package_groups.items():
-            # Default to the third truck for grouped packages
+            # Default to the third truck for grouped packages (lowest mileage so far)
             for package_id in package_ids:
-                package = self.package_table.search(package_id)
+                package = self.package_hash_table.search(package_id)
                 if package_id in self.package_id_list:
                     self.truck_manager.trucks[2].load_special_package(package_id)
                     self.package_id_list.remove(package_id) # Remove from global package id list
@@ -36,6 +39,9 @@ class Greedy:
     def sort_packages_onto_trucks(self):
         self.load_special_packages()  # Loads special packages into their own lists in the trucks
         for truck in self.truck_manager.trucks:
+            # Artificially restrict max packages to try optimization
+            # if truck.truck_id == 1:
+            #     truck.max_packages = 15
             # Break loop if truck is full or if the global package_id_list and truck's special_package_id_list are empty
             while not truck.is_full() and (self.package_id_list or truck.special_package_id_list):
                 # Forces assignment from special_package_id_list when combined list total is at max_capacity
@@ -43,8 +49,12 @@ class Greedy:
                     next_package_id, next_package_distance = self.get_next_closest_package_id(truck, True)
                     truck.package_id_list.append(next_package_id)
                     truck.special_package_id_list.remove(next_package_id)
+                    package = self.package_hash_table.search(next_package_id)
+                    package.truck_id = truck.truck_id
                 else:
                     next_package_id, is_package_special = self.get_next_combined_closest_package_id(truck)
+                    package = self.package_hash_table.search(next_package_id)
+                    package.truck_id = truck.truck_id
                     truck.load_package(next_package_id)
                     if is_package_special:
                         truck.special_package_id_list.remove(next_package_id)
@@ -62,8 +72,9 @@ class Greedy:
         package_list = truck.special_package_id_list if use_special_list else self.package_id_list
 
         for package_id in package_list:
-            package = self.package_table.search(package_id)
-            distance = self.distance_table.get_distance(self.current_address_id, package.address_id)
+            noise_weight = 1 + random.uniform(-self.noise_factor, self.noise_factor)
+            package = self.package_hash_table.search(package_id)
+            distance = self.distance_table.get_distance(self.current_address_id, package.address_id) * noise_weight
             if distance < closest_distance:
                 closest_distance = distance
                 closest_package_id = package.package_id
