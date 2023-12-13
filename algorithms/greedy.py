@@ -67,16 +67,18 @@ class Greedy:
         # Combine and prioritize packages based on deadline and distance
         best_package_id = None
         best_score = float('inf')
+        reference_time = datetime.combine(datetime.now().date(), time(8, 0))
 
         # Combine both lists for assessment
         combined_package_list = self.package_id_list + truck.special_package_id_list
 
         for package_id in combined_package_list:
             package = self.package_hash_table.search(package_id)
-            deadline_score = (package.delivery_deadline - datetime.now()).total_seconds()  # Closer deadlines have lower score
+            deadline_difference = (package.delivery_deadline - reference_time).total_seconds()  # Closer deadlines have lower score
+            deadline_score = abs(deadline_difference)
             distance_score = self.distance_table.get_distance(self.current_address_id, package.address_id)
 
-            deadline_weight = 1.0
+            deadline_weight = 1
             # Create a combined score, modify weights as needed
             combined_score = (deadline_weight * deadline_score) + distance_score
 

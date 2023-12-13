@@ -31,20 +31,25 @@ class SimulationManager:
             self.all_truck_miles_driven += truck.total_miles_driven
 
     def print_all_package_status(self, package_data_loader, address_data_loader):
+        overall_status = True
         print(f"\n***STATUS UPDATE*** Current time: {self.current_time.strftime("%H:%M")}")
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
         for package_id in package_data_loader.package_id_list:
             address_id, truck_id, status, delivered_at, delivered_on_time = package_data_loader.return_all_package_info(
                 package_id)
             address = address_data_loader.get_address(address_id)
-            match status:
-                case "Delivered":
-                    print(
-                        f"Package ID: {package_id},\tStatus: Delivered to {address.street_address}\tat {delivered_at.strftime("%H:%M")},\tby Truck {truck_id},\tOn-time: {delivered_on_time}")
-                case "In-transit":
-                    print(f"Package ID: {package_id},\tStatus: In-transit on Truck: {truck_id}")
-                case "At-hub":
-                    print(f"Package ID: {package_id},\tStatus: At-hub")
+            # match status:
+            #     case "Delivered":
+            #         print(
+            #             f"Package ID: {package_id},\tStatus: Delivered to {address.street_address}\tat {delivered_at.strftime("%H:%M")},\tby Truck {truck_id},\tOn-time: {delivered_on_time}")
+            #     case "In-transit":
+            #         print(f"Package ID: {package_id},\tStatus: In-transit on Truck: {truck_id}")
+            #     case "At-hub":
+            #         print(f"Package ID: {package_id},\tStatus: At-hub")
+            if not delivered_on_time:
+                overall_status = False
+        print(f"All packages delivered on-time: {overall_status}")
+
 
     def get_truck_status(self, truck_id):
         for truck in self.truck_manager.trucks:
