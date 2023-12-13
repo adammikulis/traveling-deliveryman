@@ -1,12 +1,12 @@
 from models import ChainingHashTable
 from models import DistanceTable
 from models import Package
+from datetime import *
 import random
 
 
 class Greedy:
     def __init__(self, distance_data_loader, package_data_loader, truck_manager):
-        random.seed(42)
         self.distance_data_loader = distance_data_loader
         self.distance_table = distance_data_loader.distance_table
         self.package_data_loader = package_data_loader
@@ -15,11 +15,9 @@ class Greedy:
         self.truck_manager = truck_manager
         self.current_address_id = 0
         self.package_id_list = self.package_hash_table.package_id_index
-        self.noise_factor = 0.00
         self.special_list_weight = 1 # Used to prioritize special packages
 
-    def load_special_packages(self):
-
+    def load_special_package_lists(self):
         # Load packages required by specific trucks
         for truck_id, package_ids in self.package_data_loader.package_required_trucks.items():
             for package_id in package_ids:
@@ -33,51 +31,82 @@ class Greedy:
             for package_id in package_ids:
                 package = self.package_hash_table.search(package_id)
                 if package_id in self.package_id_list:
-                    self.truck_manager.trucks[2].load_special_package(package_id)
+                    self.truck_manager.trucks[1].load_special_package(package_id)
                     self.package_id_list.remove(package_id) # Remove from global package id list
 
+    # The actual greedy algorithm
     def sort_packages_onto_trucks(self):
-        self.load_special_packages()  # Loads special packages into their own lists in the trucks
+        # Assign package groups and required packages to their trucks
+        self.load_special_package_lists()
+
         for truck in self.truck_manager.trucks:
-            # Artificially restrict max packages to try optimization
-            # if truck.truck_id == 1:
-            #     truck.max_packages = 15
-            # Break loop if truck is full or if the global package_id_list and truck's special_package_id_list are empty
             while not truck.is_full() and (self.package_id_list or truck.special_package_id_list):
-                # Forces assignment from special_package_id_list when combined list total is at max_capacity
-                if len(truck.package_id_list) + len(truck.special_package_id_list) == truck.max_packages:
-                    next_package_id, next_package_distance = self.get_next_closest_package_id(truck, True)
-                    truck.package_id_list.append(next_package_id)
-                    truck.special_package_id_list.remove(next_package_id)
-                    package = self.package_hash_table.search(next_package_id)
-                    package.truck_id = truck.truck_id
+
+                if len(truck.special_package_id_list) + len(truck.package_id_list) == truck.max_packages:
+                    next_package_id, closest_distance = self.get_next_closest_package_id(truck, True)
+                    is_package_special = True
+                # Use the method to get the package with the most urgent deadline and closest distance
                 else:
-                    next_package_id, is_package_special = self.get_next_combined_closest_package_id(truck)
+                    next_package_id, is_package_special = self.get_next_urgent_closest_package_id(truck)
+
+                if next_package_id is not None:
                     package = self.package_hash_table.search(next_package_id)
                     package.truck_id = truck.truck_id
                     truck.load_package(next_package_id)
-                    if is_package_special:
+
+                    # Safely remove the package ID from the appropriate list
+                    if is_package_special and next_package_id in truck.special_package_id_list:
                         truck.special_package_id_list.remove(next_package_id)
-                    else:
+                    elif next_package_id in self.package_id_list:
                         self.package_id_list.remove(next_package_id)
+
+        for truck in self.truck_manager.trucks:
             print(truck)
 
+    def get_next_urgent_closest_package_id(self, truck):
+        # Combine and prioritize packages based on deadline and distance
+        best_package_id = None
+        best_score = float('inf')
+
+        # Combine both lists for assessment
+        combined_package_list = self.package_id_list + truck.special_package_id_list
+
+        for package_id in combined_package_list:
+            package = self.package_hash_table.search(package_id)
+            deadline_score = (package.delivery_deadline - datetime.now()).total_seconds()  # Closer deadlines have lower score
+            distance_score = self.distance_table.get_distance(self.current_address_id, package.address_id)
+
+            deadline_weight = 1.0
+            # Create a combined score, modify weights as needed
+            combined_score = (deadline_weight * deadline_score) + distance_score
+
+            if combined_score < best_score:
+                best_score = combined_score
+                best_package_id = package_id
+
+        is_package_special = best_package_id in truck.special_package_id_list
+        return best_package_id, is_package_special
 
     # Searches through global regular list or truck's special package list depending on arg
     def get_next_closest_package_id(self, truck, use_special_list=False):
-        closest_distance = float('inf')
         closest_package_id = None
+        closest_distance = float('inf')
+        earliest_deadline = datetime.max # Represents the earliest deadline
 
-        # Choose the appropriate list based on the use_special_list flag
         package_list = truck.special_package_id_list if use_special_list else self.package_id_list
 
         for package_id in package_list:
-            noise_weight = 1 + random.uniform(-self.noise_factor, self.noise_factor)
             package = self.package_hash_table.search(package_id)
-            distance = self.distance_table.get_distance(self.current_address_id, package.address_id) * noise_weight
-            if distance < closest_distance:
+            deadline = package.delivery_deadline  # Using the delivery_deadline attribute
+
+            # Calculate distance to the package
+            distance = self.distance_table.get_distance(self.current_address_id, package.address_id)
+
+            # Prioritize by deadline, then by distance
+            if deadline < earliest_deadline or (deadline == earliest_deadline and distance < closest_distance):
                 closest_distance = distance
                 closest_package_id = package.package_id
+                earliest_deadline = deadline
 
         return closest_package_id, closest_distance
 
@@ -86,18 +115,13 @@ class Greedy:
         closest_regular_package_id, closest_regular_distance = self.get_next_closest_package_id(truck, False)
         closest_special_package_id, closest_special_distance = self.get_next_closest_package_id(truck, True)
 
-        # Check if both lists are empty
-        if closest_regular_package_id is None and closest_special_package_id is None:
-            return None
-
-        # Check if one of the lists is empty and return the package from the non-empty list
+        # Logic to determine whether to choose a regular or special package
         if closest_regular_package_id is None:
             return closest_special_package_id, True
         elif closest_special_package_id is None:
             return closest_regular_package_id, False
 
-        # If both lists have packages, choose the package with the shortest distance
-        if closest_regular_distance is not None and (closest_special_distance is None or closest_regular_distance < closest_special_distance * self.special_list_weight):
+        if closest_regular_distance < closest_special_distance:
             return closest_regular_package_id, False
         else:
             return closest_special_package_id, True

@@ -62,7 +62,7 @@ class Truck:
                     self.deliver_package(self.package_id_list[0], current_time)
 
                 elif not self.package_id_list and self.next_address_id == 0:
-                    print(f"\nTruck {self.truck_id} arrived at depot at {current_time.strftime("%H:%M")} Total truck miles: {self.total_miles_driven:.1f}\n")
+                    # print(f"\nTruck {self.truck_id} arrived at depot at {current_time.strftime("%H:%M")} Total truck miles: {self.total_miles_driven:.1f}\n")
                     self.next_address_id = None
                     self.finished_delivery_at_hub = True
 
@@ -123,10 +123,13 @@ class Truck:
     #
     #     return self.earliest_leave_time + timedelta(hours=travel_time)
 
-    def __repr__(self):
+    def __str__(self):
         address_delivery_list = []
+        delivery_deadline_list = []
         for package_id in self.package_id_list:
             package = self.package_hash_table.search(package_id)
             address_id = package.address_id
+            delivery_deadline = package.delivery_deadline
             address_delivery_list.append(address_id)
-        return f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} \nCurrent Packages: {self.package_id_list}\nCurrent Addresses: {address_delivery_list}\n"
+            delivery_deadline_list.append(delivery_deadline.strftime("%H:%M"))
+        return f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} \nCurrent Packages: {self.package_id_list}\nCurrent Addresses: {address_delivery_list}\nSpecial Packages: {self.special_package_id_list}\nPackage Deadlines: {delivery_deadline_list}\n"

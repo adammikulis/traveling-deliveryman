@@ -1,17 +1,17 @@
-from models import address, ChainingHashTable, Package, Truck
+from models import Address, ChainingHashTable, Package, Truck
 from dataloaders import DistanceDataLoader, PackageDataLoader
 from datetime import *
 
 
 class SimulationManager:
-    def __init__(self, distance_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, greedy, current_time, time_step):
+    def __init__(self, distance_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, greedy, start_time, time_step):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
         self.driver_manager = driver_manager
         self.truck_manager = truck_manager
         self.dispatcher = dispatcher
         self.greedy = greedy
-        self.current_time = current_time  # Track the simulation time
+        self.current_time = start_time
         self.time_step = time_step  # Time step in seconds
         self.current_date = datetime.now().date()
         self.all_truck_miles_driven = 0.0
@@ -30,11 +30,21 @@ class SimulationManager:
             truck.drive_to_next_address_id(self.time_step, self.current_time)
             self.all_truck_miles_driven += truck.total_miles_driven
 
-
-
-
-    def get_package_status(self, package_id):
-        pass
+    def print_all_package_status(self, package_data_loader, address_data_loader):
+        print(f"\n***STATUS UPDATE*** Current time: {self.current_time.strftime("%H:%M")}")
+        print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
+        for package_id in package_data_loader.package_id_list:
+            address_id, truck_id, status, delivered_at, delivered_on_time = package_data_loader.return_all_package_info(
+                package_id)
+            address = address_data_loader.get_address(address_id)
+            match status:
+                case "Delivered":
+                    print(
+                        f"Package ID: {package_id},\tStatus: Delivered to {address.street_address}\tat {delivered_at.strftime("%H:%M")},\tby Truck {truck_id},\tOn-time: {delivered_on_time}")
+                case "In-transit":
+                    print(f"Package ID: {package_id},\tStatus: In-transit on Truck: {truck_id}")
+                case "At-hub":
+                    print(f"Package ID: {package_id},\tStatus: At-hub")
 
     def get_truck_status(self, truck_id):
         for truck in self.truck_manager.trucks:

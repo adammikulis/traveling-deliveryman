@@ -29,8 +29,8 @@ class Package:
         # Returns current status with different overall output based on package status
         match self.status:
             case "Delivered":
-                return f"Package ID:{self.package_id}, Status: Delivered at {self.delivered_at.strftime("%H:%M")}, On-time: {self.delivered_on_time}"
+                return f"Package ID: {self.package_id},\tStatus: Delivered to {self.address_id} at {self.delivered_at.strftime("%H:%M")}, by Truck {self.truck_id}, On-time: {self.delivered_on_time}"
             case "In-transit":
-                return f"Package ID:{self.package_id}, Status: In-transit on Truck: {self.truck_id}"
+                return f"Package ID: {self.package_id},\tStatus: In-transit on Truck: {self.truck_id}"
             case "At-hub":
-                return f"Package ID:{self.package_id}, Status: At-hub"
+                return f"Package ID: {self.package_id},\tStatus: At-hub"

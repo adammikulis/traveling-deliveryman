@@ -1,5 +1,6 @@
 from datetime import time, datetime
 from models import Package, ChainingHashTable
+
 import csv
 
 
@@ -8,8 +9,8 @@ class PackageDataLoader:
     def __init__(self):
         self.package_hash_table = None
         self.total_packages = 0
-        self.package_groups = {}
-        self.package_required_trucks = {}
+        self.package_groups = {} # Special packages
+        self.package_required_trucks = {} # Special packages
         self.package_id_list = []  # Used for status printing
 
     def initialize_hash_table(self, total_packages):
@@ -71,3 +72,7 @@ class PackageDataLoader:
     def print_all_package_status(self):
         for package_id in self.package_id_list:
             print(self.package_hash_table.search(package_id))
+
+    def return_all_package_info(self, package_id):
+        package = self.package_hash_table.search(package_id)
+        return package.address_id, package.truck_id, package.status, package.delivered_at, package.delivered_on_time
