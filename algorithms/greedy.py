@@ -1,6 +1,6 @@
 from models import ChainingHashTable
 from models import DistanceTable
-from models import Package, PackageStatus
+from models import Package
 
 
 class Greedy:
@@ -13,8 +13,10 @@ class Greedy:
         self.truck_manager = truck_manager
         self.current_address_id = 0
         self.package_id_list = self.package_table.get_package_id_index()
+        self.special_list_weight = 1 # Used to prioritize special packages
 
     def load_special_packages(self):
+
         # Load packages required by specific trucks
         for truck_id, package_ids in self.package_data_loader.package_required_trucks.items():
             for package_id in package_ids:
@@ -24,28 +26,28 @@ class Greedy:
 
         # Load grouped packages
         for group_id, package_ids in self.package_data_loader.package_groups.items():
-            # Default to the first truck for grouped packages
+            # Default to the third truck for grouped packages
             for package_id in package_ids:
                 package = self.package_table.search(package_id)
                 if package_id in self.package_id_list:
-                    self.truck_manager.trucks[0].load_special_package(package_id)
+                    self.truck_manager.trucks[2].load_special_package(package_id)
                     self.package_id_list.remove(package_id) # Remove from global package id list
 
     def sort_packages_onto_trucks(self):
         self.load_special_packages()  # Loads special packages into their own lists in the trucks
         for truck in self.truck_manager.trucks:
-            # Break loop if truck is full or if the global package_id_list and truck's special_package_list are empty
-            while not truck.is_full() and (self.package_id_list or truck.special_package_list):
-                # Forces assignment from special_package_list when combined list total is at max_capacity
-                if len(truck.package_list) + len(truck.special_package_list) == truck.max_packages:
+            # Break loop if truck is full or if the global package_id_list and truck's special_package_id_list are empty
+            while not truck.is_full() and (self.package_id_list or truck.special_package_id_list):
+                # Forces assignment from special_package_id_list when combined list total is at max_capacity
+                if len(truck.package_id_list) + len(truck.special_package_id_list) == truck.max_packages:
                     next_package_id, next_package_distance = self.get_next_closest_package_id(truck, True)
-                    truck.package_list.append(next_package_id)
-                    truck.special_package_list.remove(next_package_id)
+                    truck.package_id_list.append(next_package_id)
+                    truck.special_package_id_list.remove(next_package_id)
                 else:
                     next_package_id, is_package_special = self.get_next_combined_closest_package_id(truck)
                     truck.load_package(next_package_id)
                     if is_package_special:
-                        truck.special_package_list.remove(next_package_id)
+                        truck.special_package_id_list.remove(next_package_id)
                     else:
                         self.package_id_list.remove(next_package_id)
             print(truck)
@@ -57,7 +59,7 @@ class Greedy:
         closest_package_id = None
 
         # Choose the appropriate list based on the use_special_list flag
-        package_list = truck.special_package_list if use_special_list else self.package_id_list
+        package_list = truck.special_package_id_list if use_special_list else self.package_id_list
 
         for package_id in package_list:
             package = self.package_table.search(package_id)
@@ -84,7 +86,7 @@ class Greedy:
             return closest_regular_package_id, False
 
         # If both lists have packages, choose the package with the shortest distance
-        if closest_regular_distance is not None and (closest_special_distance is None or closest_regular_distance < closest_special_distance):
+        if closest_regular_distance is not None and (closest_special_distance is None or closest_regular_distance < closest_special_distance * self.special_list_weight):
             return closest_regular_package_id, False
         else:
             return closest_special_package_id, True

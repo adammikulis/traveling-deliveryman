@@ -14,6 +14,7 @@ class SimulationManager:
         self.current_time = current_time  # Track the simulation time
         self.time_step = time_step  # Time step in seconds
         self.current_date = datetime.now().date()
+        self.all_truck_miles_driven = 0.0
 
     def advance_time(self):
         self.current_time = self.current_time + timedelta(0, self.time_step)
@@ -24,8 +25,12 @@ class SimulationManager:
         package.address_id = correct_address_id
         package.wrong_address = False
     def update_truck_locations(self):
-       for truck in self.truck_manager.trucks:
-           truck.drive_to_next_address_id(self.time_step)
+        self.all_truck_miles_driven = 0.0
+        for truck in self.truck_manager.trucks:
+            truck.drive_to_next_address_id(self.time_step, self.current_time)
+            self.all_truck_miles_driven += truck.total_miles_driven
+
+
 
 
     def get_package_status(self, package_id):
@@ -34,5 +39,5 @@ class SimulationManager:
     def get_truck_status(self, truck_id):
         for truck in self.truck_manager.trucks:
             if truck.truck_id == truck_id:
-                return truck.total_miles_driven, truck.package_list
+                return truck.total_miles_driven, truck.package_id_list
         return None

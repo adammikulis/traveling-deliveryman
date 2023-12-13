@@ -1,11 +1,4 @@
-from enum import Enum
 from datetime import *
-
-
-class PackageStatus(Enum):
-    AT_HUB = "At-hub"
-    IN_TRANSIT = "In-transit"
-    DELIVERED = "Delivered"
 
 class Package:
     def __init__(self, package_id=0, address_id=0, available_time=time(0, 0), delivery_deadline=time(0, 0),
@@ -26,7 +19,7 @@ class Package:
 
         # status variables
         self.truck_id = 0
-        self.status = PackageStatus.AT_HUB
+        self.status = "At-hub"
         self.delivered_at = datetime.min
 
     def deliver(self):

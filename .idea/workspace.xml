@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/dispatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/dispatcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/driver_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/driver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +266,31 @@
       <option name="project" value="LOCAL" />
       <updated>1702408885025</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="working on simulation aspect and driving trucks at 1s increments">
+      <option name="closed" value="true" />
+      <created>1702419768381</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1702419768381</updated>
+    </task>
+    <task id="LOCAL-00022" summary="updating truck drive method">
+      <option name="closed" value="true" />
+      <created>1702420216136</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1702420216136</updated>
+    </task>
+    <task id="LOCAL-00023" summary="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available">
+      <option name="closed" value="true" />
+      <created>1702438669065</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1702438669065</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,7 +325,10 @@
     <MESSAGE value="redoing greedy" />
     <MESSAGE value="can load special packages into a special list on trucks to ensure they are there, to then be loaded onto truck's regular list" />
     <MESSAGE value="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline" />
-    <option name="LAST_COMMIT_MESSAGE" value="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline" />
+    <MESSAGE value="working on simulation aspect and driving trucks at 1s increments" />
+    <MESSAGE value="updating truck drive method" />
+    <MESSAGE value="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available" />
+    <option name="LAST_COMMIT_MESSAGE" value="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -310,6 +336,10 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/managers/__init__.py</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/package.py</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
