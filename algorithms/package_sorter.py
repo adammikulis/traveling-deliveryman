@@ -15,7 +15,7 @@ class PackageSorter:
             #print(f"Truck: {truck.truck_id}")
             while not truck.is_full() and self.package_id_list:
                 next_package_id = self.get_next_closest_package_id()
-                print(f"Next package id: {next_package_id}")
+                # print(f"Next package id: {next_package_id}")
 
                 if next_package_id is not None:
                     package = self.package_hash_table.search(next_package_id)

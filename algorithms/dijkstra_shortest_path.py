@@ -2,8 +2,9 @@ class DijkstraShortestPath:
     def __init__(self, graph):
         self.graph = graph
         self.paths = {}  # Dictionary to store precomputed paths
+        self.precompute_all_paths()
 
-    def initialize_dijkstra_shortest_path(self, start_vertex_label):
+    def initialize_dijkstra_shortest_path(self, start_vertex_label='0'):
         # Reset distances and previous vertices for all vertices
         for vertex in self.graph.adjacency_list.keys():
             vertex.distance = float('inf')

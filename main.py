@@ -33,19 +33,9 @@ if __name__ == '__main__':
     dispatcher = Dispatcher(driver_manager, truck_manager)
     dispatcher.assign_all_drivers_to_trucks()
 
-    # Initialize the algorithm
+    # Initialize the algorithm and sort by it
     dijkstra = DijkstraShortestPath(graph)
-    start_vertex_label = '0'
-    end_vertex_label = '13'
-    path, path_distance = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
-    print(path, path_distance)
-
-    start_vertex_label = '13'
-    end_vertex_label = '0'
-    path, path_distance = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
-    print(path, path_distance)
-
-    #package_sorter = PackageSorter(dijkstra, package_data_loader, truck_manager)
+    package_sorter = PackageSorter(dijkstra, package_data_loader, truck_manager)
 
     # Initialize simulation
     current_date = datetime.now().date()
