@@ -14,11 +14,11 @@ if __name__ == '__main__':
     graph_data_loader.load_distance_data(distance_data_filepath)
 
 
-    start_vertex = graph.get_vertex('0')
-    end_vertex = graph.get_vertex('15')
-    dijkstra = DijkstraShortestPath(graph, start_vertex)
+    start_vertex_label = '0'
+    end_vertex_label = '15'
+    dijkstra = DijkstraShortestPath(graph)
     dijkstra.dijkstra_shortest_path()
-    path = dijkstra.get_shortest_path(start_vertex, end_vertex)
+    path = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
     print("Shortest path:", path)
 
 

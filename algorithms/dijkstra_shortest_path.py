@@ -1,8 +1,8 @@
 class DijkstraShortestPath:
-    def __init__(self, graph, start_vertex):
+    def __init__(self, graph):
         self.unvisited_queue = []
         self.graph = graph
-        self.start_vertex = start_vertex
+        self.start_vertex = self.graph.get_vertex('0')
 
     def dijkstra_shortest_path(self):
         for vertex in self.graph.adjacency_list.keys():
@@ -26,15 +26,17 @@ class DijkstraShortestPath:
 
                 if alternative_path_distance < adj_vertex.distance:
                     adj_vertex.distance = alternative_path_distance
-                    adj_vertex.prev_vertex = current_vertex
+                    adj_vertex.previous_vertex = current_vertex
 
-    def get_shortest_path(self, start_vertex, end_vertex):
+    def get_shortest_path(self, start_vertex_label, end_vertex_label):
         path = []
+        start_vertex = self.graph.get_vertex(start_vertex_label)
+        end_vertex = self.graph.get_vertex(end_vertex_label)
         current_vertex = end_vertex
 
         while current_vertex is not None and current_vertex != start_vertex:
             path.append(current_vertex.label)
-            current_vertex = current_vertex.prev_vertex
+            current_vertex = current_vertex.previous_vertex
 
         if current_vertex is None:
             raise Exception("No path found")
