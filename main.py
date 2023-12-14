@@ -13,11 +13,12 @@ if __name__ == '__main__':
     distance_data_filepath = "data/distance_data.csv"
     graph_data_loader.load_distance_data(distance_data_filepath)
 
+    # Initialize the algorithm
+    dijkstra = DijkstraShortestPath(graph)
+    dijkstra.calculate_dijkstra_shortest_path()
 
     start_vertex_label = '0'
     end_vertex_label = '15'
-    dijkstra = DijkstraShortestPath(graph)
-    dijkstra.dijkstra_shortest_path()
     path = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
     print("Shortest path:", path)
 
@@ -53,7 +54,6 @@ if __name__ == '__main__':
 
     status_checks = [datetime.combine(current_date, time(17, 0))]
 
-    algorithm = "dijkstra"
     # simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager,
     #                                        truck_manager, dispatcher, algorithm, start_time, 1)
     #

@@ -1,5 +1,4 @@
-from models import ChainingHashTable
-from models import DistanceTable
+from models import PackageHashTable
 from models import Package
 from datetime import *
 import random

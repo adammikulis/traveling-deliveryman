@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="starting refactoring of distance loader and dijkstra">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/vertex.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/vertex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -328,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702577649514</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now">
+      <option name="closed" value="true" />
+      <created>1702578591660</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1702578591660</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -344,7 +351,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed class filenames to lowercase" />
     <MESSAGE value="updated package model and added .xlsx data file" />
     <MESSAGE value="removed __init__.py files for now and nearly finished model classes" />
     <MESSAGE value="replaced __init__.py file with proper import statements" />
@@ -369,7 +375,8 @@
     <MESSAGE value="Can print status of all packages at any given time. Does not yet account for package available and due time" />
     <MESSAGE value="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0" />
     <MESSAGE value="starting refactoring of distance loader and dijkstra" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting refactoring of distance loader and dijkstra" />
+    <MESSAGE value="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

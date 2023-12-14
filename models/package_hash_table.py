@@ -1,6 +1,6 @@
 
 # Code modified from Webinar 1: Let's Get Hashing
-class ChainingHashTable:
+class PackageHashTable:
     def __init__(self, initial_capacity):
         self.table = [[] for i in range(initial_capacity)]
         self.package_id_index = []

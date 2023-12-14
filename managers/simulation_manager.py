@@ -1,4 +1,4 @@
-from models import Address, ChainingHashTable, Package, Truck
+from models import Address, PackageHashTable, Package, Truck
 from dataloaders import GraphDataLoader, PackageDataLoader
 from datetime import *
 

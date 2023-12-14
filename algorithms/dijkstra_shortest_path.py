@@ -2,9 +2,9 @@ class DijkstraShortestPath:
     def __init__(self, graph):
         self.unvisited_queue = []
         self.graph = graph
-        self.start_vertex = self.graph.get_vertex('0')
+        self.start_vertex = self.graph.get_vertex('0') #  Default is the hub id
 
-    def dijkstra_shortest_path(self):
+    def calculate_dijkstra_shortest_path(self):
         for vertex in self.graph.adjacency_list.keys():
             self.unvisited_queue.append(vertex)
 
@@ -45,13 +45,13 @@ class DijkstraShortestPath:
         path.reverse()
         return path
 
-    def get_direct_distance(self, address_label_1, address_label_2):
+    def get_direct_distance(self, start_vertex_label, end_address_label):
         # Retrieve vertices corresponding to the addresses
-        vertex1 = self.graph.get_vertex(address_label_1)
-        vertex2 = self.graph.get_vertex(address_label_2)
+        start_vertex = self.graph.get_vertex(start_vertex_label)
+        end_vertex = self.graph.get_vertex(end_address_label)
 
-        if vertex1 and vertex2:
+        if start_vertex and end_vertex:
             # Return the direct distance from the edge weights
-            return self.graph.edge_weights.get((vertex1, vertex2), None)
+            return self.graph.edge_weights.get((start_vertex, end_vertex), None)
         else:
             return None
