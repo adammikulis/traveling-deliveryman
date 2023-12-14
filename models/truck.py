@@ -8,7 +8,7 @@ class Truck:
     def __init__(self, distance_data_loader, package_data_loader, truck_id, max_packages=16, average_speed=18.0):
         self.truck_id = truck_id
         self.distance_data_loader = distance_data_loader
-        self.distance_table = self.distance_data_loader.distance_table
+        self.graph = self.distance_data_loader.graph
         self.package_data_loader = package_data_loader
         self.package_hash_table = self.package_data_loader.package_hash_table
         self.max_packages = max_packages

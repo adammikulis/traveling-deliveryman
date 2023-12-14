@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0">
+      <change afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms/graph.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms/vertex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataloaders/distance_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/distance_data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/chaining_hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/chaining_hash_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +64,7 @@
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\algorithms" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\dataloaders" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\controllers" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\data" />
@@ -290,7 +294,39 @@
       <option name="project" value="LOCAL" />
       <updated>1702438669065</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="simulation fully works with all packages delivered from all three trucks, current best mileage 156.9">
+      <option name="closed" value="true" />
+      <created>1702487462542</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1702487462542</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Can print status of all packages at any given time. Does not yet account for package available and due time">
+      <option name="closed" value="true" />
+      <created>1702493787141</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1702493787141</updated>
+    </task>
+    <task id="LOCAL-00026" summary="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0">
+      <option name="closed" value="true" />
+      <created>1702504514285</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702504514285</updated>
+    </task>
+    <task id="LOCAL-00027" summary="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0">
+      <option name="closed" value="true" />
+      <created>1702505297329</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1702505297329</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,7 +364,10 @@
     <MESSAGE value="working on simulation aspect and driving trucks at 1s increments" />
     <MESSAGE value="updating truck drive method" />
     <MESSAGE value="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available" />
-    <option name="LAST_COMMIT_MESSAGE" value="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available" />
+    <MESSAGE value="simulation fully works with all packages delivered from all three trucks, current best mileage 156.9" />
+    <MESSAGE value="Can print status of all packages at any given time. Does not yet account for package available and due time" />
+    <MESSAGE value="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,6 +379,10 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/package.py</url>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dataloaders/__init__.py</url>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

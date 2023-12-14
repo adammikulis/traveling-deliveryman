@@ -5,7 +5,7 @@ class ChainingHashTable:
         self.table = [[] for i in range(initial_capacity)]
         self.package_id_index = []
 
-    # Inserts new item into hash distance_table
+    # Inserts new item into hash graph
     def insert(self, key, item):
         if key not in self.package_id_index:
             self.package_id_index.append(key)
@@ -23,7 +23,7 @@ class ChainingHashTable:
         bucket_list.append(key_value)
         return True
 
-    # Searches for item with matching key in hash distance_table
+    # Searches for item with matching key in hash graph
     def search(self, key):
         # Get bucket list where the key will be
         bucket = hash(key) % len(self.table)
@@ -34,7 +34,7 @@ class ChainingHashTable:
                 return key_value[1]
         return None
 
-    # Removes item with matching key from hash distance_table
+    # Removes item with matching key from hash graph
     def remove(self, key):
         # Get bucket list where item will be removed
         bucket = hash(key) % len(self.table)
