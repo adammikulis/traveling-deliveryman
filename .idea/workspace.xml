@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="removed unused class">
-      <change afterPath="$PROJECT_DIR$/algorithms/package_sorter.py" afterDir="false" />
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="sorting algorithm functions, total distance 49.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/vertex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/package_sorter.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/package_sorter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +345,39 @@
       <option name="project" value="LOCAL" />
       <updated>1702579063216</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="dijkstra now stores all closest paths for quicker reference and reduced computation">
+      <option name="closed" value="true" />
+      <created>1702582563241</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1702582563241</updated>
+    </task>
+    <task id="LOCAL-00032" summary="packages now sort onto truck by dijkstra algorithm">
+      <option name="closed" value="true" />
+      <created>1702583125710</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1702583125710</updated>
+    </task>
+    <task id="LOCAL-00033" summary="package mileage is severely reduced, everything works prior to turning simulation back on">
+      <option name="closed" value="true" />
+      <created>1702583363849</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1702583363849</updated>
+    </task>
+    <task id="LOCAL-00034" summary="sorting algorithm functions, total distance 49.1">
+      <option name="closed" value="true" />
+      <created>1702586799216</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1702586799216</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -363,11 +393,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed __init__.py files for now and nearly finished model classes" />
-    <MESSAGE value="replaced __init__.py file with proper import statements" />
-    <MESSAGE value="can load package data into hash table and print out objects" />
-    <MESSAGE value="updated __repr__ for package.py" />
-    <MESSAGE value="added TruckManager and Greedy classes with many other updates" />
     <MESSAGE value="added classes to manage truck Drivers" />
     <MESSAGE value="initial greedy algorithm works and delivers all packages" />
     <MESSAGE value="separated greedy algorithm from delivery process" />
@@ -388,7 +413,12 @@
     <MESSAGE value="starting refactoring of distance loader and dijkstra" />
     <MESSAGE value="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now" />
     <MESSAGE value="removed unused class" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unused class" />
+    <MESSAGE value="dijkstra now stores all closest paths for quicker reference and reduced computation" />
+    <MESSAGE value="packages now sort onto truck by dijkstra algorithm" />
+    <MESSAGE value="package mileage is severely reduced, everything works prior to turning simulation back on" />
+    <MESSAGE value="sorting algorithm functions, total distance 49.1. Simulation does not yet work again, need to adjust how trucks drive to next location" />
+    <MESSAGE value="sorting algorithm functions, total distance 49.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="sorting algorithm functions, total distance 49.1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,14 +1,9 @@
 from datetime import *
-from models import *
-from dataloaders import GraphDataLoader, PackageDataLoader
-
-
 class Truck:
 
-    def __init__(self, distance_data_loader, package_data_loader, truck_id, max_packages=16, average_speed=18.0):
+    def __init__(self, truck_id, algorithm, package_data_loader, max_packages=16, average_speed=18.0):
         self.truck_id = truck_id
-        self.distance_data_loader = distance_data_loader
-        self.graph = self.distance_data_loader.graph
+        self.algorithm = algorithm
         self.package_data_loader = package_data_loader
         self.package_hash_table = self.package_data_loader.package_hash_table
         self.max_packages = max_packages
@@ -17,6 +12,7 @@ class Truck:
 
         self.package_id_list = []
         self.special_package_id_list = [] # Load special packages here first to then load into package_id_list
+        self.truck_path_list = ['0']
 
         self.assigned_driver_id = 0
         self.current_date = datetime.now().date()
@@ -47,12 +43,12 @@ class Truck:
                         self.deliver_package(next_package_id, current_time)
                     else:
                         # print(f"Truck {self.truck_id} driving to {self.next_address_id}")
-                        self.next_address_distance = self.distance_data_loader.get_direct_distance(self.current_address_id, self.next_address_id)
+                        self.next_address_distance = self.algorithm.get_shortest_path(self.current_address_id, self.next_address_id)
 
             # Send truck back to hub if package list is empty
             else:
                 self.next_address_id = 0
-                self.next_address_distance = self.distance_data_loader.get_direct_distance(self.current_address_id, 0)
+                self.next_address_distance = self.algorithm.get_shortest_path(self.current_address_id, 0)
 
             # Deliver the package and reset variables if truck arrives at next location
             if self.next_address_distance_driven >= self.next_address_distance:
@@ -132,4 +128,4 @@ class Truck:
             delivery_deadline = package.delivery_deadline
             address_delivery_list.append(address_id)
             delivery_deadline_list.append(delivery_deadline.strftime("%H:%M"))
-        return f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} \nCurrent Packages: {self.package_id_list}\nCurrent Addresses: {address_delivery_list}\nSpecial Packages: {self.special_package_id_list}\nPackage Deadlines: {delivery_deadline_list}\n"
+        return (f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} \nCurrent Packages: {self.package_id_list}\nCurrent Addresses: {address_delivery_list}")

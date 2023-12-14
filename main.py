@@ -23,19 +23,24 @@ if __name__ == '__main__':
     package_data_filepath = "data/package_data.csv"
     package_data_loader.load_package_data(package_data_filepath)
 
+    # Initialize the algorithm
+    algorithm = DijkstraShortestPath(graph)
+    # for i in range(26):
+    #     for j in range(26):
+    #         print(algorithm.get_shortest_path(str(i), str(j)))
+
     # Initialize TruckManager and DriverManager
     num_drivers = 2
     driver_manager = DriverManager(num_drivers)
     num_trucks = 3
-    truck_manager = TruckManager(num_trucks, graph_data_loader, package_data_loader)
+    truck_manager = TruckManager(num_trucks, algorithm, package_data_loader)
 
     # Assigns unassigned drivers to open trucks
     dispatcher = Dispatcher(driver_manager, truck_manager)
     dispatcher.assign_all_drivers_to_trucks()
 
-    # Initialize the algorithm and sort by it
-    dijkstra = DijkstraShortestPath(graph)
-    package_sorter = PackageSorter(dijkstra, package_data_loader, truck_manager)
+    # Sort by algorithm
+    package_sorter = PackageSorter(algorithm, package_data_loader, truck_manager)
 
     # Initialize simulation
     current_date = datetime.now().date()
@@ -44,10 +49,9 @@ if __name__ == '__main__':
 
     status_checks = [datetime.combine(current_date, time(17, 0))]
 
-    # simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager,
-    #                                        truck_manager, dispatcher, algorithm, start_time, 1)
-    #
-    # # Simulation loop
+    #simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, start_time, 1)
+
+    # Simulation loop
     # while simulation_manager.current_time <= EOD:
     #     simulation_manager.advance_time()
     #
