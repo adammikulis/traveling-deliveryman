@@ -76,6 +76,7 @@ class DijkstraShortestPath:
     def get_shortest_path(self, start_vertex_label, end_vertex_label):
         if (start_vertex_label, end_vertex_label) in self.paths:
             path_info = self.paths[(start_vertex_label, end_vertex_label)]
+            # print(path_info['path'], path_info['distance'])
             return path_info['path'], path_info['distance']
 
         # Fallback to computation if the path is not precomputed

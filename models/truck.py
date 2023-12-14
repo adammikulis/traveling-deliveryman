@@ -12,7 +12,8 @@ class Truck:
 
         self.package_id_list = []
         self.special_package_id_list = [] # Load special packages here first to then load into package_id_list
-        self.truck_path_list = ['0']
+        self.truck_path_list = []
+        self.truck_distance_list = []
 
         self.assigned_driver_id = 0
         self.current_date = datetime.now().date()
