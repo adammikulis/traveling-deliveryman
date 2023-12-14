@@ -92,13 +92,13 @@ class Greedy:
     def get_next_closest_package_id(self, truck, use_special_list=False):
         closest_package_id = None
         closest_distance = float('inf')
-        earliest_deadline = datetime.max # Represents the earliest deadline
+        earliest_deadline = datetime.max
 
         package_list = truck.special_package_id_list if use_special_list else self.package_id_list
 
         for package_id in package_list:
             package = self.package_hash_table.search(package_id)
-            deadline = package.delivery_deadline  # Using the delivery_deadline attribute
+            deadline = package.delivery_deadline
 
             # Calculate distance to the package
             distance = self.graph.get_direct_distance(self.current_address_id, package.address_id)

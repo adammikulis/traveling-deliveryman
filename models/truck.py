@@ -11,9 +11,9 @@ class Truck:
         self.total_miles_driven = 0.0
 
         self.package_id_list = []
-        self.special_package_id_list = [] # Load special packages here first to then load into package_id_list
-        self.truck_path_list = []
-        self.truck_distance_list = []
+        self.special_package_id_list = []  # Load special packages here first to then load into package_id_list
+        self.truck_path_list = []  # For printing/debugging
+        self.truck_distance_list = []  # For printing/debugging
 
         self.assigned_driver_id = 0
         self.current_date = datetime.now().date()
