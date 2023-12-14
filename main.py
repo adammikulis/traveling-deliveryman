@@ -1,20 +1,22 @@
 from datetime import *
 
 from managers import TruckManager, DriverManager, Dispatcher, SimulationManager
-from algorithms import Greedy, DijkstraShortestPath
+from algorithms import Greedy, DijkstraShortestPath, Graph
 
 from dataloaders import *
 
 if __name__ == '__main__':
 
     # Load all address distances
-    distance_data_loader = DistanceDataLoader()
+    graph = Graph()
+    graph_data_loader = GraphDataLoader(graph)
     distance_data_filepath = "data/distance_data.csv"
-    distance_data_loader.load_distance_data(distance_data_filepath)
+    graph_data_loader.load_distance_data(distance_data_filepath)
 
-    start_vertex = distance_data_loader.graph.get_vertex('0')
-    end_vertex = distance_data_loader.graph.get_vertex('15')
-    dijkstra = DijkstraShortestPath(distance_data_loader.graph, start_vertex)
+
+    start_vertex = graph.get_vertex('0')
+    end_vertex = graph.get_vertex('15')
+    dijkstra = DijkstraShortestPath(graph, start_vertex)
     dijkstra.dijkstra_shortest_path()
     path = dijkstra.get_shortest_path(start_vertex, end_vertex)
     print("Shortest path:", path)
@@ -34,14 +36,14 @@ if __name__ == '__main__':
     num_drivers = 2
     driver_manager = DriverManager(num_drivers)
     num_trucks = 3
-    truck_manager = TruckManager(num_trucks, distance_data_loader, package_data_loader)
+    truck_manager = TruckManager(num_trucks, graph_data_loader, package_data_loader)
 
     # Assigns unassigned drivers to open trucks
     dispatcher = Dispatcher(driver_manager, truck_manager)
     dispatcher.assign_all_drivers_to_trucks()
 
     # Initialize greedy algorithm and DeliveryManager
-    # greedy = Greedy(distance_data_loader, package_data_loader, truck_manager)
+    # greedy = Greedy(graph_data_loader, package_data_loader, truck_manager)
     # greedy.sort_packages_onto_trucks()
 
     # Initialize simulation
@@ -52,7 +54,7 @@ if __name__ == '__main__':
     status_checks = [datetime.combine(current_date, time(17, 0))]
 
     algorithm = "dijkstra"
-    # simulation_manager = SimulationManager(distance_data_loader, package_data_loader, driver_manager,
+    # simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager,
     #                                        truck_manager, dispatcher, algorithm, start_time, 1)
     #
     # # Simulation loop

@@ -1,6 +1,6 @@
 from datetime import *
 from models import *
-from dataloaders import DistanceDataLoader, PackageDataLoader
+from dataloaders import GraphDataLoader, PackageDataLoader
 
 
 class Truck:
@@ -47,12 +47,12 @@ class Truck:
                         self.deliver_package(next_package_id, current_time)
                     else:
                         # print(f"Truck {self.truck_id} driving to {self.next_address_id}")
-                        self.next_address_distance = self.distance_data_loader.get_distance(self.current_address_id, self.next_address_id)
+                        self.next_address_distance = self.distance_data_loader.get_direct_distance(self.current_address_id, self.next_address_id)
 
             # Send truck back to hub if package list is empty
             else:
                 self.next_address_id = 0
-                self.next_address_distance = self.distance_data_loader.get_distance(self.current_address_id, 0)
+                self.next_address_distance = self.distance_data_loader.get_direct_distance(self.current_address_id, 0)
 
             # Deliver the package and reset variables if truck arrives at next location
             if self.next_address_distance_driven >= self.next_address_distance:
@@ -109,7 +109,7 @@ class Truck:
 
     # def calculate_eta(self, destination_address_id):
     #     current_location = self.current_address_id
-    #     distance_to_destination = self.distance_data_loader.get_distance(current_location, destination_address_id)
+    #     distance_to_destination = self.graph_data_loader.get_distance(current_location, destination_address_id)
     #     # Ensure that distance_to_destination is a numeric value
     #     if distance_to_destination is None:
     #         # Handle the case where the distance is not found

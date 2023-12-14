@@ -1,5 +1,5 @@
 from models import Address, ChainingHashTable, Package, Truck
-from dataloaders import DistanceDataLoader, PackageDataLoader
+from dataloaders import GraphDataLoader, PackageDataLoader
 from datetime import *
 
 

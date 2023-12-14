@@ -76,7 +76,7 @@ class Greedy:
             package = self.package_hash_table.search(package_id)
             deadline_difference = (package.delivery_deadline - reference_time).total_seconds()  # Closer deadlines have lower score
             deadline_score = abs(deadline_difference)
-            distance_score = self.distance_data_loader.get_distance(self.current_address_id, package.address_id)
+            distance_score = self.distance_data_loader.get_direct_distance(self.current_address_id, package.address_id)
 
             deadline_weight = 1
             # Create a combined score, modify weights as needed
@@ -102,7 +102,7 @@ class Greedy:
             deadline = package.delivery_deadline  # Using the delivery_deadline attribute
 
             # Calculate distance to the package
-            distance = self.graph.get_distance(self.current_address_id, package.address_id)
+            distance = self.graph.get_direct_distance(self.current_address_id, package.address_id)
 
             # Prioritize by deadline, then by distance
             if deadline < earliest_deadline or (deadline == earliest_deadline and distance < closest_distance):

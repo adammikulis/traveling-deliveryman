@@ -1,11 +1,11 @@
 class DijkstraShortestPath:
-    def __init__(self, g, start_vertex):
+    def __init__(self, graph, start_vertex):
         self.unvisited_queue = []
-        self.g = g
+        self.graph = graph
         self.start_vertex = start_vertex
 
     def dijkstra_shortest_path(self):
-        for vertex in self.g.adjacency_list.keys():
+        for vertex in self.graph.adjacency_list.keys():
             self.unvisited_queue.append(vertex)
 
         self.start_vertex.distance = 0
@@ -20,8 +20,8 @@ class DijkstraShortestPath:
             current_vertex = self.unvisited_queue.pop(smallest_index)
 
             # Update distances for adjacent vertices
-            for adj_vertex in self.g.adjacency_list[current_vertex]:
-                edge_weight = self.g.edge_weights[(current_vertex, adj_vertex)]
+            for adj_vertex in self.graph.adjacency_list[current_vertex]:
+                edge_weight = self.graph.edge_weights[(current_vertex, adj_vertex)]
                 alternative_path_distance = current_vertex.distance + edge_weight
 
                 if alternative_path_distance < adj_vertex.distance:
@@ -42,3 +42,14 @@ class DijkstraShortestPath:
         path.append(start_vertex.label)
         path.reverse()
         return path
+
+    def get_direct_distance(self, address_label_1, address_label_2):
+        # Retrieve vertices corresponding to the addresses
+        vertex1 = self.graph.get_vertex(address_label_1)
+        vertex2 = self.graph.get_vertex(address_label_2)
+
+        if vertex1 and vertex2:
+            # Return the direct distance from the edge weights
+            return self.graph.edge_weights.get((vertex1, vertex2), None)
+        else:
+            return None

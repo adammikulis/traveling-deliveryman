@@ -1,10 +1,10 @@
 import csv
-from algorithms import Graph, Vertex
+from algorithms import Vertex
 
-class DistanceDataLoader:
+class GraphDataLoader:
 
-    def __init__(self):
-        self.graph = Graph()
+    def __init__(self, graph):
+        self.graph = graph
 
     def load_distance_data(self, filename):
         with open(filename) as Distances:
@@ -31,14 +31,3 @@ class DistanceDataLoader:
 
                         # Add undirected edge as the distances are symmetric
                         self.graph.add_undirected_edge(from_vertex, to_vertex, dist)
-
-    def get_distance(self, address_label_1, address_label_2):
-        # Retrieve vertices corresponding to the addresses
-        vertex1 = self.graph.get_vertex(address_label_1)
-        vertex2 = self.graph.get_vertex(address_label_2)
-
-        if vertex1 and vertex2:
-            # Return the direct distance from the edge weights
-            return self.graph.edge_weights.get((vertex1, vertex2), None)
-        else:
-            return None
