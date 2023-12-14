@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="removed unused class">
+      <change afterPath="$PROJECT_DIR$/algorithms/package_sorter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/vertex.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -335,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702578591660</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="removed unused class">
+      <option name="closed" value="true" />
+      <created>1702579063216</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1702579063216</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,7 +363,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updated package model and added .xlsx data file" />
     <MESSAGE value="removed __init__.py files for now and nearly finished model classes" />
     <MESSAGE value="replaced __init__.py file with proper import statements" />
     <MESSAGE value="can load package data into hash table and print out objects" />
@@ -376,7 +387,8 @@
     <MESSAGE value="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0" />
     <MESSAGE value="starting refactoring of distance loader and dijkstra" />
     <MESSAGE value="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now" />
+    <MESSAGE value="removed unused class" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unused class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

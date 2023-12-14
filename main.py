@@ -1,7 +1,7 @@
 from datetime import *
 
 from managers import TruckManager, DriverManager, Dispatcher, SimulationManager
-from algorithms import Greedy, DijkstraShortestPath, Graph
+from algorithms import Greedy, DijkstraShortestPath, Graph, PackageSorter
 
 from dataloaders import *
 
@@ -12,16 +12,6 @@ if __name__ == '__main__':
     graph_data_loader = GraphDataLoader(graph)
     distance_data_filepath = "data/distance_data.csv"
     graph_data_loader.load_distance_data(distance_data_filepath)
-
-    # Initialize the algorithm
-    dijkstra = DijkstraShortestPath(graph)
-    dijkstra.calculate_dijkstra_shortest_path()
-
-    start_vertex_label = '0'
-    end_vertex_label = '15'
-    path = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
-    print("Shortest path:", path)
-
 
     # Load all address names
     address_data_loader = AddressDataLoader()
@@ -43,9 +33,19 @@ if __name__ == '__main__':
     dispatcher = Dispatcher(driver_manager, truck_manager)
     dispatcher.assign_all_drivers_to_trucks()
 
-    # Initialize greedy algorithm and DeliveryManager
-    # greedy = Greedy(graph_data_loader, package_data_loader, truck_manager)
-    # greedy.sort_packages_onto_trucks()
+    # Initialize the algorithm
+    dijkstra = DijkstraShortestPath(graph)
+    start_vertex_label = '0'
+    end_vertex_label = '13'
+    path, path_distance = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
+    print(path, path_distance)
+
+    start_vertex_label = '13'
+    end_vertex_label = '0'
+    path, path_distance = dijkstra.get_shortest_path(start_vertex_label, end_vertex_label)
+    print(path, path_distance)
+
+    #package_sorter = PackageSorter(dijkstra, package_data_loader, truck_manager)
 
     # Initialize simulation
     current_date = datetime.now().date()
