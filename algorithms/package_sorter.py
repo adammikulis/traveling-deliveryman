@@ -12,9 +12,10 @@ class PackageSorter:
 
     def sort_packages_onto_trucks(self):
         for truck in self.truck_manager.trucks:
+            estimated_truck_distance = 0.0
             #print(f"Truck: {truck.truck_id}")
             while not truck.is_full() and self.package_id_list:
-                next_package_id = self.get_next_closest_package_id()
+                next_package_id, next_package_distance = self.get_next_closest_package_id()
                 # print(f"Next package id: {next_package_id}")
 
                 if next_package_id is not None:
@@ -22,8 +23,9 @@ class PackageSorter:
                     package.truck_id = truck.truck_id
                     truck.load_package(next_package_id)
                     self.package_id_list.remove(next_package_id)
+                    estimated_truck_distance += next_package_distance
 
-            print(truck)
+            print(truck, estimated_truck_distance)
 
     def get_next_closest_package_id(self):
         closest_package_id = None
@@ -43,4 +45,4 @@ class PackageSorter:
             closest_package = self.package_hash_table.search(closest_package_id)
             self.current_address_id = closest_package.address_id
 
-        return closest_package_id
+        return closest_package_id, closest_distance
