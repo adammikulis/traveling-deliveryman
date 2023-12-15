@@ -10,13 +10,8 @@ class PackageSorter:
 
         self.sort_packages_onto_trucks()
 
-    def sort_packages_onto_trucks(self):
-        overall_distance = 0.0
-        for truck in self.truck_manager.trucks:
-            total_truck_distance = self.load_truck(truck)
-            overall_distance += total_truck_distance
-            self.print_truck_status(overall_distance, total_truck_distance, truck)
 
+    # This implements the pathing algorithm
     def load_truck(self, truck):
         last_address_id = '0'
         total_truck_distance = 0.0
@@ -26,14 +21,14 @@ class PackageSorter:
 
             # Update the truck's path
             if next_path:
-                # Skip the first element if it's the same as the last address to avoid duplication
+                # Skip the first item if it's the same as the last address to avoid duplication
                 if next_path[0] == last_address_id:
                     next_path = next_path[1:]
                 truck.truck_path_list.append(next_path)
                 truck.truck_distance_list.append(next_package_distance)
 
             # Update the last address to the current package's address
-            last_address_id = str(package.address_id)
+            last_address_id = str(package.address_id) # Graph labels are strings not ints
             truck.load_package(next_package_id)
             self.package_id_list.remove(next_package_id)
             total_truck_distance += next_package_distance
@@ -53,7 +48,14 @@ class PackageSorter:
               f"Estimated Truck Distance: {total_truck_distance:.1f}\n"
               f"Total Distance: {overall_distance:.1f}\n")
 
-    # Returns correct next package but not next package path
+    # Iterates packing algorithm through all trucks
+    def sort_packages_onto_trucks(self):
+        overall_distance = 0.0
+        for truck in self.truck_manager.trucks:
+            total_truck_distance = self.load_truck(truck)
+            overall_distance += total_truck_distance
+            self.print_truck_status(overall_distance, total_truck_distance, truck)
+
     def get_next_closest_package_path(self, last_address_id):
         closest_package_id = None
         closest_distance = float('inf')
