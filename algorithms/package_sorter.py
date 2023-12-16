@@ -13,7 +13,7 @@ class PackageSorter:
 
     # This implements the pathing algorithm
     def load_truck(self, truck):
-        while not truck.is_full() and self.package_id_list:
+        while not truck.is_full() and (self.package_id_list or truck.special_package_id_list):
             self.load_truck_if_package_id(truck)
         # Sends trucks back to hub at the end of delivery
         self.append_hub_address_id_at_end(truck)
@@ -27,8 +27,16 @@ class PackageSorter:
 
     # Used in load_truck
     def load_truck_if_package_id(self, truck):
-        next_package_id, next_package_distance, next_path = self.get_next_closest_package_path(truck, False)
-        use_special_list = False
+        # Forces truck to prioritize special packages if combined lists reaches truck's max capacity
+        if len(truck.special_package_id_list) + len(truck.package_id_list) == truck.max_packages:
+            next_package_id, next_package_distance, next_path = self.get_next_closest_package_id(truck, True)
+            truck.unload_special_package(next_package_id)
+        else:
+            next_package_id, next_package_distance, next_path, is_package_special = self.get_next_combined_closest_package_id(truck)
+            if is_package_special:
+                truck.unload_special_package(next_package_id)
+            else:
+                self.package_id_list.remove(next_package_id)
         package = self.package_hash_table.search(next_package_id)
         # Update the truck's path
         if next_path:
@@ -39,10 +47,6 @@ class PackageSorter:
             truck.truck_distance_list.append(next_package_distance)
         # Update the last address to the current package's address
         truck.load_package(next_package_id)
-        if use_special_list == True:
-            truck.unload_special_package(next_package_id)
-        else:
-            self.package_id_list.remove(next_package_id)
         truck.current_address_id = package.address_id
         truck.total_miles_driven += next_package_distance
 
@@ -63,7 +67,7 @@ class PackageSorter:
             self.print_truck_status(overall_distance, truck)
 
     # Uses algorithm to recall the shortest path
-    def get_next_closest_package_path(self, truck, use_special_package_id_list=False):
+    def get_next_closest_package_id(self, truck, use_special_package_id_list=False):
         closest_package_id = None
         closest_distance = float('inf')
         closest_path = []
@@ -82,6 +86,22 @@ class PackageSorter:
                 closest_path = path
         return closest_package_id, closest_distance, closest_path
 
+    # Returns closest package id of either global list or truck's special list
+    def get_next_combined_closest_package_id(self, truck):
+        closest_regular_package_id, closest_regular_distance, closest_regular_path = self.get_next_closest_package_id(truck, False)
+        closest_special_package_id, closest_special_distance, closest_special_path = self.get_next_closest_package_id(truck, True)
+
+        # Logic to determine whether to choose a regular or special package
+        if closest_regular_package_id is None:
+            return closest_special_package_id, closest_special_distance, closest_special_path, True
+        elif closest_special_package_id is None:
+            return closest_regular_package_id, closest_regular_distance, closest_regular_path, False
+
+        if closest_regular_distance < closest_special_distance:
+            return closest_regular_package_id, closest_regular_distance, closest_regular_path, False
+        else:
+            return closest_special_package_id, closest_special_distance, closest_special_path, True
+
     # Populates trucks' special package list based on criteria
     def sort_special_packages_onto_trucks(self):
         # Load packages required by specific trucks
@@ -93,7 +113,7 @@ class PackageSorter:
 
         # Load grouped packages
         for group_id, package_ids in self.package_data_loader.package_groups.items():
-            # Default to the first truck for grouped packages (lowest mileage so far)
+            # Default to the third truck for grouped packages (lowest mileage so far)
             for package_id in package_ids:
                 if package_id in self.package_id_list:
                     self.truck_manager.trucks[0].load_special_package(package_id)
