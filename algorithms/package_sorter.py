@@ -8,6 +8,7 @@ class PackageSorter:
         self.package_id_list = self.package_hash_table.package_id_index
         self.next_package_distance_list = []
 
+        # Class initializes sorting without needing to call in main
         self.sort_packages_onto_trucks()
 
 
@@ -16,22 +17,12 @@ class PackageSorter:
         last_address_id = '0'
         total_truck_distance = 0.0
         while not truck.is_full() and self.package_id_list:
-            next_package_id, next_package_distance, next_path = self.get_next_closest_package_path(last_address_id)
-            package = self.package_hash_table.search(next_package_id)
+            last_address_id, total_truck_distance = self.load_truck_if_package_id(last_address_id, total_truck_distance, truck)
+        # Sends trucks back to hub at the end of delivery
+        total_truck_distance = self.append_hub_address_id_at_end(last_address_id, total_truck_distance, truck)
+        return total_truck_distance
 
-            # Update the truck's path
-            if next_path:
-                # Skip the first item if it's the same as the last address to avoid duplication
-                if next_path[0] == last_address_id:
-                    next_path = next_path[1:]
-                truck.truck_path_list.append(next_path)
-                truck.truck_distance_list.append(next_package_distance)
-
-            # Update the last address to the current package's address
-            last_address_id = str(package.address_id) # Graph labels are strings not ints
-            truck.load_package(next_package_id)
-            self.package_id_list.remove(next_package_id)
-            total_truck_distance += next_package_distance
+    def append_hub_address_id_at_end(self, last_address_id, total_truck_distance, truck):
         path_to_hub, distance_to_hub = self.algorithm.get_shortest_path(last_address_id, '0')
         # Remove the current address from the path to hub if it's the first element
         if path_to_hub and path_to_hub[0] == last_address_id:
@@ -40,6 +31,24 @@ class PackageSorter:
         truck.truck_distance_list.append(distance_to_hub)
         total_truck_distance += distance_to_hub
         return total_truck_distance
+
+    # Used in load_truck
+    def load_truck_if_package_id(self, last_address_id, total_truck_distance, truck):
+        next_package_id, next_package_distance, next_path = self.get_next_closest_package_path(last_address_id)
+        package = self.package_hash_table.search(next_package_id)
+        # Update the truck's path
+        if next_path:
+            # Skip the first item if it's the same as the last address to avoid duplication
+            if next_path[0] == last_address_id:
+                next_path = next_path[1:]
+            truck.truck_path_list.append(next_path)
+            truck.truck_distance_list.append(next_package_distance)
+        # Update the last address to the current package's address
+        last_address_id = str(package.address_id)  # Graph labels are strings not ints like address_id
+        truck.load_package(next_package_id)
+        self.package_id_list.remove(next_package_id)
+        total_truck_distance += next_package_distance
+        return last_address_id, total_truck_distance
 
     def print_truck_status(self, overall_distance, total_truck_distance, truck):
         print(f"Truck: {truck}\n"
@@ -52,10 +61,11 @@ class PackageSorter:
     def sort_packages_onto_trucks(self):
         overall_distance = 0.0
         for truck in self.truck_manager.trucks:
-            total_truck_distance = self.load_truck(truck)
+            total_truck_distance = self.load_truck(truck)  # Algorithm implemented here
             overall_distance += total_truck_distance
             self.print_truck_status(overall_distance, total_truck_distance, truck)
 
+    # Uses algorithm to recall shortest path
     def get_next_closest_package_path(self, last_address_id):
         closest_package_id = None
         closest_distance = float('inf')

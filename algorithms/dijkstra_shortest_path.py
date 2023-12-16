@@ -63,6 +63,7 @@ class DijkstraShortestPath:
         path.reverse()
         return path, path_distance
 
+    # Creates database of paths for quick reference
     def precompute_all_paths(self):
         for start_vertex in self.graph.adjacency_list.keys():
             start_vertex_label = start_vertex.label
@@ -73,6 +74,7 @@ class DijkstraShortestPath:
                 path, distance = self.compute_path_and_distance(start_vertex_label, end_vertex_label)
                 self.paths[(start_vertex_label, end_vertex_label)] = {'path': path, 'distance': distance}
 
+    # Retrieves shortest path from pre-populated database
     def get_shortest_path(self, start_vertex_label, end_vertex_label):
         if (start_vertex_label, end_vertex_label) in self.paths:
             path_info = self.paths[(start_vertex_label, end_vertex_label)]
