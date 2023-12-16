@@ -1,8 +1,6 @@
-from models import PackageHashTable
-from models import Package
-from datetime import *
-import random
+# This class is deprecated due to poor performance and under-encapsulation
 
+from datetime import *
 
 class Greedy:
     def __init__(self, distance_data_loader, package_data_loader, truck_manager):

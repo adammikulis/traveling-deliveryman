@@ -1,7 +1,7 @@
 from datetime import *
 
 from managers import TruckManager, DriverManager, Dispatcher, SimulationManager
-from algorithms import Greedy, DijkstraShortestPath, Graph, PackageSorter
+from algorithms import DijkstraShortestPath, Graph, PackageSorter
 
 from dataloaders import *
 

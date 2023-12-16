@@ -129,4 +129,4 @@ class Truck:
             delivery_deadline = package.delivery_deadline
             address_delivery_list.append(address_id)
             delivery_deadline_list.append(delivery_deadline.strftime("%H:%M"))
-        return (f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} \nCurrent Packages: {self.package_id_list}\nCurrent Addresses: {address_delivery_list}")
+        return (f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} \nCurrent Packages: {self.package_id_list}\nSpecial Packages: {self.special_package_id_list}\nCurrent Addresses: {address_delivery_list}")
