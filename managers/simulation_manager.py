@@ -34,15 +34,9 @@ class SimulationManager:
             self.all_truck_miles_driven += truck.total_miles_driven
 
     def print_all_package_status(self, package_data_loader, address_data_loader):
-        overall_status = True
         print(f"\n***STATUS UPDATE*** Current time: {self.current_time.strftime("%H:%M")}")
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
-        for package_id in package_data_loader.package_id_list:
-            address_id, truck_id, status, delivered_at, delivered_on_time = package_data_loader.return_all_package_info(
-                package_id)
-            if not delivered_on_time:
-                overall_status = False
-        print(f"All packages delivered on-time: {overall_status}")
+        self.package_data_loader.print_all_package_status()
 
 
     def get_truck_status(self, truck_id):

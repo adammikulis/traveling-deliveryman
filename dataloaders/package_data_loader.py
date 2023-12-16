@@ -36,7 +36,7 @@ class PackageDataLoader:
                 weight = float(package[4])
                 required_truck = int(package[5])
                 delivery_group_id = int(package[6])
-                wrong_address = bool(package[7])
+                wrong_address = bool(self.string_to_bool(package[7]))
                 address_available_time = datetime.strptime(package[8], "%H:%M").time()
 
                 package_object = Package(package_id, address_id, available_time, delivery_deadline, weight,
@@ -76,3 +76,6 @@ class PackageDataLoader:
     def return_all_package_info(self, package_id):
         package = self.package_hash_table.search(package_id)
         return package.address_id, package.truck_id, package.status, package.delivered_at, package.delivered_on_time
+
+    def string_to_bool(self, string):
+        return string.upper() == "TRUE"

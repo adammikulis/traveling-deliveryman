@@ -32,11 +32,12 @@ class PackageSorter:
 
     # Used in load_truck
     def load_truck_if_package_id(self, truck):
-        # Forces truck to prioritize special packages if combined lists reaches truck's max capacity
+        # Forces truck to prioritize special packages if combined lists reach truck's max capacity
         if len(truck.special_package_id_list) + len(truck.package_id_list) == truck.max_packages:
             next_package_id, next_package_distance, next_path = self.get_next_closest_package_id(truck, True)
             truck.unload_special_package_id_list(next_package_id)
         else:
+            # Search both regular and special packages
             next_package_id, next_package_distance, next_path, is_package_special = self.get_next_combined_closest_package_id(truck)
             if is_package_special:
                 truck.unload_special_package_id_list(next_package_id)
@@ -70,7 +71,7 @@ class PackageSorter:
         for truck in self.truck_manager.trucks:
             self.load_truck(truck)  # Algorithm implemented here
             overall_distance += truck.total_miles_driven
-            self.print_truck_status(overall_distance, truck)
+            # self.print_truck_status(overall_distance, truck)
 
     # Uses algorithm to recall the shortest path
     def get_next_closest_package_id(self, truck, use_special_package_id_list):
@@ -120,14 +121,6 @@ class PackageSorter:
                     self.truck_manager.trucks[truck_id - 1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id)
 
-        # Assign packages available after 8:00 AM to Truck 3
-        for package_id in list(self.package_id_list):
-            package = self.package_hash_table.search(package_id)
-            if package.available_time.time() > time(8,0):
-                # Load onto Truck 3
-                self.truck_manager.trucks[2].load_special_package_id_list(package_id)
-                self.package_id_list.remove(package_id)  # Remove from the global package id list
-
         # Load grouped packages
         for group_id, package_ids in self.package_data_loader.package_groups.items():
             # Default to the second truck for grouped packages (all arrive on-time this way)
@@ -135,6 +128,15 @@ class PackageSorter:
                 if package_id in self.package_id_list:
                     self.truck_manager.trucks[1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id)  # Remove from global package id list
+
+        available_time_cutoff = time(8, 0)
+        # Assign packages available after 8:00 AM to truck 3
+        for package_id in self.package_id_list:
+            package = self.package_hash_table.search(package_id)
+            if package.available_time.time() > available_time_cutoff or package.wrong_address:
+                # Load onto Truck 3
+                self.truck_manager.trucks[2].load_special_package_id_list(package_id)
+                self.package_id_list.remove(package_id)  # Remove from the global package id list
 
 
 
