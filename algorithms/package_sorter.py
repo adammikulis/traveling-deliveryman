@@ -88,7 +88,7 @@ class PackageSorter:
 
     # Returns closest package id of either global list or truck's special list
     def get_next_combined_closest_package_id(self, truck):
-        special_distance_weight = 0.5
+        special_distance_weight = 0.25
         closest_regular_package_id, closest_regular_distance, closest_regular_path = self.get_next_closest_package_id(truck, False)
         closest_special_package_id, closest_special_distance, closest_special_path = self.get_next_closest_package_id(truck, True)
 
