@@ -15,6 +15,10 @@ class SimulationManager:
         self.current_date = datetime.now().date()
         self.all_truck_miles_driven = 0.0
 
+        # Clears out current odometer for start of simulation
+        for truck in truck_manager.trucks:
+            truck.total_miles_driven = 0.0
+
     def advance_time(self):
         self.current_time = self.current_time + timedelta(0, self.time_step)
         self.update_truck_locations()
