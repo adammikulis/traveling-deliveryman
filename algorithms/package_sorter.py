@@ -18,13 +18,10 @@ class PackageSorter:
         while not truck.is_full() and self.package_id_list:
             self.load_truck_if_package_id(truck)
         # Sends trucks back to hub at the end of delivery
-        self.append_hub_address_id_at_end(last_address_id, truck)
+        self.append_hub_address_id_at_end(truck)
 
-    def append_hub_address_id_at_end(self, last_address_id, truck):
-        path_to_hub, distance_to_hub = self.algorithm.get_shortest_path(last_address_id, '0')
-        # Remove the current address from the path to hub if it's the first path element
-        if path_to_hub and path_to_hub[0] == last_address_id:
-            path_to_hub = path_to_hub[1:]
+    def append_hub_address_id_at_end(self, truck):
+        path_to_hub, distance_to_hub = self.algorithm.get_shortest_path(str(truck.current_address_id), '0')
         truck.truck_path_list.append(path_to_hub)
         truck.truck_distance_list.append(distance_to_hub)
         truck.total_miles_driven += distance_to_hub
@@ -41,7 +38,6 @@ class PackageSorter:
             truck.truck_path_list.append(next_path)
             truck.truck_distance_list.append(next_package_distance)
         # Update the last address to the current package's address
-        last_address_id = str(package.address_id)  # Graph labels are strings not ints like address_id
         truck.load_package(next_package_id)
         self.package_id_list.remove(next_package_id)
         truck.current_address_id = package.address_id
