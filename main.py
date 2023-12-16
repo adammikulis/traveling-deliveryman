@@ -49,23 +49,23 @@ if __name__ == '__main__':
 
     status_checks = [datetime.combine(current_date, time(17, 0))]
 
-    #simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, start_time, 1)
+    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, start_time, 1)
 
     # Simulation loop
-    # while simulation_manager.current_time <= EOD:
-    #     simulation_manager.advance_time()
-    #
-    #     # Reassigns first driver that returns to final truck, this only works with n trucks / n-1 drivers
-    #     for truck in truck_manager.trucks[:-1]:
-    #         if truck.finished_delivery_at_hub and truck_manager.trucks[-1].assigned_driver_id == 0:
-    #             # print(f"\nAssigning Driver {truck.assigned_driver_id} to Truck {truck_manager.trucks[-1].truck_id} at {simulation_manager.current_time.strftime("%H:%M")}")
-    #             dispatcher.assign_driver_to_truck(truck.assigned_driver_id, truck_manager.trucks[-1].truck_id)
-    #             truck.assigned_driver_id = 0
-    #
-    #     for status_check in status_checks:
-    #         if simulation_manager.current_time == status_check:
-    #             simulation_manager.print_all_package_status(package_data_loader, address_data_loader)
-    #
-    #     # Used to correct a package address
-    #     if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
-    #         simulation_manager.correct_package_address(package_data_loader, 9, 19)
+    while simulation_manager.current_time <= EOD:
+        simulation_manager.advance_time()
+
+        # Reassigns first driver that returns to final truck, this only works with n trucks / n-1 drivers
+        for truck in truck_manager.trucks[:-1]:
+            if truck.finished_delivery_at_hub and truck_manager.trucks[-1].assigned_driver_id == 0:
+                # print(f"\nAssigning Driver {truck.assigned_driver_id} to Truck {truck_manager.trucks[-1].truck_id} at {simulation_manager.current_time.strftime("%H:%M")}")
+                dispatcher.assign_driver_to_truck(truck.assigned_driver_id, truck_manager.trucks[-1].truck_id)
+                truck.assigned_driver_id = 0
+
+        for status_check in status_checks:
+            if simulation_manager.current_time == status_check:
+                simulation_manager.print_all_package_status(package_data_loader, address_data_loader)
+
+        # Used to correct a package address
+        if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
+            simulation_manager.correct_package_address(package_data_loader, 9, 19)

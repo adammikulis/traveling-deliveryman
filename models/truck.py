@@ -22,6 +22,7 @@ class Truck:
         self.next_address_id = None
         self.next_address_distance = 0.0
         self.next_address_distance_driven = 0.0
+        self.next_address_path = []
         self.finished_delivery_at_hub = False
 
 
@@ -44,13 +45,13 @@ class Truck:
                     if self.current_address_id == self.next_address_id:
                         self.deliver_package(next_package_id, current_time)
                     else:
-                        # print(f"Truck {self.truck_id} driving to {self.next_address_id}")
-                        self.next_address_distance = self.algorithm.get_shortest_path(self.current_address_id, self.next_address_id)
+                        print(f"Truck {self.truck_id} driving to {self.next_address_id}")
+                        self.next_address_path, self.next_address_distance = self.algorithm.get_shortest_path(str(self.current_address_id), str(self.next_address_id))
 
             # Send truck back to hub if package list is empty
             else:
                 self.next_address_id = 0
-                self.next_address_distance = self.algorithm.get_shortest_path(self.current_address_id, 0)
+                self.next_address_path, self.next_address_distance = self.algorithm.get_shortest_path(str(self.current_address_id), '0')
 
             # Deliver the package and reset variables if truck arrives at next location
             if self.next_address_distance_driven >= self.next_address_distance:
