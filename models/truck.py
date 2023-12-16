@@ -14,6 +14,7 @@ class Truck:
         self.special_package_id_list = []  # Load special packages here first to then load into package_id_list
         self.truck_path_list = []  # For printing/debugging
         self.truck_distance_list = []  # For printing/debugging
+        self.package_available_time_list = []  # For printing/debugging
         self.package_deadline_list = []  # For printing/debugging
 
         self.assigned_driver_id = 0
@@ -45,23 +46,25 @@ class Truck:
                     if self.current_address_id == self.next_address_id:
                         self.deliver_package(next_package_id, current_time)
                     else:
-                        print(f"Truck {self.truck_id} driving to {self.next_address_id}")
+                        print(f"Truck {self.truck_id} with Driver {self.assigned_driver_id} driving to {self.next_address_id}")
                         self.next_address_path, self.next_address_distance = self.algorithm.get_shortest_path(str(self.current_address_id), str(self.next_address_id))
 
             # Send truck back to hub if package list is empty
             else:
                 self.next_address_id = 0
-                self.next_address_path, self.next_address_distance = self.algorithm.get_shortest_path(str(self.current_address_id), '0')
+                # print(f"Truck {self.truck_id} with Driver {self.assigned_driver_id} driving to back to hub")
+                self.next_address_path, self.next_address_distance = self.algorithm.get_shortest_path(str(self.current_address_id), str(self.next_address_id))
 
             # Deliver the package and reset variables if truck arrives at next location
             if self.next_address_distance_driven >= self.next_address_distance:
                 # print(f"Truck {self.truck_id} arrived at {self.next_address_id}")
                 # Only try to deliver if there is a package
+                self.current_address_id = self.next_address_id
                 if self.package_id_list:
                     self.deliver_package(self.package_id_list[0], current_time)
 
-                elif not self.package_id_list and self.next_address_id == 0:
-                    # print(f"\nTruck {self.truck_id} arrived at depot at {current_time.strftime("%H:%M")} Total truck miles: {self.total_miles_driven:.1f}\n")
+                elif not self.package_id_list and self.current_address_id == 0:
+                    print(f"\nTruck {self.truck_id} arrived at depot at {current_time.strftime("%H:%M")} Total truck miles: {self.total_miles_driven:.1f}\n")
                     self.next_address_id = None
                     self.finished_delivery_at_hub = True
 
@@ -97,10 +100,10 @@ class Truck:
               f"Due: {package.delivery_deadline}\t On-time: {package.delivered_on_time} "
               f"Truck miles: {self.total_miles_driven:.1f}")
 
-    def load_special_package(self, package_id):
+    def load_special_package_id_list(self, package_id):
         self.special_package_id_list.append(package_id)
 
-    def unload_special_package(self, package_id):
+    def unload_special_package_id_list(self, package_id):
         self.special_package_id_list.remove(package_id)
 
     def can_load_package(self, package):
@@ -132,10 +135,12 @@ class Truck:
             package = self.package_hash_table.search(package_id)
             address_id = package.address_id
             delivery_deadline = package.delivery_deadline
+            self.package_available_time_list.append(package.available_time.strftime("%H:%M"))
             address_delivery_list.append(address_id)
             delivery_deadline_list.append(delivery_deadline.strftime("%H:%M"))
         return (f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} "
                 f"\nCurrent Packages: {self.package_id_list}"
                 # f"\nSpecial Packages: {self.special_package_id_list}"
                 f"\nPackage Addresses: {address_delivery_list}"
+                f"\nAvailable Time: {self.package_available_time_list}"
                 f"\nDelivery Deadline: {delivery_deadline_list}")

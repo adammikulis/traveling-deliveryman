@@ -19,7 +19,7 @@ class Greedy:
         for truck_id, package_ids in self.package_data_loader.package_required_trucks.items():
             for package_id in package_ids:
                 if package_id in self.package_id_list:
-                    self.truck_manager.trucks[truck_id - 1].load_special_package(package_id)
+                    self.truck_manager.trucks[truck_id - 1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id)
 
         # Load grouped packages
@@ -28,7 +28,7 @@ class Greedy:
             for package_id in package_ids:
                 package = self.package_hash_table.search(package_id)
                 if package_id in self.package_id_list:
-                    self.truck_manager.trucks[1].load_special_package(package_id)
+                    self.truck_manager.trucks[1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id) # Remove from global package id list
 
     # The actual greedy algorithm

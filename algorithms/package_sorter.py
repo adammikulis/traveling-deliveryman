@@ -35,11 +35,11 @@ class PackageSorter:
         # Forces truck to prioritize special packages if combined lists reaches truck's max capacity
         if len(truck.special_package_id_list) + len(truck.package_id_list) == truck.max_packages:
             next_package_id, next_package_distance, next_path = self.get_next_closest_package_id(truck, True)
-            truck.unload_special_package(next_package_id)
+            truck.unload_special_package_id_list(next_package_id)
         else:
             next_package_id, next_package_distance, next_path, is_package_special = self.get_next_combined_closest_package_id(truck)
             if is_package_special:
-                truck.unload_special_package(next_package_id)
+                truck.unload_special_package_id_list(next_package_id)
             else:
                 self.package_id_list.remove(next_package_id)
         package = self.package_hash_table.search(next_package_id)
@@ -117,16 +117,26 @@ class PackageSorter:
         for truck_id, package_ids in self.package_data_loader.package_required_trucks.items():
             for package_id in package_ids:
                 if package_id in self.package_id_list:
-                    self.truck_manager.trucks[truck_id - 1].load_special_package(package_id)
+                    self.truck_manager.trucks[truck_id - 1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id)
+
+        # Assign packages available after 8:00 AM to Truck 3
+        for package_id in list(self.package_id_list):
+            package = self.package_hash_table.search(package_id)
+            if package.available_time.time() > time(8,0):
+                # Load onto Truck 3
+                self.truck_manager.trucks[2].load_special_package_id_list(package_id)
+                self.package_id_list.remove(package_id)  # Remove from the global package id list
 
         # Load grouped packages
         for group_id, package_ids in self.package_data_loader.package_groups.items():
-            # Default to the third truck for grouped packages (lowest mileage so far)
+            # Default to the second truck for grouped packages (all arrive on-time this way)
             for package_id in package_ids:
                 if package_id in self.package_id_list:
-                    self.truck_manager.trucks[0].load_special_package(package_id)
+                    self.truck_manager.trucks[1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id)  # Remove from global package id list
+
+
 
     def normalize_deadline(self, deadline):
         # Define the start and end times
