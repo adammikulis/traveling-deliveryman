@@ -1,3 +1,6 @@
+from datetime import datetime, time
+
+
 class PackageSorter:
     def __init__(self, algorithm, package_data_loader, truck_manager):
         self.algorithm = algorithm  # Pass algorithm to this
@@ -5,7 +8,9 @@ class PackageSorter:
         self.package_hash_table = package_data_loader.package_hash_table
         self.truck_manager = truck_manager
         self.package_id_list = self.package_hash_table.package_id_index
+        self.early_deadline_package_id_list = []
         self.next_package_distance_list = []
+        self.current_date = datetime.now().date()
 
         # Class initializes sorting without needing to call in main
         self.sort_packages_onto_trucks()
@@ -45,6 +50,7 @@ class PackageSorter:
                 next_path = next_path[1:]
             truck.truck_path_list.append(next_path)
             truck.truck_distance_list.append(next_package_distance)
+            truck.package_deadline_list.append(package.delivery_deadline)
         # Update the last address to the current package's address
         truck.load_package(next_package_id)
         truck.current_address_id = package.address_id
@@ -67,10 +73,11 @@ class PackageSorter:
             self.print_truck_status(overall_distance, truck)
 
     # Uses algorithm to recall the shortest path
-    def get_next_closest_package_id(self, truck, use_special_package_id_list=False):
+    def get_next_closest_package_id(self, truck, use_special_package_id_list):
         closest_package_id = None
         closest_distance = float('inf')
         closest_path = []
+        closest_delivery_deadline = datetime.max
 
         if use_special_package_id_list:
             package_id_list = truck.special_package_id_list
@@ -79,7 +86,8 @@ class PackageSorter:
         for package_id in package_id_list:
             package = self.package_hash_table.search(package_id)
             path, path_distance = self.algorithm.get_shortest_path(str(truck.current_address_id), str(package.address_id))
-
+            if package.delivery_deadline < datetime.combine(self.current_date, time(12, 0)):
+                self.early_deadline_package_id_list.append(package.package_id)
             if path_distance < closest_distance:
                 closest_distance = path_distance
                 closest_package_id = package_id
@@ -88,7 +96,7 @@ class PackageSorter:
 
     # Returns closest package id of either global list or truck's special list
     def get_next_combined_closest_package_id(self, truck):
-        special_distance_weight = 0.25
+        special_distance_weight = 0.25  # Used to prioritize special package by artificially reducing distance
         closest_regular_package_id, closest_regular_distance, closest_regular_path = self.get_next_closest_package_id(truck, False)
         closest_special_package_id, closest_special_distance, closest_special_path = self.get_next_closest_package_id(truck, True)
 
@@ -119,3 +127,23 @@ class PackageSorter:
                 if package_id in self.package_id_list:
                     self.truck_manager.trucks[0].load_special_package(package_id)
                     self.package_id_list.remove(package_id)  # Remove from global package id list
+
+    def normalize_deadline(self, deadline):
+        # Define the start and end times
+        start_time = datetime.combine(deadline.date(), time(8, 0))  # 8:00 AM
+        end_time = datetime.combine(deadline.date(), time(17, 0))  # 5:00 PM
+
+        # Total range in minutes
+        total_range_minutes = (end_time - start_time).total_seconds() / 60
+
+        # Deadline time in minutes from midnight
+        deadline_minutes = (deadline - datetime.combine(deadline.date(), time(0, 0))).total_seconds() / 60
+
+        # Start time in minutes from midnight
+        start_time_minutes = (start_time - datetime.combine(start_time.date(), time(0, 0))).total_seconds() / 60
+
+        # Normalize the deadline
+        normalized_value = (start_time_minutes - deadline_minutes) / total_range_minutes
+        normalized_value = min(max(normalized_value, 0), 1)  # Clamp the value between 0 and 1
+
+        return normalized_value
