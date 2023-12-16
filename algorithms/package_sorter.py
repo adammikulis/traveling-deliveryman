@@ -4,7 +4,6 @@ class PackageSorter:
         self.package_data_loader = package_data_loader
         self.package_hash_table = package_data_loader.package_hash_table
         self.truck_manager = truck_manager
-        self.current_address_id = '0'
         self.package_id_list = self.package_hash_table.package_id_index
         self.next_package_distance_list = []
 
@@ -14,12 +13,12 @@ class PackageSorter:
 
     # This implements the pathing algorithm
     def load_truck(self, truck):
-        last_address_id = '0'
         while not truck.is_full() and self.package_id_list:
             self.load_truck_if_package_id(truck)
         # Sends trucks back to hub at the end of delivery
         self.append_hub_address_id_at_end(truck)
 
+    # Gets called when truck is full or all possible packages have been loaded
     def append_hub_address_id_at_end(self, truck):
         path_to_hub, distance_to_hub = self.algorithm.get_shortest_path(str(truck.current_address_id), '0')
         truck.truck_path_list.append(path_to_hub)
@@ -28,7 +27,8 @@ class PackageSorter:
 
     # Used in load_truck
     def load_truck_if_package_id(self, truck):
-        next_package_id, next_package_distance, next_path = self.get_next_closest_package_path(truck)
+        next_package_id, next_package_distance, next_path = self.get_next_closest_package_path(truck, False)
+        use_special_list = False
         package = self.package_hash_table.search(next_package_id)
         # Update the truck's path
         if next_path:
@@ -39,7 +39,10 @@ class PackageSorter:
             truck.truck_distance_list.append(next_package_distance)
         # Update the last address to the current package's address
         truck.load_package(next_package_id)
-        self.package_id_list.remove(next_package_id)
+        if use_special_list == True:
+            truck.unload_special_package(next_package_id)
+        else:
+            self.package_id_list.remove(next_package_id)
         truck.current_address_id = package.address_id
         truck.total_miles_driven += next_package_distance
 
@@ -59,13 +62,17 @@ class PackageSorter:
             overall_distance += truck.total_miles_driven
             self.print_truck_status(overall_distance, truck)
 
-    # Uses algorithm to recall shortest path
-    def get_next_closest_package_path(self, truck):
+    # Uses algorithm to recall the shortest path
+    def get_next_closest_package_path(self, truck, use_special_package_id_list=False):
         closest_package_id = None
         closest_distance = float('inf')
         closest_path = []
 
-        for package_id in self.package_id_list:
+        if use_special_package_id_list:
+            package_id_list = truck.special_package_id_list
+        else:
+            package_id_list = self.package_id_list
+        for package_id in package_id_list:
             package = self.package_hash_table.search(package_id)
             path, path_distance = self.algorithm.get_shortest_path(str(truck.current_address_id), str(package.address_id))
 
@@ -75,6 +82,7 @@ class PackageSorter:
                 closest_path = path
         return closest_package_id, closest_distance, closest_path
 
+    # Populates trucks' special package list based on criteria
     def sort_special_packages_onto_trucks(self):
         # Load packages required by specific trucks
         for truck_id, package_ids in self.package_data_loader.package_required_trucks.items():
