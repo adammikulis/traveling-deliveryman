@@ -1,9 +1,14 @@
+# This code is adapted from the webinar "How to Dijkstra"
+
+# Class is used to create vertices to add to a graph
 class Vertex:
 
     def __init__(self, label):
         self.label = label
         self.distance = float('inf')
         self.previous_vertex = None
+
+# Class puts together vertices using edges and stores lists/weights
 class Graph:
     def __init__(self):
         self.adjacency_list = {}  # vertex dictionary

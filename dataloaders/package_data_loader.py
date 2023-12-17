@@ -1,20 +1,20 @@
 from datetime import time, datetime
-from models import Package, PackageHashTable
+from models import Package, ChainingHashTable
 
 import csv
 
-
+# This class loads the package data into a hash table and presorts them into special groups when needed
 class PackageDataLoader:
 
     def __init__(self):
         self.package_hash_table = None
         self.total_packages = 0
-        self.package_groups = {} # Special packages
-        self.package_required_trucks = {} # Special packages
+        self.package_groups = {}  # Special packages
+        self.package_required_trucks = {}  # Special packages
         self.package_id_list = []  # Used for status printing
 
     def initialize_hash_table(self, total_packages):
-        self.package_hash_table = PackageHashTable(total_packages)
+        self.package_hash_table = ChainingHashTable(total_packages)
 
     def load_package_data(self, filename):
         # Determine the total number of packages

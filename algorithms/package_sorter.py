@@ -1,6 +1,6 @@
 from datetime import datetime, time
 
-
+# This class implements the chosen algorithm to sort the packages onto trucks in most efficient order
 class PackageSorter:
     def __init__(self, algorithm, package_data_loader, truck_manager):
         self.algorithm = algorithm  # Pass algorithm to this
@@ -16,14 +16,14 @@ class PackageSorter:
         self.sort_packages_onto_trucks()
 
 
-    # This implements the pathing algorithm
+    # This implements the loading algorithm until the truck is full or all packages are loaded
     def load_truck(self, truck):
         while not truck.is_full() and (self.package_id_list or truck.special_package_id_list):
             self.load_truck_if_package_id(truck)
         # Sends trucks back to hub at the end of delivery
         self.append_hub_address_id_at_end(truck)
 
-    # Gets called when truck is full or all possible packages have been loaded
+    # Gets called when truck is full or all possible packages have been loaded to send truck back to hub
     def append_hub_address_id_at_end(self, truck):
         path_to_hub, distance_to_hub = self.algorithm.get_shortest_path(str(truck.current_address_id), '0')
         truck.truck_path_list.append(path_to_hub)
@@ -79,7 +79,7 @@ class PackageSorter:
         closest_package_id = None
         closest_distance = float('inf')
         closest_path = []
-        closest_delivery_deadline = datetime.max
+        closest_delivery_deadline = datetime.max  # Unused due to efficiency of pathing algorithm
 
         if use_special_package_id_list:
             package_id_list = truck.special_package_id_list
@@ -130,8 +130,8 @@ class PackageSorter:
                     self.truck_manager.trucks[1].load_special_package_id_list(package_id)
                     self.package_id_list.remove(package_id)  # Remove from global package id list
 
+        # Assign packages available after 8:00 AM or with a wrong address to truck 3
         available_time_cutoff = time(8, 0)
-        # Assign packages available after 8:00 AM to truck 3
         for package_id in self.package_id_list:
             package = self.package_hash_table.search(package_id)
             if package.available_time.time() > available_time_cutoff or package.wrong_address:
@@ -140,9 +140,9 @@ class PackageSorter:
                 self.package_id_list.remove(package_id)  # Remove from the global package id list
 
 
-    # Only needed if prioritizing by deadline
+    # Only needed if prioritizing by deadline, currently unused
     def normalize_deadline(self, deadline):
-        # Define the start and end times
+
         start_time = datetime.combine(deadline.date(), time(8, 0))  # 8:00 AM
         end_time = datetime.combine(deadline.date(), time(17, 0))  # 5:00 PM
 
@@ -157,6 +157,6 @@ class PackageSorter:
 
         # Normalize the deadline
         normalized_value = (start_time_minutes - deadline_minutes) / total_range_minutes
-        normalized_value = min(max(normalized_value, 0), 1)  # Clamp the value between 0 and 1
+        normalized_value = min(max(normalized_value, 0), 1)
 
         return normalized_value

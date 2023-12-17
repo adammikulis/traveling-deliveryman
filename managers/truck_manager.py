@@ -1,5 +1,6 @@
 from models import Truck
 
+# This class creates the fleet of trucks
 class TruckManager:
 
     def __init__(self, total_trucks, algorithm, package_data_loader, max_packages=16, average_speed=18):

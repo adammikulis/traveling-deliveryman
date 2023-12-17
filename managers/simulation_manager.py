@@ -1,17 +1,16 @@
-from models import Address, PackageHashTable, Package, Truck
+from models import Address, ChainingHashTable, Package, Truck
 from dataloaders import GraphDataLoader, PackageDataLoader
 from datetime import *
 
 
 class SimulationManager:
-    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, driver_manager, truck_manager, dispatcher, start_time, time_step):
+    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, driver_manager, truck_manager, start_time, time_step):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
         self.address_table_loader = address_table_loader
         self.address_table = address_table_loader.address_table
         self.driver_manager = driver_manager
         self.truck_manager = truck_manager
-        self.dispatcher = dispatcher
         self.current_time = start_time
         self.time_step = time_step  # Time step in seconds
         self.current_date = datetime.now().date()
@@ -37,7 +36,7 @@ class SimulationManager:
 
     def print_all_package_status(self):
         all_packages_on_time = True
-        print(f"\n***STATUS UPDATE*** Current time: {self.current_time.strftime("%H:%M")}")
+        print(f"\n*****STATUS UPDATE***** Current time: {self.current_time.strftime("%H:%M")}")
         for package_id in self.package_data_loader.package_id_list:
             package = self.package_data_loader.package_hash_table.search(package_id)
             # print(package.package_status_lookup(self.address_table_loader))
@@ -63,7 +62,7 @@ class SimulationManager:
                         all_packages_on_time = False
                     print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} \tby Truck: {assigned_truck_id} \tAt: {delivered_at.strftime("%H:%M")}")
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
-        print(f"All packages on-time: {all_packages_on_time}")
+        # print(f"All packages on-time: {all_packages_on_time}")
 
 
     def get_truck_status(self, truck_id):

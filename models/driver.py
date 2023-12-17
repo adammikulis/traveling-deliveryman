@@ -1,3 +1,4 @@
+# This class creates the drivers who then enable the trucks to deliver packages
 class Driver:
 
     def __init__(self, driver_id):

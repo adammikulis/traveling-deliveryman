@@ -1,4 +1,6 @@
 from datetime import *
+
+# This class creates the trucks that navigate from location to location to unload their packages
 class Truck:
 
     def __init__(self, truck_id, algorithm, package_data_loader, max_packages=16, average_speed=18.0):
@@ -26,7 +28,7 @@ class Truck:
         self.next_address_path = []
         self.finished_delivery_at_hub = False
 
-
+    # This gets executed when the truck has a driver and more packages to deliver
     def drive_to_next_address_id(self, time_step, current_time):
 
         # Only drive if the truck has a driver and isn't finished all deliveries
@@ -86,6 +88,7 @@ class Truck:
     def unload_package(self, package_id):
         self.package_id_list.remove(package_id)
 
+    # Deliver package when truck reaches the address
     def deliver_package(self, package_id, current_time):
         self.current_address_id = self.next_address_id
         self.unload_package(package_id)
@@ -100,10 +103,11 @@ class Truck:
         #       f"Due: {package.delivery_deadline}\t On-time: {package.delivered_on_time} "
         #       f"Truck miles: {self.total_miles_driven:.1f}")
 
-
+    # Add a package to the truck's individual special package id list
     def load_special_package_id_list(self, package_id):
         self.special_package_id_list.append(package_id)
 
+    # Remove a package from the truck's individual special package id list
     def unload_special_package_id_list(self, package_id):
         self.special_package_id_list.remove(package_id)
 
@@ -113,6 +117,7 @@ class Truck:
     def is_full(self):
         return self.max_packages == len(self.package_id_list) # Only full if regular list is full
 
+    # No longer needed due to route optimization
     # def calculate_eta(self, destination_address_id):
     #     current_location = self.current_address_id
     #     distance_to_destination = self.graph_data_loader.get_distance(current_location, destination_address_id)

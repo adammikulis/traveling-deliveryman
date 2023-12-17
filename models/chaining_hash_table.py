@@ -1,6 +1,8 @@
 
 # Code modified from Webinar 1: Let's Get Hashing
-class PackageHashTable:
+
+# Creates a chaining hash table used for storing packages
+class ChainingHashTable:
     def __init__(self, initial_capacity):
         self.table = [[] for i in range(initial_capacity)]
         self.package_id_index = []

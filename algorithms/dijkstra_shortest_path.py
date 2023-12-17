@@ -1,8 +1,11 @@
+# This code is adapted from the webinar "How to Dijkstra"
+
+# This class implements Dijkstra's Shortest Path algorithm with storage for precomputed paths
 class DijkstraShortestPath:
     def __init__(self, graph):
         self.graph = graph
         self.paths = {}  # Dictionary to store precomputed paths
-        self.previous_vertex_maps = {}  # New dictionary to store previous vertex maps
+        self.previous_vertex_maps = {}  # Dictionary to store previous vertex maps for precomputed paths
         self.precompute_all_paths()
 
     def initialize_dijkstra_shortest_path(self, start_vertex_label='0'):
@@ -81,7 +84,7 @@ class DijkstraShortestPath:
             # print(path_info['path'], path_info['distance'])
             return path_info['path'], path_info['distance']
 
-        # Fallback to computation if the path is not precomputed
+        # Fallback if the path is not precomputed
         self.initialize_dijkstra_shortest_path(start_vertex_label)
         start_vertex = self.graph.get_vertex(start_vertex_label)
         end_vertex = self.graph.get_vertex(end_vertex_label)
@@ -90,7 +93,3 @@ class DijkstraShortestPath:
         # Store this path for future reference
         self.paths[(start_vertex_label, end_vertex_label)] = {'path': path, 'distance': distance}
         return path, distance
-
-    def get_direct_distance(self, start_vertex_label, end_vertex_label):
-        edge_key = (start_vertex_label, end_vertex_label)
-        return self.graph.edge_weights.get(edge_key, None)

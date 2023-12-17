@@ -4,12 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="sorting algorithm functions, total distance 49.1">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="all packages delivered on-time according to all rules, total truck miles: 106.7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/package_sorter.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/package_sorter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_delivery_data_backup.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataloaders/address_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/address_data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataloaders/graph_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/graph_data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataloaders/package_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/dispatcher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/driver_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/truck_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/truck_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/address.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/driver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/package_hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/chaining_hash_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/status_report.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +57,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.chaining_hash_table.executor&quot;: &quot;Run&quot;,
-    &quot;Python.data_loaders.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.package.executor&quot;: &quot;Run&quot;,
-    &quot;Python.truck.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/adamm/PycharmProjects/TravelingDeliveryman&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.chaining_hash_table.executor": "Run",
+    "Python.data_loaders.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.package.executor": "Run",
+    "Python.truck.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/adamm/PycharmProjects/TravelingDeliveryman",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
@@ -92,7 +112,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-67fca87a943a-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.259" />
+        <option value="bundled-python-sdk-7a29c1521ef0-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.298" />
       </set>
     </attachedChunks>
   </component>
@@ -104,38 +124,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701976877332</updated>
-    </task>
-    <task id="LOCAL-00001" summary="initial commit">
-      <option name="closed" value="true" />
-      <created>1701976984804</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1701976984804</updated>
-    </task>
-    <task id="LOCAL-00002" summary="changed class filenames to lowercase">
-      <option name="closed" value="true" />
-      <created>1701989860230</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1701989860230</updated>
-    </task>
-    <task id="LOCAL-00003" summary="updated package model and added .xlsx data file">
-      <option name="closed" value="true" />
-      <created>1701996762118</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1701996762118</updated>
-    </task>
-    <task id="LOCAL-00004" summary="removed __init__.py files for now and nearly finished model classes">
-      <option name="closed" value="true" />
-      <created>1701998757775</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1701998757775</updated>
     </task>
     <task id="LOCAL-00005" summary="replaced __init__.py file with proper import statements">
       <option name="closed" value="true" />
@@ -377,7 +365,159 @@
       <option name="project" value="LOCAL" />
       <updated>1702586799216</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="loads packages but does not count mileage correctly">
+      <option name="closed" value="true" />
+      <created>1702591936941</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1702591936941</updated>
+    </task>
+    <task id="LOCAL-00036" summary="all mileage and paths counted and displayed correctly, does not take special package requirements and deadlines into account. Simulation still broken, best distance: 49.1">
+      <option name="closed" value="true" />
+      <created>1702593466849</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1702593466849</updated>
+    </task>
+    <task id="LOCAL-00037" summary="mileage updated for return to hub, best distance 66.3">
+      <option name="closed" value="true" />
+      <created>1702598398315</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1702598398315</updated>
+    </task>
+    <task id="LOCAL-00038" summary="refactored package_sorter to be more organized">
+      <option name="closed" value="true" />
+      <created>1702598903510</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1702598903510</updated>
+    </task>
+    <task id="LOCAL-00039" summary="added README.txt">
+      <option name="closed" value="true" />
+      <created>1702602682672</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1702602682672</updated>
+    </task>
+    <task id="LOCAL-00040" summary="small refactoring">
+      <option name="closed" value="true" />
+      <created>1702743287231</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1702743287231</updated>
+    </task>
+    <task id="LOCAL-00041" summary="additional refactoring focusing on package_sorter, added special package sorting">
+      <option name="closed" value="true" />
+      <created>1702744969777</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1702744969777</updated>
+    </task>
+    <task id="LOCAL-00042" summary="removing unneeded args, passing in just truck">
+      <option name="closed" value="true" />
+      <created>1702745176292</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1702745176292</updated>
+    </task>
+    <task id="LOCAL-00043" summary="tracking truck miles and last address using truck variables, removed unneeded returns">
+      <option name="closed" value="true" />
+      <created>1702745629515</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1702745629515</updated>
+    </task>
+    <task id="LOCAL-00044" summary="more refactoring to use truck variables for better encapsulation">
+      <option name="closed" value="true" />
+      <created>1702746236126</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1702746236126</updated>
+    </task>
+    <task id="LOCAL-00045" summary="trucks now load special packages according to rules correctly, does not account for deadline/available time. Total distance: 93.0">
+      <option name="closed" value="true" />
+      <created>1702748031769</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1702748031769</updated>
+    </task>
+    <task id="LOCAL-00046" summary="created a special_distance_weight to prioritize special packages instead of leaving towards end, lowest distance: 85.8">
+      <option name="closed" value="true" />
+      <created>1702748269285</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1702748269285</updated>
+    </task>
+    <task id="LOCAL-00047" summary="special_distance_weight = 0.25 lowest distance: 81.6">
+      <option name="closed" value="true" />
+      <created>1702748330472</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1702748330472</updated>
+    </task>
+    <task id="LOCAL-00048" summary="created method to normalize schedule values, does not work yet">
+      <option name="closed" value="true" />
+      <created>1702752637437</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1702752637437</updated>
+    </task>
+    <task id="LOCAL-00049" summary="simulation now works with dijktra's algorithm, shows miles driven as approximately double the distance as estimated (164.1)">
+      <option name="closed" value="true" />
+      <created>1702753017366</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1702753017366</updated>
+    </task>
+    <task id="LOCAL-00050" summary="All packages deliver on-time, does not yet respect package available time">
+      <option name="closed" value="true" />
+      <created>1702753390992</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1702753390992</updated>
+    </task>
+    <task id="LOCAL-00051" summary="All packages deliver on-time respecting all constraints">
+      <option name="closed" value="true" />
+      <created>1702755158640</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1702755158640</updated>
+    </task>
+    <task id="LOCAL-00052" summary="updating package status update output. Need to make sure trucks are driving point-to-point correctly">
+      <option name="closed" value="true" />
+      <created>1702759762945</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1702759762945</updated>
+    </task>
+    <task id="LOCAL-00053" summary="all packages delivered on-time according to all rules, total truck miles: 106.7">
+      <option name="closed" value="true" />
+      <created>1702774951118</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1702774951118</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -393,32 +533,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added classes to manage truck Drivers" />
-    <MESSAGE value="initial greedy algorithm works and delivers all packages" />
-    <MESSAGE value="separated greedy algorithm from delivery process" />
-    <MESSAGE value="removed extraneous package_finder" />
-    <MESSAGE value="packages allocated to trucks by delivery time required" />
-    <MESSAGE value="can determine when is the earliest a truck can leave" />
-    <MESSAGE value="created dispatcher and refactored driver/truck assignments into that" />
-    <MESSAGE value="simulation now advances second-by-second" />
-    <MESSAGE value="redoing greedy" />
-    <MESSAGE value="can load special packages into a special list on trucks to ensure they are there, to then be loaded onto truck's regular list" />
-    <MESSAGE value="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline" />
-    <MESSAGE value="working on simulation aspect and driving trucks at 1s increments" />
-    <MESSAGE value="updating truck drive method" />
-    <MESSAGE value="simulation works with slight error. Need to allow for delivery of multiple packages. Need to switch driver to truck 3 when available" />
-    <MESSAGE value="simulation fully works with all packages delivered from all three trucks, current best mileage 156.9" />
-    <MESSAGE value="Can print status of all packages at any given time. Does not yet account for package available and due time" />
-    <MESSAGE value="all packages deliver on-time, does not yet account for package available time. all truck miles 222.0" />
-    <MESSAGE value="starting refactoring of distance loader and dijkstra" />
-    <MESSAGE value="refactored dijkstra to not require start_vertex to initialize, takes labels and not vertices as args now" />
     <MESSAGE value="removed unused class" />
     <MESSAGE value="dijkstra now stores all closest paths for quicker reference and reduced computation" />
     <MESSAGE value="packages now sort onto truck by dijkstra algorithm" />
     <MESSAGE value="package mileage is severely reduced, everything works prior to turning simulation back on" />
     <MESSAGE value="sorting algorithm functions, total distance 49.1. Simulation does not yet work again, need to adjust how trucks drive to next location" />
     <MESSAGE value="sorting algorithm functions, total distance 49.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="sorting algorithm functions, total distance 49.1" />
+    <MESSAGE value="loads packages but does not count mileage correctly" />
+    <MESSAGE value="all mileage and paths counted and displayed correctly, does not take special package requirements and deadlines into account. Simulation still broken, best distance: 49.1" />
+    <MESSAGE value="mileage updated for return to hub, best distance 66.3" />
+    <MESSAGE value="refactored package_sorter to be more organized" />
+    <MESSAGE value="added README.txt" />
+    <MESSAGE value="small refactoring" />
+    <MESSAGE value="additional refactoring focusing on package_sorter, added special package sorting" />
+    <MESSAGE value="removing unneeded args, passing in just truck" />
+    <MESSAGE value="tracking truck miles and last address using truck variables, removed unneeded returns" />
+    <MESSAGE value="more refactoring to use truck variables for better encapsulation" />
+    <MESSAGE value="trucks now load special packages according to rules correctly, does not account for deadline/available time. Total distance: 93.0" />
+    <MESSAGE value="created a special_distance_weight to prioritize special packages instead of leaving towards end, lowest distance: 85.8" />
+    <MESSAGE value="special_distance_weight = 0.25 lowest distance: 81.6" />
+    <MESSAGE value="created method to normalize schedule values, does not work yet" />
+    <MESSAGE value="simulation now works with dijktra's algorithm, shows miles driven as approximately double the distance as estimated (164.1)" />
+    <MESSAGE value="All packages deliver on-time, does not yet respect package available time" />
+    <MESSAGE value="All packages deliver on-time respecting all constraints" />
+    <MESSAGE value="updating package status update output. Need to make sure trucks are driving point-to-point correctly" />
+    <MESSAGE value="all packages delivered on-time according to all rules, total truck miles: 106.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="all packages delivered on-time according to all rules, total truck miles: 106.7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -426,10 +566,6 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/managers/__init__.py</url>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/package.py</url>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/dataloaders/__init__.py</url>

@@ -1,6 +1,6 @@
 import csv
 from algorithms import Vertex
-
+# This class loads the csv with distance data and assembles it into a graph
 class GraphDataLoader:
 
     def __init__(self, graph):
@@ -25,9 +25,9 @@ class GraphDataLoader:
                 for i, distance in enumerate(distance_row[1:], start=1):
                     if distance:  # Only process filled cells
                         to_address = header[i]
-                        dist = float(distance)
+                        distance = float(distance)
                         from_vertex = self.graph.get_vertex(from_address)
                         to_vertex = self.graph.get_vertex(to_address)
 
                         # Add undirected edge as the distances are symmetric
-                        self.graph.add_undirected_edge(from_vertex, to_vertex, dist)
+                        self.graph.add_undirected_edge(from_vertex, to_vertex, distance)

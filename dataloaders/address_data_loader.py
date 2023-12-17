@@ -1,6 +1,7 @@
 import csv
 
 from models import Address
+# This class loads the csv with address information to match to address id
 class AddressDataLoader:
 
     def __init__(self):

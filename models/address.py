@@ -1,3 +1,4 @@
+# This class is used to display the text address depending on address id
 class Address:
 
     def __init__(self, address_id, location_name, street_address, city, state, zip_code):

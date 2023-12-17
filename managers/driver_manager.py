@@ -16,3 +16,10 @@ class DriverManager:
             truck_id = driver.assigned_truck_id
             driver.assigned_truck_id = None
             truck_manager.trucks[truck_id - 1].assigned_driver_id = None
+
+    def assign_all_drivers_to_trucks(self, truck_manager):
+        for driver in self.drivers:
+            for truck in truck_manager.trucks:
+                if truck.assigned_driver_id == 0:
+                    self.assign_driver_to_truck(driver.driver_id, truck.truck_id, truck_manager)
+                    break

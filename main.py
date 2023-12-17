@@ -5,7 +5,7 @@
 
 from datetime import *
 
-from managers import TruckManager, DriverManager, Dispatcher, SimulationManager
+from managers import TruckManager, DriverManager, SimulationManager
 from algorithms import DijkstraShortestPath, Graph, PackageSorter
 
 from dataloaders import *
@@ -33,13 +33,10 @@ if __name__ == '__main__':
 
     # Initialize TruckManager and DriverManager
     num_drivers = 2
-    driver_manager = DriverManager(num_drivers)
     num_trucks = 3
+    driver_manager = DriverManager(num_drivers)
     truck_manager = TruckManager(num_trucks, algorithm, package_data_loader, 16)
-
-    # Assigns unassigned drivers to open trucks
-    dispatcher = Dispatcher(driver_manager, truck_manager)
-    dispatcher.assign_all_drivers_to_trucks()
+    driver_manager.assign_all_drivers_to_trucks(truck_manager)
 
     # Sort by algorithm
     package_sorter = PackageSorter(algorithm, package_data_loader, truck_manager)
@@ -48,8 +45,9 @@ if __name__ == '__main__':
     current_date = datetime.now().date()
     start_time = datetime.combine(current_date, time(8, 0))
     EOD = datetime.combine(current_date, time(17, 0))
-    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, dispatcher, start_time, 1)
+    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, start_time, 1)
 
+    # Prompt user for times to check package statuses
     status_checks = []
     num_status_checks = 3
     print("What times would you like to check the package statuses?")
@@ -58,29 +56,28 @@ if __name__ == '__main__':
         hours, minutes = map(int, status_check_time_str.split(':'))
         status_check_date_time = datetime.combine(current_date, time(hours, minutes))
         status_checks.append(status_check_date_time)
-    # status_checks = [datetime.combine(current_date,time(14,5))]
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:
         simulation_manager.advance_time()
-        for status_check in status_checks:
-            if simulation_manager.current_time == status_check:
-                simulation_manager.print_all_package_status()
 
         # Reassigns first driver that returns to final truck
         for truck in truck_manager.trucks[:-1]:
             if truck.finished_delivery_at_hub and truck_manager.trucks[-1].assigned_driver_id == 0:
-                # print(f"\nAssigning Driver {truck.assigned_driver_id} to Truck {truck_manager.trucks[-1].truck_id} at {simulation_manager.current_time.strftime("%H:%M")}")
-                dispatcher.assign_driver_to_truck(truck.assigned_driver_id, truck_manager.trucks[-1].truck_id)
+                driver_manager.assign_driver_to_truck(truck.assigned_driver_id, truck_manager.trucks[-1].truck_id, truck_manager)
                 truck.assigned_driver_id = 0
 
-
-        # Used to correct a package address at a specific time
+        # Used to correct a wrong package address at a specific time
         if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
             simulation_manager.correct_package_address(package_data_loader, 9, 19)
 
         # Updates status of packages that haven't arrived yet
         for package_id in package_data_loader.package_id_list:
             package = package_data_loader.package_hash_table.search(package_id)
-            if package.available_time == simulation_manager.current_time:
+            if package.status == "Not yet available" and package.available_time == simulation_manager.current_time:
                 package.status = "At-hub"
+
+        # Run status checks at prescribed times
+        for status_check in status_checks:
+            if simulation_manager.current_time == status_check:
+                simulation_manager.print_all_package_status()
