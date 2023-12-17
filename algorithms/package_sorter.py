@@ -44,6 +44,7 @@ class PackageSorter:
             else:
                 self.package_id_list.remove(next_package_id)
         package = self.package_hash_table.search(next_package_id)
+        package.assigned_truck_id = truck.truck_id
         # Update the truck's path
         if next_path:
             # Skip the first item if it's the same as the last address to avoid duplication
@@ -97,7 +98,7 @@ class PackageSorter:
 
     # Returns closest package id of either global list or truck's special list
     def get_next_combined_closest_package_id(self, truck):
-        special_distance_weight = 0.25  # Used to prioritize special package by artificially reducing distance
+        special_distance_weight = .40  # Used to prioritize special packages by artificially reducing distance
         closest_regular_package_id, closest_regular_distance, closest_regular_path = self.get_next_closest_package_id(truck, False)
         closest_special_package_id, closest_special_distance, closest_special_path = self.get_next_closest_package_id(truck, True)
 
@@ -107,7 +108,7 @@ class PackageSorter:
         elif closest_special_package_id is None:
             return closest_regular_package_id, closest_regular_distance, closest_regular_path, False
 
-        if closest_regular_distance < (closest_special_distance * special_distance_weight):
+        if closest_regular_distance < (closest_special_distance * special_distance_weight):  # Special distance is artificially lower using weight
             return closest_regular_package_id, closest_regular_distance, closest_regular_path, False
         else:
             return closest_special_package_id, closest_special_distance, closest_special_path, True
@@ -139,7 +140,7 @@ class PackageSorter:
                 self.package_id_list.remove(package_id)  # Remove from the global package id list
 
 
-
+    # Only needed if prioritizing by deadline
     def normalize_deadline(self, deadline):
         # Define the start and end times
         start_time = datetime.combine(deadline.date(), time(8, 0))  # 8:00 AM

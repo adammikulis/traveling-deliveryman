@@ -73,9 +73,5 @@ class PackageDataLoader:
         for package_id in self.package_id_list:
             print(self.package_hash_table.search(package_id))
 
-    def return_all_package_info(self, package_id):
-        package = self.package_hash_table.search(package_id)
-        return package.address_id, package.truck_id, package.status, package.delivered_at, package.delivered_on_time
-
     def string_to_bool(self, string):
         return string.upper() == "TRUE"

@@ -1,3 +1,8 @@
+# Created by: Adam Mikulis
+# Student ID: 002370265
+# Program: Traveling Deliveryman
+# Comments: This program optimizes package and delivery routes
+
 from datetime import *
 
 from managers import TruckManager, DriverManager, Dispatcher, SimulationManager
@@ -30,7 +35,7 @@ if __name__ == '__main__':
     num_drivers = 2
     driver_manager = DriverManager(num_drivers)
     num_trucks = 3
-    truck_manager = TruckManager(num_trucks, algorithm, package_data_loader, 14)
+    truck_manager = TruckManager(num_trucks, algorithm, package_data_loader, 16)
 
     # Assigns unassigned drivers to open trucks
     dispatcher = Dispatcher(driver_manager, truck_manager)
@@ -43,26 +48,24 @@ if __name__ == '__main__':
     current_date = datetime.now().date()
     start_time = datetime.combine(current_date, time(8, 0))
     EOD = datetime.combine(current_date, time(17, 0))
+    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, dispatcher, start_time, 1)
 
-
-
-    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, driver_manager, truck_manager, dispatcher, start_time, 1)
-
-    # status_checks = []
-    # num_status_checks = 3
-    # for i in range(num_status_checks):
-    #     status_check_time_str = input("What time to check status (HH:MM): ")
-    #     hours, minutes = map(int, status_check_time_str.split(':'))
-    #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
-    #     status_checks.append(status_check_date_time)
-
-    status_checks = [datetime.combine(current_date,time(9,5))]
+    status_checks = []
+    num_status_checks = 3
+    print("What times would you like to check the package statuses?")
+    for i in range(num_status_checks):
+        status_check_time_str = input("HH:MM: ")
+        hours, minutes = map(int, status_check_time_str.split(':'))
+        status_check_date_time = datetime.combine(current_date, time(hours, minutes))
+        status_checks.append(status_check_date_time)
+    # status_checks = [datetime.combine(current_date,time(14,5))]
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:
+        simulation_manager.advance_time()
         for status_check in status_checks:
             if simulation_manager.current_time == status_check:
-                simulation_manager.print_all_package_status(package_data_loader, address_data_loader)
+                simulation_manager.print_all_package_status()
 
         # Reassigns first driver that returns to final truck
         for truck in truck_manager.trucks[:-1]:
@@ -72,8 +75,12 @@ if __name__ == '__main__':
                 truck.assigned_driver_id = 0
 
 
-        # Used to correct a package address
+        # Used to correct a package address at a specific time
         if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
             simulation_manager.correct_package_address(package_data_loader, 9, 19)
 
-        simulation_manager.advance_time()
+        # Updates status of packages that haven't arrived yet
+        for package_id in package_data_loader.package_id_list:
+            package = package_data_loader.package_hash_table.search(package_id)
+            if package.available_time == simulation_manager.current_time:
+                package.status = "At-hub"

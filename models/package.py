@@ -19,9 +19,20 @@ class Package:
 
         # status variables
         self.assigned_truck_id = 0
-        self.status = "At-hub"
+        if self.available_time > datetime.combine(self.current_date, time(8,0)):
+            self.status = "Not yet available"
+        else:
+            self.status = "At-hub"
         self.delivered_at = datetime.min
         self.delivered_on_time = False
+
+    # Part B required lookup function
+    def package_status_lookup(self, address_data_loader):
+        package_address = address_data_loader.get_address(self.address_id)
+        if self.status == "Delivered":
+            return package_address.street_address, self.delivery_deadline, package_address.city, package_address.zip_code, self.weight, self.status, self.delivered_at
+        else:
+            return package_address.street_address, self.delivery_deadline, package_address.city, package_address.zip_code, self.weight, self.status
 
     # Printable representation of object
     def __repr__(self):
