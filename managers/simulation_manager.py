@@ -62,7 +62,7 @@ class SimulationManager:
                         all_packages_on_time = False
                     print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} \tby Truck: {assigned_truck_id} \tAt: {delivered_at.strftime("%H:%M")}")
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
-        # print(f"All packages on-time: {all_packages_on_time}")
+        print(f"All packages on-time: {all_packages_on_time}")
 
 
     def get_truck_status(self, truck_id):

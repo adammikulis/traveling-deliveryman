@@ -37,12 +37,12 @@ class Package:
             return package_address.street_address, self.delivery_deadline, package_address.city, package_address.zip_code, self.weight, self.status
 
     # Printable representation of object
-    def __repr__(self):
+    def __str__(self):
 
         # Returns current status with different overall output based on package status
         match self.status:
             case "Delivered":
-                return f"Package ID: {self.package_id},\tStatus: Delivered to {self.address_id} at {self.delivered_at.strftime("%H:%M")}, by Truck {self.assigned_truck_id}, On-time: {self.delivered_on_time}"
+                return f"Package ID: {self.package_id},\tStatus: Delivered to {self.address_id} at {self.delivered_at.strftime('%H:%M')}, by Truck {self.assigned_truck_id}, On-time: {self.delivered_on_time}"
             case "In-transit":
                 return f"Package ID: {self.package_id},\tStatus: In-transit on Truck: {self.assigned_truck_id}"
             case "At-hub":

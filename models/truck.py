@@ -78,7 +78,7 @@ class Truck:
 
     # Advance the truck in the simulation by the time_step
     def simulate_drive(self, time_step):
-        drive_distance = (self.average_speed * time_step) / (60 * 60)
+        drive_distance = (self.average_speed * time_step) / 3600
         self.total_miles_driven += drive_distance
         self.next_address_distance_driven += drive_distance
 

@@ -4,32 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="all packages delivered on-time according to all rules, total truck miles: 106.7">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="updated IDE version">
+      <change afterPath="$PROJECT_DIR$/.idea/gdProjectSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/GdSdk.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TravelingDeliveryman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TravelingDeliveryman.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/greedy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms/package_sorter.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/package_sorter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_delivery_data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_delivery_data_backup.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/address_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/address_data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/graph_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/graph_data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/package_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/package_data_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/dispatcher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/driver_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/truck_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/truck_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/driver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/package_hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/chaining_hash_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/status_report.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,23 +41,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.chaining_hash_table.executor": "Run",
-    "Python.data_loaders.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.package.executor": "Run",
-    "Python.truck.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/adamm/PycharmProjects/TravelingDeliveryman",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.chaining_hash_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_loaders.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.package.executor&quot;: &quot;Run&quot;,
+    &quot;Python.truck.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/adamm/PycharmProjects/TravelingDeliveryman&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;gdscript.settings.GdSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
@@ -109,13 +93,6 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-7a29c1521ef0-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.298" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -124,22 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701976877332</updated>
-    </task>
-    <task id="LOCAL-00005" summary="replaced __init__.py file with proper import statements">
-      <option name="closed" value="true" />
-      <created>1701998994273</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1701998994273</updated>
-    </task>
-    <task id="LOCAL-00006" summary="can load package data into hash table and print out objects">
-      <option name="closed" value="true" />
-      <created>1702002555701</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1702002555701</updated>
     </task>
     <task id="LOCAL-00007" summary="updated __repr__ for package.py">
       <option name="closed" value="true" />
@@ -517,7 +478,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702774951118</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="All areas commented as-needed, ready to turnin">
+      <option name="closed" value="true" />
+      <created>1702778289162</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1702778289162</updated>
+    </task>
+    <task id="LOCAL-00055" summary="updated IDE version">
+      <option name="closed" value="true" />
+      <created>1702778418604</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1702778418604</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,8 +510,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed unused class" />
-    <MESSAGE value="dijkstra now stores all closest paths for quicker reference and reduced computation" />
     <MESSAGE value="packages now sort onto truck by dijkstra algorithm" />
     <MESSAGE value="package mileage is severely reduced, everything works prior to turning simulation back on" />
     <MESSAGE value="sorting algorithm functions, total distance 49.1. Simulation does not yet work again, need to adjust how trucks drive to next location" />
@@ -558,7 +533,9 @@
     <MESSAGE value="All packages deliver on-time respecting all constraints" />
     <MESSAGE value="updating package status update output. Need to make sure trucks are driving point-to-point correctly" />
     <MESSAGE value="all packages delivered on-time according to all rules, total truck miles: 106.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="all packages delivered on-time according to all rules, total truck miles: 106.7" />
+    <MESSAGE value="All areas commented as-needed, ready to turnin" />
+    <MESSAGE value="updated IDE version" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated IDE version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
