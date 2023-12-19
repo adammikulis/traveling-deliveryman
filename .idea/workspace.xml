@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="updated IDE version">
-      <change afterPath="$PROJECT_DIR$/.idea/gdProjectSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/GdSdk.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TravelingDeliveryman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TravelingDeliveryman.iml" afterDir="false" />
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="ready for testing why evaluator has issues">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/package_sorter.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/package_sorter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/address_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/address_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/distance_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/distance_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/package_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/package_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/driver_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +63,7 @@
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\algorithms" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\dataloaders" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\controllers" />
@@ -101,22 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701976877332</updated>
-    </task>
-    <task id="LOCAL-00007" summary="updated __repr__ for package.py">
-      <option name="closed" value="true" />
-      <created>1702002898879</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1702002898879</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added TruckManager and Greedy classes with many other updates">
-      <option name="closed" value="true" />
-      <created>1702164112582</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1702164112582</updated>
     </task>
     <task id="LOCAL-00009" summary="added classes to manage truck Drivers">
       <option name="closed" value="true" />
@@ -494,7 +479,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702778418604</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="minor changes">
+      <option name="closed" value="true" />
+      <created>1702936074880</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1702936074880</updated>
+    </task>
+    <task id="LOCAL-00057" summary="ready for testing why evaluator has issues">
+      <option name="closed" value="true" />
+      <created>1703006409492</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1703006409492</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -510,8 +511,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="packages now sort onto truck by dijkstra algorithm" />
-    <MESSAGE value="package mileage is severely reduced, everything works prior to turning simulation back on" />
     <MESSAGE value="sorting algorithm functions, total distance 49.1. Simulation does not yet work again, need to adjust how trucks drive to next location" />
     <MESSAGE value="sorting algorithm functions, total distance 49.1" />
     <MESSAGE value="loads packages but does not count mileage correctly" />
@@ -535,7 +534,9 @@
     <MESSAGE value="all packages delivered on-time according to all rules, total truck miles: 106.7" />
     <MESSAGE value="All areas commented as-needed, ready to turnin" />
     <MESSAGE value="updated IDE version" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated IDE version" />
+    <MESSAGE value="minor changes" />
+    <MESSAGE value="ready for testing why evaluator has issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="ready for testing why evaluator has issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

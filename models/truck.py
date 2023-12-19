@@ -1,6 +1,7 @@
 from datetime import *
 
-# This class creates the trucks that navigate from location to location to unload their packages
+# This class creates the trucks that navigate from location-to-location to unload their packages
+# Truck behavior is encapsulated and can drive/navigate on their own
 class Truck:
 
     def __init__(self, truck_id, algorithm, package_data_loader, max_packages=16, average_speed=18.0):

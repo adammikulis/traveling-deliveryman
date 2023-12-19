@@ -2,7 +2,7 @@ from models import Address, ChainingHashTable, Package, Truck
 from dataloaders import GraphDataLoader, PackageDataLoader
 from datetime import *
 
-
+# This class runs the overall simulation
 class SimulationManager:
     def __init__(self, distance_data_loader, package_data_loader, address_table_loader, driver_manager, truck_manager, start_time, time_step):
         self.distance_data_loader = distance_data_loader

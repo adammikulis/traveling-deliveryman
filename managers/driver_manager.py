@@ -1,5 +1,6 @@
 from models import Driver
 
+# This class assigns and unassigns drivers to trucks
 class DriverManager:
 
     def __init__(self, total_drivers):

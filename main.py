@@ -1,7 +1,7 @@
 # Created by: Adam Mikulis
 # Student ID: 002370265
 # Program: Traveling Deliveryman
-# Comments: This program optimizes package and delivery routes
+# Comments: This program optimizes package and delivery routes according to
 
 from datetime import *
 
@@ -15,17 +15,17 @@ if __name__ == '__main__':
     # Load all address distances
     graph = Graph()
     graph_data_loader = GraphDataLoader(graph)
-    distance_data_filepath = "data/distance_data.csv"
+    distance_data_filepath = "distance_data.csv"
     graph_data_loader.load_distance_data(distance_data_filepath)
 
     # Load all address names
     address_data_loader = AddressDataLoader()
-    address_data_filepath = "data/address_data.csv"
+    address_data_filepath = "address_data.csv"
     address_data_loader.load_address_data(address_data_filepath)
 
     # Load all packages
     package_data_loader = PackageDataLoader()
-    package_data_filepath = "data/package_data.csv"
+    package_data_filepath = "package_data.csv"
     package_data_loader.load_package_data(package_data_filepath)
 
     # Initialize the algorithm
