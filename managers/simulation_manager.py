@@ -1,15 +1,18 @@
 from datetime import *
 
 
+
+
 # This class runs the overall simulation
 class SimulationManager:
-    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, driver_manager, truck_manager, start_time, all_package_status_checks, corrected_packages, time_step):
+    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, algorithm, num_drivers, num_trucks, start_time, all_package_status_checks, corrected_packages, time_step):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
         self.address_table_loader = address_table_loader
         self.address_table = address_table_loader.address_table
-        self.driver_manager = driver_manager
-        self.truck_manager = truck_manager
+        self.algorithm = algorithm
+        self.num_drivers = num_drivers
+        self.num_trucks = num_trucks
         self.time_step = time_step  # Time step in seconds
 
         self.current_date = datetime.now().date()
@@ -20,6 +23,11 @@ class SimulationManager:
         self.corrected_packages = corrected_packages
         self.all_truck_miles_driven = 0.0
 
+        from managers import PackageManager, TruckManager, DriverManager
+        self.driver_manager = DriverManager(num_drivers)
+        self.truck_manager = TruckManager(num_trucks, algorithm, package_data_loader, 16)
+        self.package_manager = PackageManager(self.algorithm, package_data_loader, self.truck_manager)
+        self.driver_manager.assign_all_drivers_to_trucks(self.truck_manager)
         self.reset_simulation()
 
 

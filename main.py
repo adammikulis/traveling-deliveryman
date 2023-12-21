@@ -26,23 +26,14 @@ if __name__ == '__main__':
     # Initialize the algorithm
     algorithm = DijkstraShortestPath(graph_data_loader)
 
-    # Initialize TruckManager and DriverManager
+    # Initialize simulation
     num_drivers = 2
     num_trucks = 3
-    driver_manager = DriverManager(num_drivers)
-    truck_manager = TruckManager(num_trucks, algorithm, package_data_loader, 16)
-    driver_manager.assign_all_drivers_to_trucks(truck_manager)
-
-    # Sort by algorithm
-    package_manager = PackageManager(algorithm, package_data_loader, truck_manager)
-
-    # Initialize simulation
     start_time = time(8, 0)
-    all_package_status_checks = [time(12, 00)]  # For quick testing
+    all_package_status_checks = [time(10, 00)]  # For quick testing
     corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
 
-
-    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, start_time, all_package_status_checks, corrected_packages, 1)
+    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, algorithm, num_drivers, num_trucks, start_time, all_package_status_checks, corrected_packages, 1)
 
     # Prompt user for times to check package statuses
     # all_package_status_checks = []
