@@ -5,8 +5,8 @@
 
 from datetime import *
 
-from managers import TruckManager, DriverManager, SimulationManager
-from algorithms import DijkstraShortestPath, Graph, PackageSorter
+from managers import TruckManager, DriverManager, SimulationManager, PackageManager
+from algorithms import DijkstraShortestPath, Graph
 
 from dataloaders import *
 
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     driver_manager.assign_all_drivers_to_trucks(truck_manager)
 
     # Sort by algorithm
-    package_sorter = PackageSorter(algorithm, package_data_loader, truck_manager)
+    package_manager = PackageManager(algorithm, package_data_loader, truck_manager)
 
     # Initialize simulation
     current_date = datetime.now().date()

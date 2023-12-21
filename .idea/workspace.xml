@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="ready for testing why evaluator has issues">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="removed data folder and moved csv files to root to avoid error">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/address_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/address_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/distance_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/distance_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/package_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/package_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/package_sorter.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/package_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/driver_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/driver_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,11 +61,11 @@
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\managers" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\algorithms" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\dataloaders" />
       <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\controllers" />
-      <recent name="C:\Users\adamm\PycharmProjects\TravelingDeliveryman\data" />
     </key>
   </component>
   <component name="RunManager">
@@ -102,14 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701976877332</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added classes to manage truck Drivers">
-      <option name="closed" value="true" />
-      <created>1702165373592</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1702165373592</updated>
     </task>
     <task id="LOCAL-00010" summary="initial greedy algorithm works and delivers all packages">
       <option name="closed" value="true" />
@@ -495,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703006409492</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="removed data folder and moved csv files to root to avoid error">
+      <option name="closed" value="true" />
+      <created>1703008446464</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1703008446465</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -511,7 +509,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="sorting algorithm functions, total distance 49.1. Simulation does not yet work again, need to adjust how trucks drive to next location" />
     <MESSAGE value="sorting algorithm functions, total distance 49.1" />
     <MESSAGE value="loads packages but does not count mileage correctly" />
     <MESSAGE value="all mileage and paths counted and displayed correctly, does not take special package requirements and deadlines into account. Simulation still broken, best distance: 49.1" />
@@ -536,7 +533,8 @@
     <MESSAGE value="updated IDE version" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="ready for testing why evaluator has issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="ready for testing why evaluator has issues" />
+    <MESSAGE value="removed data folder and moved csv files to root to avoid error" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed data folder and moved csv files to root to avoid error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

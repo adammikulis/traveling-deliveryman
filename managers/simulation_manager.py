@@ -1,6 +1,5 @@
-from models import Address, ChainingHashTable, Package, Truck
-from dataloaders import GraphDataLoader, PackageDataLoader
 from datetime import *
+
 
 # This class runs the overall simulation
 class SimulationManager:
@@ -28,6 +27,7 @@ class SimulationManager:
         package = package_data_loader.package_hash_table.search(package_id)
         package.address_id = correct_address_id
         package.wrong_address = False
+
     def update_truck_locations(self):
         self.all_truck_miles_driven = 0.0
         for truck in self.truck_manager.trucks:
@@ -57,13 +57,12 @@ class SimulationManager:
                 case "In-transit":
                     print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} by Truck: {assigned_truck_id} \tDue: {delivery_deadline.strftime("%H:%M")}")
                 case "Delivered":
-                    if package_on_time == False:
+                    if not package_on_time:
                         print(f"Late package: {package_id}")
                         all_packages_on_time = False
                     print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} \tby Truck: {assigned_truck_id} \tAt: {delivered_at.strftime("%H:%M")}")
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
         print(f"All packages on-time: {all_packages_on_time}")
-
 
     def get_truck_status(self, truck_id):
         for truck in self.truck_manager.trucks:

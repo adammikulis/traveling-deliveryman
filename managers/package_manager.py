@@ -1,7 +1,7 @@
 from datetime import datetime, time
 
 # This class implements the chosen algorithm to sort the packages onto trucks in most efficient order
-class PackageSorter:
+class PackageManager:
     def __init__(self, algorithm, package_data_loader, truck_manager):
         self.algorithm = algorithm  # Pass algorithm to this
         self.package_data_loader = package_data_loader
