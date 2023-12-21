@@ -4,8 +4,10 @@ from models import Address
 # This class loads the csv with address information to match to address id
 class AddressDataLoader:
 
-    def __init__(self):
+    def __init__(self, filename):
         self.address_table = {}
+        self.load_address_data(filename)
+
 
     def load_address_data(self, file_name):
         with open(file_name) as Addresses:

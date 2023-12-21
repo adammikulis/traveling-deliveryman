@@ -6,12 +6,13 @@ import csv
 # This class loads the package data into a hash table and presorts them into special groups when needed
 class PackageDataLoader:
 
-    def __init__(self):
+    def __init__(self, filename):
         self.package_hash_table = None
         self.total_packages = 0
         self.package_groups = {}  # Special packages
         self.package_required_trucks = {}  # Special packages
         self.package_id_list = []  # Used for status printing
+        self.load_package_data(filename)
 
     def initialize_hash_table(self, total_packages):
         self.package_hash_table = ChainingHashTable(total_packages)

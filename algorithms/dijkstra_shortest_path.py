@@ -2,8 +2,8 @@
 
 # This class implements Dijkstra's Shortest Path algorithm with storage for precomputed paths
 class DijkstraShortestPath:
-    def __init__(self, graph):
-        self.graph = graph
+    def __init__(self, graph_data_loader):
+        self.graph = graph_data_loader.graph
         self.paths = {}  # Dictionary to store precomputed paths
         self.previous_vertex_maps = {}  # Dictionary to store previous vertex maps for precomputed paths
         self.precompute_all_paths()

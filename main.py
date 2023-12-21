@@ -17,26 +17,13 @@ from dataloaders import *
 
 if __name__ == '__main__':
 
-    # Load all address distances
-    graph = Graph()
-    address_data_loader = AddressDataLoader()
-
-    graph_data_loader = GraphDataLoader(graph)
-    distance_data_filepath = "distance_data.csv"
-    graph_data_loader.load_distance_data(distance_data_filepath)
-
-    # Load all address names
-    address_data_loader = AddressDataLoader()
-    address_data_filepath = "address_data.csv"
-    address_data_loader.load_address_data(address_data_filepath)
-
-    # Load all packages
-    package_data_loader = PackageDataLoader()
-    package_data_filepath = "package_data.csv"
-    package_data_loader.load_package_data(package_data_filepath)
+    # Load all data
+    graph_data_loader = GraphDataLoader('distance_data.csv')
+    address_data_loader = AddressDataLoader('address_data.csv')
+    package_data_loader = PackageDataLoader('package_data.csv')
 
     # Initialize the algorithm
-    algorithm = DijkstraShortestPath(graph)
+    algorithm = DijkstraShortestPath(graph_data_loader)
 
     # Initialize TruckManager and DriverManager
     num_drivers = 2
@@ -63,7 +50,7 @@ if __name__ == '__main__':
     #     hours, minutes = map(int, status_check_time_str.split(':'))
     #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
     #     all_package_status_checks.append(status_check_date_time)
-    all_package_status_checks = [datetime.combine(current_date, time(13, 00))]  # For quick testing
+    all_package_status_checks = [datetime.combine(current_date, time(12, 00))]  # For quick testing
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:

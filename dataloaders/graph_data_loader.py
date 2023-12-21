@@ -1,10 +1,11 @@
 import csv
-from algorithms import Vertex
+from algorithms import Graph, Vertex
 # This class loads the csv with distance data and assembles it into a graph
 class GraphDataLoader:
 
-    def __init__(self, graph):
-        self.graph = graph
+    def __init__(self, filename):
+        self.graph = Graph()
+        self.load_distance_data(filename)
 
     def load_distance_data(self, filename):
         with open(filename) as Distances:
