@@ -39,8 +39,12 @@ if __name__ == '__main__':
     # Initialize simulation
     current_date = datetime.now().date()
     start_time = datetime.combine(current_date, time(8, 0))
-    EOD = datetime.combine(current_date, time(17, 0))
-    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, start_time, 1)
+
+    all_package_status_checks = [datetime.combine(current_date, time(12, 00))]  # For quick testing
+    corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
+
+
+    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, start_time, all_package_status_checks, corrected_packages, 1)
 
     # Prompt user for times to check package statuses
     # all_package_status_checks = []
@@ -51,9 +55,7 @@ if __name__ == '__main__':
     #     hours, minutes = map(int, status_check_time_str.split(':'))
     #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
     #     all_package_status_checks.append(status_check_date_time)
-    all_package_status_checks = [datetime.combine(current_date, time(12, 00))]  # For quick testing
-    corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
+
 
     # Simulation loop
-    while simulation_manager.current_time <= EOD:
-        simulation_manager.simulate_deliveries(all_package_status_checks, corrected_packages)
+    simulation_manager.simulate_delivery_day()

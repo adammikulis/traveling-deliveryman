@@ -3,20 +3,29 @@ from datetime import *
 
 # This class runs the overall simulation
 class SimulationManager:
-    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, driver_manager, truck_manager, start_time, time_step):
+    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, driver_manager, truck_manager, start_time, all_package_status_checks, corrected_packages, time_step):
         self.distance_data_loader = distance_data_loader
         self.package_data_loader = package_data_loader
         self.address_table_loader = address_table_loader
         self.address_table = address_table_loader.address_table
         self.driver_manager = driver_manager
         self.truck_manager = truck_manager
-        self.current_time = start_time
         self.time_step = time_step  # Time step in seconds
+
+
+        self.current_time = start_time
         self.current_date = datetime.now().date()
+        self.EOD = datetime.combine(self.current_date, time(17, 0))
+        self.all_package_status_checks = all_package_status_checks
+        self.corrected_packages = corrected_packages
         self.all_truck_miles_driven = 0.0
 
-        # Clears out current odometer for start of simulation
-        for truck in truck_manager.trucks:
+        self.reset_simulation()
+
+
+    def reset_simulation(self):
+        self.all_truck_miles_driven = 0.0
+        for truck in self.truck_manager.trucks:
             truck.total_miles_driven = 0.0
 
     def advance_time(self):
@@ -106,9 +115,13 @@ class SimulationManager:
             if self.current_time == status_check:
                 self.print_all_package_status()
 
-    def simulate_deliveries(self, all_package_status_checks, corrected_packages):
+    def simulate_deliveries(self):
         self.advance_time()
         self.reassign_trucks()
-        self.correct_all_packages(corrected_packages)
+        self.correct_all_packages(self.corrected_packages)
         self.update_unarrived_packages()
-        self.check_all_package_statuses(all_package_status_checks)
+        self.check_all_package_statuses(self.all_package_status_checks)
+
+    def simulate_delivery_day(self):
+        while self.current_time <= self.EOD:
+            self.simulate_deliveries()
