@@ -52,11 +52,11 @@ if __name__ == '__main__':
     num_status_checks = 3
     print("What times would you like to check the package statuses?")
     for i in range(num_status_checks):
-        status_check_time_str = input("HH:MM: ")
+        status_check_time_str = input('HH:MM: ')
         hours, minutes = map(int, status_check_time_str.split(':'))
         status_check_date_time = datetime.combine(current_date, time(hours, minutes))
         status_checks.append(status_check_date_time)
-    # status_checks = [datetime.combine(current_date, time(12,30))]
+    # status_checks = [datetime.combine(current_date, time(13,00))]  # For quick testing
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:

@@ -36,7 +36,7 @@ class SimulationManager:
 
     def print_all_package_status(self):
         all_packages_on_time = True
-        print(f"\n*****STATUS UPDATE***** Current time: {self.current_time.strftime("%H:%M")}")
+        print(f"\n*****STATUS UPDATE***** Current time: {self.current_time.strftime('%H:%M')}")
         for package_id in self.package_data_loader.package_id_list:
             package = self.package_data_loader.package_hash_table.search(package_id)
             # print(package.package_status_lookup(self.address_table_loader))
@@ -51,16 +51,16 @@ class SimulationManager:
 
             match status:
                 case "Not yet available":
-                    print(f"Package ID: {package_id} \tStatus: {status} \tArriving at Hub: {available_time.strftime("%H:%M")} \tDue: {delivery_deadline.strftime("%H:%M")}")
+                    print(f"Package ID: {package_id} \tStatus: {status} \tArriving at Hub: {available_time.strftime('%H:%M')} \tDue: {delivery_deadline.strftime('%H:%M')}")
                 case "At-hub":
-                    print(f"Package ID: {package_id} \tStatus: {status} \ton Truck: {assigned_truck_id} \tDue: {delivery_deadline.strftime("%H:%M")}")
+                    print(f"Package ID: {package_id} \tStatus: {status} \ton Truck: {assigned_truck_id} \tDue: {delivery_deadline.strftime('%H:%M')}")
                 case "In-transit":
-                    print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} by Truck: {assigned_truck_id} \tDue: {delivery_deadline.strftime("%H:%M")}")
+                    print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} by Truck: {assigned_truck_id} \tDue: {delivery_deadline.strftime('%H:%M')}")
                 case "Delivered":
                     if not package_on_time:
                         print(f"Late package: {package_id}")
                         all_packages_on_time = False
-                    print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} \tby Truck: {assigned_truck_id} \tAt: {delivered_at.strftime("%H:%M")}")
+                    print(f"Package ID: {package_id} \tStatus: {status} \tTo: {address.location_name} \tby Truck: {assigned_truck_id} \tAt: {delivered_at.strftime('%H:%M')}")
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
         print(f"All packages on-time: {all_packages_on_time}")
 

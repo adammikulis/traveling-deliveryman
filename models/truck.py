@@ -67,7 +67,7 @@ class Truck:
                     self.deliver_package(self.package_id_list[0], current_time)
 
                 elif not self.package_id_list and self.current_address_id == 0:
-                    # print(f"\nTruck {self.truck_id} arrived at depot at {current_time.strftime("%H:%M")} Total truck miles: {self.total_miles_driven:.1f}\n")
+                    # print(f"\nTruck {self.truck_id} arrived at depot at {current_time.strftime('%H:%M')} Total truck miles: {self.total_miles_driven:.1f}\n")
                     self.next_address_id = None
                     self.finished_delivery_at_hub = True
 
@@ -100,7 +100,7 @@ class Truck:
         self.next_address_id = None
         self.next_address_distance_driven = 0.0
         # print(f"Package: {package_id}\tdelivered to Address: {self.current_address_id} \t "
-        #       f"by Truck: {self.truck_id} at {current_time.strftime("%H:%M")} "
+        #       f"by Truck: {self.truck_id} at {current_time.strftime('%H:%M')} "
         #       f"Due: {package.delivery_deadline}\t On-time: {package.delivered_on_time} "
         #       f"Truck miles: {self.total_miles_driven:.1f}")
 
@@ -142,9 +142,9 @@ class Truck:
             package = self.package_hash_table.search(package_id)
             address_id = package.address_id
             delivery_deadline = package.delivery_deadline
-            self.package_available_time_list.append(package.available_time.strftime("%H:%M"))
+            self.package_available_time_list.append(package.available_time.strftime('%H:%M'))
             address_delivery_list.append(address_id)
-            delivery_deadline_list.append(delivery_deadline.strftime("%H:%M"))
+            delivery_deadline_list.append(delivery_deadline.strftime('%H:%M'))
         return (f"Truck ID: {self.truck_id} Driver: {self.assigned_driver_id} "
                 f"\nCurrent Packages: {self.package_id_list}"
                 # f"\nSpecial Packages: {self.special_package_id_list}"

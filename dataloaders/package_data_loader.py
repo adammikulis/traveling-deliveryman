@@ -31,13 +31,13 @@ class PackageDataLoader:
                 package_id = int(package[0])
                 self.package_id_list.append(package_id)
                 address_id = int(package[1])
-                available_time = datetime.strptime(package[2], "%H:%M").time()
-                delivery_deadline = datetime.strptime(package[3], "%H:%M").time()
+                available_time = datetime.strptime(package[2], '%H:%M').time()
+                delivery_deadline = datetime.strptime(package[3], '%H:%M').time()
                 weight = float(package[4])
                 required_truck = int(package[5])
                 delivery_group_id = int(package[6])
                 wrong_address = bool(self.string_to_bool(package[7]))
-                address_available_time = datetime.strptime(package[8], "%H:%M").time()
+                address_available_time = datetime.strptime(package[8], '%H:%M').time()
 
                 package_object = Package(package_id, address_id, available_time, delivery_deadline, weight,
                                          required_truck, delivery_group_id, wrong_address, address_available_time)
