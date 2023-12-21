@@ -15,6 +15,8 @@ if __name__ == '__main__':
 
     # Load all address distances
     graph = Graph()
+    address_data_loader = AddressDataLoader()
+
     graph_data_loader = GraphDataLoader(graph)
     distance_data_filepath = "distance_data.csv"
     graph_data_loader.load_distance_data(distance_data_filepath)
@@ -49,35 +51,28 @@ if __name__ == '__main__':
     simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, start_time, 1)
 
     # Prompt user for times to check package statuses
-    status_checks = []
-    num_status_checks = 3
-    print("What times would you like to check the package statuses?")
-    for i in range(num_status_checks):
-        status_check_time_str = input('HH:MM: ')
-        hours, minutes = map(int, status_check_time_str.split(':'))
-        status_check_date_time = datetime.combine(current_date, time(hours, minutes))
-        status_checks.append(status_check_date_time)
-    # status_checks = [datetime.combine(current_date, time(13,00))]  # For quick testing
+    # status_checks = []
+    # num_status_checks = 3
+    # print("What times would you like to check the package statuses?")
+    # for i in range(num_status_checks):
+    #     status_check_time_str = input('HH:MM: ')
+    #     hours, minutes = map(int, status_check_time_str.split(':'))
+    #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
+    #     status_checks.append(status_check_date_time)
+    status_checks = [datetime.combine(current_date, time(13,00))]  # For quick testing
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:
         simulation_manager.advance_time()
 
-        # Reassigns first driver that returns to final truck
-        for truck in truck_manager.trucks[:-1]:
-            if truck.finished_delivery_at_hub and truck_manager.trucks[-1].assigned_driver_id == 0:
-                driver_manager.assign_driver_to_truck(truck.assigned_driver_id, truck_manager.trucks[-1].truck_id, truck_manager)
-                truck.assigned_driver_id = 0
+        # Reassigns the first driver that returns to hub to the final truck
+        simulation_manager.reassign_trucks()
 
         # Used to correct a wrong package address at a specific time
-        if simulation_manager.current_time == datetime.combine(current_date, time(10, 20)):
-            simulation_manager.correct_package_address(package_data_loader, 9, 19)
+        simulation_manager.correct_package_address(package_data_loader, 9, 19, time(10, 20))
 
         # Updates status of packages that haven't arrived yet
-        for package_id in package_data_loader.package_id_list:
-            package = package_data_loader.package_hash_table.search(package_id)
-            if package.status == "Not yet available" and package.available_time == simulation_manager.current_time:
-                package.status = "At-hub"
+        simulation_manager.update_unarrived_packages()
 
         # Run status checks at prescribed times
         for status_check in status_checks:

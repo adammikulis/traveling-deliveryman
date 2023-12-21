@@ -23,10 +23,17 @@ class SimulationManager:
         self.current_time = self.current_time + timedelta(0, self.time_step)
         self.update_truck_locations()
 
-    def correct_package_address(self, package_data_loader, package_id, correct_address_id):
-        package = package_data_loader.package_hash_table.search(package_id)
-        package.address_id = correct_address_id
-        package.wrong_address = False
+    def correct_package_address(self, package_data_loader, package_id, correct_address_id, correction_time):
+        if self.current_time == datetime.combine(self.current_date, correction_time):
+            package = package_data_loader.package_hash_table.search(package_id)
+            package.address_id = correct_address_id
+            package.wrong_address = False
+
+    def update_unarrived_packages(self):
+        for package_id in self.package_data_loader.package_id_list:
+            package = self.package_data_loader.package_hash_table.search(package_id)
+            if package.status == "Not yet available" and package.available_time == self.current_time:
+                package.status = "At-hub"
 
     def update_truck_locations(self):
         self.all_truck_miles_driven = 0.0
@@ -69,3 +76,9 @@ class SimulationManager:
             if truck.truck_id == truck_id:
                 return truck.total_miles_driven, truck.package_id_list
         return None
+
+    def reassign_trucks(self):
+        for truck in self.truck_manager.trucks[:-1]:
+            if truck.finished_delivery_at_hub and self.truck_manager.trucks[-1].assigned_driver_id == 0:
+                self.driver_manager.assign_driver_to_truck(truck.assigned_driver_id, self.truck_manager.trucks[-1].truck_id, self.truck_manager)
+                truck.assigned_driver_id = 0
