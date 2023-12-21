@@ -1,7 +1,8 @@
 # Created by: Adam Mikulis
 # Student ID: 002370265
 # Program: Traveling Deliveryman
-# Comments: This program optimizes package and delivery routes according to
+# Comments: This program optimizes package and delivery routes according to an algorithm
+# Instructions: In a Command Prompt, navigate to the TravelingDeliveryman directory and run the command: python main.py
 
 from datetime import *
 
