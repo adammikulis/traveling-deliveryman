@@ -37,10 +37,8 @@ if __name__ == '__main__':
     package_manager = PackageManager(algorithm, package_data_loader, truck_manager)
 
     # Initialize simulation
-    current_date = datetime.now().date()
-    start_time = datetime.combine(current_date, time(8, 0))
-
-    all_package_status_checks = [datetime.combine(current_date, time(12, 00))]  # For quick testing
+    start_time = time(8, 0)
+    all_package_status_checks = [time(12, 00)]  # For quick testing
     corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
 
 

@@ -12,9 +12,9 @@ class SimulationManager:
         self.truck_manager = truck_manager
         self.time_step = time_step  # Time step in seconds
 
-
-        self.current_time = start_time
         self.current_date = datetime.now().date()
+        self.current_time = datetime.combine(self.current_date, start_time)
+
         self.EOD = datetime.combine(self.current_date, time(17, 0))
         self.all_package_status_checks = all_package_status_checks
         self.corrected_packages = corrected_packages
@@ -110,9 +110,9 @@ class SimulationManager:
                 self.driver_manager.assign_driver_to_truck(truck.assigned_driver_id, self.truck_manager.trucks[-1].truck_id, self.truck_manager)
                 truck.assigned_driver_id = 0
 
-    def check_all_package_statuses(self, status_checks):
-        for status_check in status_checks:
-            if self.current_time == status_check:
+    def check_all_package_statuses(self, status_check_times):
+        for status_check_time in status_check_times:
+            if self.current_time == datetime.combine(self.current_date, status_check_time):
                 self.print_all_package_status()
 
     def simulate_deliveries(self):
