@@ -23,11 +23,15 @@ class SimulationManager:
         self.current_time = self.current_time + timedelta(0, self.time_step)
         self.update_truck_locations()
 
-    def correct_package_address(self, package_data_loader, package_id, correct_address_id, correction_time):
-        if self.current_time == datetime.combine(self.current_date, correction_time):
-            package = package_data_loader.package_hash_table.search(package_id)
-            package.address_id = correct_address_id
+    def correct_package_address(self, corrected_package):
+        if self.current_time == datetime.combine(self.current_date, corrected_package.correction_time):
+            package = self.package_data_loader.package_hash_table.search(corrected_package.package_id)
+            package.address_id = corrected_package.correct_address_id
             package.wrong_address = False
+
+    def correct_all_packages(self, corrected_packages):
+        for corrected_package in corrected_packages:
+            self.correct_package_address(corrected_package)
 
     def update_unarrived_packages(self):
         for package_id in self.package_data_loader.package_id_list:
@@ -101,3 +105,10 @@ class SimulationManager:
         for status_check in status_checks:
             if self.current_time == status_check:
                 self.print_all_package_status()
+
+    def simulate_deliveries(self, all_package_status_checks, corrected_packages):
+        self.advance_time()
+        self.reassign_trucks()
+        self.correct_all_packages(corrected_packages)
+        self.update_unarrived_packages()
+        self.check_all_package_statuses(all_package_status_checks)

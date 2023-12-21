@@ -47,3 +47,9 @@ class Package:
                 return f"Package ID: {self.package_id},\tStatus: In-transit on Truck: {self.assigned_truck_id}"
             case "At-hub":
                 return f"Package ID: {self.package_id},\tStatus: At-hub"
+
+class CorrectedPackage:
+    def __init__(self, package_id, correct_address_id, correction_time):
+        self.package_id = package_id
+        self.correct_address_id = correct_address_id
+        self.correction_time = correction_time

@@ -8,6 +8,7 @@ from datetime import *
 
 from managers import TruckManager, DriverManager, SimulationManager, PackageManager
 from algorithms import DijkstraShortestPath, Graph
+from models import CorrectedPackage
 
 from dataloaders import *
 
@@ -51,19 +52,8 @@ if __name__ == '__main__':
     #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
     #     all_package_status_checks.append(status_check_date_time)
     all_package_status_checks = [datetime.combine(current_date, time(12, 00))]  # For quick testing
+    corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:
-        simulation_manager.advance_time()
-
-        # Reassigns the first driver that returns to hub to the final truck
-        simulation_manager.reassign_trucks()
-
-        # Used to correct a wrong package address at a specific time
-        simulation_manager.correct_package_address(package_data_loader, 9, 19, time(10, 20))
-
-        # Updates status of packages that haven't arrived yet
-        simulation_manager.update_unarrived_packages()
-
-        # Run status checks at prescribed times
-        simulation_manager.check_all_package_statuses(all_package_status_checks)
+        simulation_manager.simulate_deliveries(all_package_status_checks, corrected_packages)
