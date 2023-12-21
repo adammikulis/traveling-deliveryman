@@ -1,32 +1,36 @@
 from datetime import *
 
-
+from algorithms import DijkstraShortestPath
+from dataloaders import GraphDataLoader, AddressDataLoader, PackageDataLoader
 
 
 # This class runs the overall simulation
 class SimulationManager:
-    def __init__(self, distance_data_loader, package_data_loader, address_table_loader, algorithm, num_drivers, num_trucks, start_time, all_package_status_checks, corrected_packages, time_step):
-        self.distance_data_loader = distance_data_loader
-        self.package_data_loader = package_data_loader
-        self.address_table_loader = address_table_loader
-        self.address_table = address_table_loader.address_table
-        self.algorithm = algorithm
+    def __init__(self, num_drivers, num_trucks, start_time, end_time, time_step, all_package_status_checks, corrected_packages):
+
         self.num_drivers = num_drivers
         self.num_trucks = num_trucks
-        self.time_step = time_step  # Time step in seconds
-
         self.current_date = datetime.now().date()
         self.current_time = datetime.combine(self.current_date, start_time)
-
-        self.EOD = datetime.combine(self.current_date, time(17, 0))
+        self.end_time = datetime.combine(self.current_time, end_time)
         self.all_package_status_checks = all_package_status_checks
         self.corrected_packages = corrected_packages
+        self.time_step = time_step  # Time step in seconds
+
+        self.graph_data_loader = GraphDataLoader('distance_data.csv')
+        self.package_data_loader = PackageDataLoader('package_data.csv')
+        self.address_table_loader = AddressDataLoader('address_data.csv')
+        self.address_table = self.address_table_loader.address_table
+        self.algorithm = DijkstraShortestPath(self.graph_data_loader)
+
+
+
         self.all_truck_miles_driven = 0.0
 
         from managers import PackageManager, TruckManager, DriverManager
         self.driver_manager = DriverManager(num_drivers)
-        self.truck_manager = TruckManager(num_trucks, algorithm, package_data_loader, 16)
-        self.package_manager = PackageManager(self.algorithm, package_data_loader, self.truck_manager)
+        self.truck_manager = TruckManager(num_trucks, self.algorithm, self.package_data_loader, 16)
+        self.package_manager = PackageManager(self.algorithm, self.package_data_loader, self.truck_manager)
         self.driver_manager.assign_all_drivers_to_trucks(self.truck_manager)
         self.reset_simulation()
 
@@ -131,5 +135,5 @@ class SimulationManager:
         self.check_all_package_statuses(self.all_package_status_checks)
 
     def simulate_delivery_day(self):
-        while self.current_time <= self.EOD:
+        while self.current_time <= self.end_time:
             self.simulate_deliveries()

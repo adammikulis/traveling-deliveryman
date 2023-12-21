@@ -3,9 +3,9 @@
 # from datetime import *
 #
 # class Greedy:
-#     def __init__(self, distance_data_loader, package_data_loader, truck_manager):
-#         self.distance_data_loader = distance_data_loader
-#         self.graph = distance_data_loader.graph
+#     def __init__(self, graph_data_loader, package_data_loader, truck_manager):
+#         self.graph_data_loader = graph_data_loader
+#         self.graph = graph_data_loader.graph
 #         self.package_data_loader = package_data_loader
 #         self.package_hash_table = package_data_loader.package_hash_table
 #
@@ -73,7 +73,7 @@
 #             package = self.package_hash_table.search(package_id)
 #             deadline_difference = (package.delivery_deadline - reference_time).total_seconds()  # Closer deadlines have lower score
 #             deadline_score = abs(deadline_difference)
-#             distance_score = self.distance_data_loader.get_direct_distance(self.current_address_id, package.address_id)
+#             distance_score = self.graph_data_loader.get_direct_distance(self.current_address_id, package.address_id)
 #
 #             deadline_weight = 1
 #             # Create a combined score, modify weights as needed

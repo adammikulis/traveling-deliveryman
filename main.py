@@ -18,22 +18,16 @@ from dataloaders import *
 
 if __name__ == '__main__':
 
-    # Load all data
-    graph_data_loader = GraphDataLoader('distance_data.csv')
-    address_data_loader = AddressDataLoader('address_data.csv')
-    package_data_loader = PackageDataLoader('package_data.csv')
-
-    # Initialize the algorithm
-    algorithm = DijkstraShortestPath(graph_data_loader)
-
-    # Initialize simulation
+    # Initialize simulation parameters
     num_drivers = 2
     num_trucks = 3
     start_time = time(8, 0)
+    end_time = time(17,0)
     all_package_status_checks = [time(10, 00)]  # For quick testing
     corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
 
-    simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, algorithm, num_drivers, num_trucks, start_time, all_package_status_checks, corrected_packages, 1)
+    # Initialize the simulation
+    simulation_manager = SimulationManager(num_drivers, num_trucks, start_time, end_time, 1, all_package_status_checks, corrected_packages)
 
     # Prompt user for times to check package statuses
     # all_package_status_checks = []
