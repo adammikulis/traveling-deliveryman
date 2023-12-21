@@ -11,6 +11,10 @@ from algorithms import DijkstraShortestPath, Graph
 
 from dataloaders import *
 
+
+
+
+
 if __name__ == '__main__':
 
     # Load all address distances
@@ -51,15 +55,15 @@ if __name__ == '__main__':
     simulation_manager = SimulationManager(graph_data_loader, package_data_loader, address_data_loader, driver_manager, truck_manager, start_time, 1)
 
     # Prompt user for times to check package statuses
-    # status_checks = []
+    # all_package_status_checks = []
     # num_status_checks = 3
     # print("What times would you like to check the package statuses?")
     # for i in range(num_status_checks):
     #     status_check_time_str = input('HH:MM: ')
     #     hours, minutes = map(int, status_check_time_str.split(':'))
     #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
-    #     status_checks.append(status_check_date_time)
-    status_checks = [datetime.combine(current_date, time(13,00))]  # For quick testing
+    #     all_package_status_checks.append(status_check_date_time)
+    all_package_status_checks = [datetime.combine(current_date, time(13, 00))]  # For quick testing
 
     # Simulation loop
     while simulation_manager.current_time <= EOD:
@@ -75,6 +79,4 @@ if __name__ == '__main__':
         simulation_manager.update_unarrived_packages()
 
         # Run status checks at prescribed times
-        for status_check in status_checks:
-            if simulation_manager.current_time == status_check:
-                simulation_manager.print_all_package_status()
+        simulation_manager.check_all_package_statuses(all_package_status_checks)

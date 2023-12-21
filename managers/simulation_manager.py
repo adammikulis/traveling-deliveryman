@@ -82,3 +82,8 @@ class SimulationManager:
             if truck.finished_delivery_at_hub and self.truck_manager.trucks[-1].assigned_driver_id == 0:
                 self.driver_manager.assign_driver_to_truck(truck.assigned_driver_id, self.truck_manager.trucks[-1].truck_id, self.truck_manager)
                 truck.assigned_driver_id = 0
+
+    def check_all_package_statuses(self, status_checks):
+        for status_check in status_checks:
+            if self.current_time == status_check:
+                self.print_all_package_status()

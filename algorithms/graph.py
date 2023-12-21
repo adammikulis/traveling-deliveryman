@@ -11,8 +11,8 @@ class Vertex:
 # Class puts together vertices using edges and stores lists/weights
 class Graph:
     def __init__(self):
-        self.adjacency_list = {}  # vertex dictionary
-        self.edge_weights = {}  # edge dictionary
+        self.adjacency_list = {}  # Vertex dictionary
+        self.edge_weights = {}  # Edge dictionary
 
     def add_vertex(self, new_vertex):
         if new_vertex not in self.adjacency_list:
