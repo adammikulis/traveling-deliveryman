@@ -6,14 +6,13 @@ from dataloaders import GraphDataLoader, AddressDataLoader, PackageDataLoader
 
 # This class runs the overall simulation
 class SimulationManager:
-    def __init__(self, num_drivers, num_trucks, start_time, end_time, time_step, all_package_status_checks, corrected_packages):
+    def __init__(self, num_drivers, num_trucks, start_time, end_time, time_step, corrected_packages):
 
         self.num_drivers = num_drivers
         self.num_trucks = num_trucks
         self.current_date = datetime.now().date()
         self.current_time = datetime.combine(self.current_date, start_time)
         self.end_time = datetime.combine(self.current_time, end_time)
-        self.all_package_status_checks = all_package_status_checks
         self.corrected_packages = corrected_packages
         self.time_step = time_step  # Time step in seconds
 
@@ -23,7 +22,9 @@ class SimulationManager:
         self.address_table = self.address_table_loader.address_table
         self.algorithm = DijkstraShortestPath(self.graph_data_loader)
 
-
+        self.all_package_status_checks = []
+        self.package_id_to_check = None
+        self.status_check_time = None
 
         self.all_truck_miles_driven = 0.0
 
@@ -39,6 +40,9 @@ class SimulationManager:
         self.all_truck_miles_driven = 0.0
         for truck in self.truck_manager.trucks:
             truck.total_miles_driven = 0.0
+        self.all_package_status_checks = []
+        self.package_id_to_check = None
+        self.status_check_time = None
 
     def advance_time(self):
         self.current_time = self.current_time + timedelta(0, self.time_step)
@@ -74,6 +78,9 @@ class SimulationManager:
         print(f"All truck miles driven: {self.all_truck_miles_driven:.1f}")
         print(f"All packages on-time: {all_packages_on_time}")
 
+    def check_package_status_at_time(self):
+        if self.status_check_time and self.current_time == self.status_check_time:
+            self.print_package_status(self.package_id_to_check)
     def print_package_status(self, package_id):
         package = self.package_data_loader.package_hash_table.search(package_id)
         address_id = package.address_id
@@ -124,7 +131,7 @@ class SimulationManager:
 
     def check_all_package_statuses(self, status_check_times):
         for status_check_time in status_check_times:
-            if self.current_time == datetime.combine(self.current_date, status_check_time):
+            if self.current_time == status_check_time:
                 self.print_all_package_status()
 
     def simulate_deliveries(self):
@@ -133,7 +140,26 @@ class SimulationManager:
         self.correct_all_packages(self.corrected_packages)
         self.update_unarrived_packages()
         self.check_all_package_statuses(self.all_package_status_checks)
+        self.check_package_status_at_time()
 
     def simulate_delivery_day(self):
         while self.current_time <= self.end_time:
             self.simulate_deliveries()
+
+    def prompt_user_status_checks(self):
+        num_status_checks = int(input("How many times would you like to check package status? "))
+        print("What times would you like to check the package statuses?")
+        for i in range(num_status_checks):
+            self.append_status_check()
+
+    def prompt_user_individual_package_check(self):
+        self.package_id_to_check = int(input("Which Package ID to check? "))
+        status_check_time_str = input('What time to check (HH:MM)? ')
+        hours, minutes = map(int, status_check_time_str.split(':'))
+        self.status_check_time = datetime.combine(self.current_date, time(hours, minutes))
+
+    def append_status_check(self):
+        status_check_time_str = input('HH:MM: ')
+        hours, minutes = map(int, status_check_time_str.split(':'))
+        status_check_date_time = datetime.combine(self.current_date, time(hours, minutes))
+        self.all_package_status_checks.append(status_check_date_time)

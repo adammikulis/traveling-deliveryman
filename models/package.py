@@ -9,9 +9,9 @@ class Package:
         self.package_id = package_id
         self.address_id = address_id
         self.weight = weight
-        self.required_truck = required_truck
-        self.delivery_group_id = delivery_group_id
-        self.wrong_address = wrong_address
+        self.required_truck = required_truck  # Normalized from "special notes"
+        self.delivery_group_id = delivery_group_id  # Normalized from "special notes"
+        self.wrong_address = wrong_address  # Normalized from "special notes"
 
         # Convert everything to datetime
         self.current_date = datetime.now().date()

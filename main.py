@@ -27,18 +27,20 @@ if __name__ == '__main__':
     corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
 
     # Initialize the simulation
-    simulation_manager = SimulationManager(num_drivers, num_trucks, start_time, end_time, 1, all_package_status_checks, corrected_packages)
+    simulation_manager = SimulationManager(num_drivers, num_trucks, start_time, end_time, 1, corrected_packages)
+    menu_choice = None
+    while menu_choice != 4:
+        menu_choice = int(input(f"***************************************\n"
+                                f"1. Print All Package Status and Total Mileage\n"
+                                f"2. Get a Single Package Status with a Time\n"
+                                f"3. Get All Package Status with a Time\n"
+                                f"4. Exit the Program\n"
+                                f"***************************************\n"))
 
-    # Prompt user for times to check package statuses
-    # all_package_status_checks = []
-    # num_status_checks = 3
-    # print("What times would you like to check the package statuses?")
-    # for i in range(num_status_checks):
-    #     status_check_time_str = input('HH:MM: ')
-    #     hours, minutes = map(int, status_check_time_str.split(':'))
-    #     status_check_date_time = datetime.combine(current_date, time(hours, minutes))
-    #     all_package_status_checks.append(status_check_date_time)
-
-
-    # Simulation loop
-    simulation_manager.simulate_delivery_day()
+        match menu_choice:
+            case 1:
+                simulation_manager.prompt_user_status_checks()
+                simulation_manager.simulate_delivery_day()
+            case 2:
+                simulation_manager.prompt_user_individual_package_check()
+                simulation_manager.simulate_delivery_day()
