@@ -20,8 +20,8 @@ class SimulationManager:
 
         self.graph_data_loader = GraphDataLoader('distance_data.csv')
         self.package_data_loader = PackageDataLoader('package_data.csv')
-        self.address_table_loader = AddressDataLoader('address_data.csv')
-        self.address_table = self.address_table_loader.address_table
+        self.address_data_loader = AddressDataLoader('address_data.csv')
+        self.address_table = self.address_data_loader.address_table
         self.algorithm = DijkstraShortestPath(self.graph_data_loader)
 
         self.all_package_status_checks = []
@@ -84,9 +84,11 @@ class SimulationManager:
 
     def print_package_status(self, package_id):
         package = self.package_data_loader.package_hash_table.search(package_id)
-        address_id = package.address_id
-        address = self.address_table[address_id]
-        status = package.status
+        delivery_deadline, address_id, weight, status, delivered_at = package.package_status_lookup()
+        address = self.address_data_loader.get_address(package.address_id)
+        street_address = address.street_address
+        city = address.city
+        zip_code = address.zip_code
         assigned_truck_id = package.assigned_truck_id
         delivered_at = package.delivered_at
         package_on_time = package.delivered_on_time
@@ -96,25 +98,25 @@ class SimulationManager:
         match status:
             case "Not yet available":
                 print(
-                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {address.street_address} \t"
-                    f"City: {address.city} \tZip Code: {address.zip_code} \tWeight: {weight} \tStatus: {status} \t"
+                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {street_address} \t"
+                    f"City: {city} \tZip Code: {zip_code} \tWeight: {weight} \tStatus: {status} \t"
                     f"Arriving at Hub: {available_time.strftime('%H:%M')}")
             case "At-hub":
                 print(
-                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {address.street_address} \t"
-                    f"City: {address.city} \tZip Code: {address.zip_code} \tWeight: {weight} \tStatus: {status} \t"
+                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {street_address} \t"
+                    f"City: {city} \tZip Code: {zip_code} \tWeight: {weight} \tStatus: {status} \t"
                     f"On Truck: {assigned_truck_id}")
             case "In-transit":
                 print(
-                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {address.street_address} \t"
-                    f"City: {address.city} \tZip Code: {address.zip_code} \tWeight: {weight} \tStatus: {status} \t"
+                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {street_address} \t"
+                    f"City: {city} \tZip Code: {zip_code} \tWeight: {weight} \tStatus: {status} \t"
                     f"On Truck: {assigned_truck_id}")
             case "Delivered":
                 if not package_on_time:
                     return False
                 print(
-                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {address.street_address} \t"
-                    f"City: {address.city} \tZip Code: {address.zip_code} \tWeight: {weight} \tStatus: {status} "
+                    f"Package ID: {package_id} \tDue: {delivery_deadline.strftime('%H:%M')} \tAddress: {street_address} \t"
+                    f"City: {city} \tZip Code: {zip_code} \tWeight: {weight} \tStatus: {status} "
                     f"at: {delivered_at.strftime('%H:%M')} \tOn-time: {package_on_time}")
         return True
 

@@ -1,6 +1,5 @@
 from datetime import *
 
-
 # This class creates packages and stores their metadata
 class Package:
     def __init__(self, package_id=0, address_id=0, available_time=time(0, 0), delivery_deadline=time(0, 0),
@@ -19,7 +18,7 @@ class Package:
         self.delivery_deadline = datetime.combine(self.current_date, delivery_deadline)
         self.address_available_time = datetime.combine(self.current_date, address_available_time)
 
-        # status variables
+        # Status variables
         self.assigned_truck_id = 0
         if self.available_time > datetime.combine(self.current_date, time(8,0)):
             self.status = "Not yet available"
@@ -29,12 +28,8 @@ class Package:
         self.delivered_on_time = False
 
     # Part B required lookup function
-    def package_status_lookup(self, address_data_loader):
-        package_address = address_data_loader.get_address(self.address_id)
-        if self.status == "Delivered":
-            return package_address.street_address, self.delivery_deadline, package_address.city, package_address.zip_code, self.weight, self.status, self.delivered_at
-        else:
-            return package_address.street_address, self.delivery_deadline, package_address.city, package_address.zip_code, self.weight, self.status
+    def package_status_lookup(self):
+        return self.delivery_deadline, self.address_id, self.weight, self.status, self.delivered_at
 
     # Printable representation of object
     def __str__(self):
