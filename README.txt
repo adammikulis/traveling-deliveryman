@@ -4,9 +4,9 @@ Author: Adam Mikulis
 Contact: amikul2@wgu.edu
 Alternate: adam.mikulis@gmail.com
 App Version: 1.0
-Date: 12/20/2023
+Date: 12/21/2023
 
-Instructions to run: Open a Command Prompt and run the command: python main.py
+Instructions to run: Open a Command Prompt, navigate to project root folder and run the command: python main.py
 
 IDE: PyCharm 2023.3.1 (Community Edition)
 Python: 3.12

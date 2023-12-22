@@ -14,13 +14,14 @@ if __name__ == '__main__':
     num_drivers = 2
     num_trucks = 3
     start_time = time(8, 0)
-    end_time = time(17,0)
+    end_time = time(17, 0)
     time_step = 1  # In seconds
-    all_package_status_checks = [time(10, 00)]  # For quick testing
     corrected_packages = [CorrectedPackage(9, 19, time(10, 20))]
 
     # Initialize the simulation
     simulation_manager = SimulationManager(num_drivers, num_trucks, start_time, end_time, time_step, corrected_packages)
+
+    # Run the menu and simulation loop
     while True:
         menu_choice = int(input(f"\n**********************************************************\n"
                                 f"1. Print All Package Statuses and Total Mileage at Time(s)\n"
@@ -30,11 +31,11 @@ if __name__ == '__main__':
         match menu_choice:
             case 1:
                 simulation_manager.prompt_user_status_checks()
-                simulation_manager.simulate_delivery_day()
             case 2:
                 simulation_manager.prompt_user_individual_package_check()
-                simulation_manager.simulate_delivery_day()
             case 3:
-                print("Goodbye and thank you!")
+                print("Thank you and goodbye!")
                 break
+
+        simulation_manager.simulate_delivery_day()
         simulation_manager.reset_simulation()  # Needed to reset truck/package status in between menu selections
