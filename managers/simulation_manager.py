@@ -2,6 +2,7 @@ from datetime import *
 
 from algorithms import DijkstraShortestPath
 from dataloaders import GraphDataLoader, AddressDataLoader, PackageDataLoader
+from managers import PackageManager, TruckManager, DriverManager
 
 
 # This class runs the overall simulation
@@ -28,7 +29,6 @@ class SimulationManager:
         self.package_id_to_check = None
         self.status_check_time = None
 
-        from managers import PackageManager, TruckManager, DriverManager
         self.driver_manager = DriverManager(num_drivers)
         self.truck_manager = TruckManager(num_trucks, self.algorithm, self.package_data_loader, 16)
         self.package_manager = PackageManager(self.algorithm, self.package_data_loader, self.truck_manager)
