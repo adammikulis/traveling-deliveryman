@@ -27,7 +27,8 @@ if __name__ == '__main__':
                                 f"1. Print All Package Statuses and Total Mileage at Time(s)\n"
                                 f"2. Print a Single Package Status at a Time\n"
                                 f"3. Exit the Program\n"
-                                f"**********************************************************\n"))
+                                f"**********************************************************\n"
+                                f"Enter menu choice: "))
         match menu_choice:
             case 1:
                 simulation_manager.prompt_user_status_checks()

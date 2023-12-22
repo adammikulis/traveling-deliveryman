@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="removed data folder and moved csv files to root to avoid error">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="ready for turn-in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/package_sorter.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/package_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,70 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701976877332</updated>
-    </task>
-    <task id="LOCAL-00010" summary="initial greedy algorithm works and delivers all packages">
-      <option name="closed" value="true" />
-      <created>1702170859190</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1702170859190</updated>
-    </task>
-    <task id="LOCAL-00011" summary="separated greedy algorithm from delivery process">
-      <option name="closed" value="true" />
-      <created>1702239120547</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1702239120547</updated>
-    </task>
-    <task id="LOCAL-00012" summary="removed extraneous package_finder">
-      <option name="closed" value="true" />
-      <created>1702239202519</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1702239202519</updated>
-    </task>
-    <task id="LOCAL-00013" summary="packages allocated to trucks by delivery time required">
-      <option name="closed" value="true" />
-      <created>1702250526439</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1702250526439</updated>
-    </task>
-    <task id="LOCAL-00014" summary="can determine when is the earliest a truck can leave">
-      <option name="closed" value="true" />
-      <created>1702315908734</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1702315908734</updated>
-    </task>
-    <task id="LOCAL-00015" summary="created dispatcher and refactored driver/truck assignments into that">
-      <option name="closed" value="true" />
-      <created>1702317045426</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1702317045426</updated>
-    </task>
-    <task id="LOCAL-00016" summary="simulation now advances second-by-second">
-      <option name="closed" value="true" />
-      <created>1702318811205</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1702318811205</updated>
-    </task>
-    <task id="LOCAL-00017" summary="redoing greedy">
-      <option name="closed" value="true" />
-      <created>1702327284933</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1702327284933</updated>
     </task>
     <task id="LOCAL-00018" summary="redoing greedy">
       <option name="closed" value="true" />
@@ -493,7 +425,71 @@
       <option name="project" value="LOCAL" />
       <updated>1703008446465</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="simplified some input variables to just time">
+      <option name="closed" value="true" />
+      <created>1703200065037</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1703200065037</updated>
+    </task>
+    <task id="LOCAL-00060" summary="refactored many things into SimulationManager">
+      <option name="closed" value="true" />
+      <created>1703200561357</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1703200561357</updated>
+    </task>
+    <task id="LOCAL-00061" summary="refactored all initialization into SimulationManager">
+      <option name="closed" value="true" />
+      <created>1703201423479</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1703201423479</updated>
+    </task>
+    <task id="LOCAL-00062" summary="can now print an individual package at a set time">
+      <option name="closed" value="true" />
+      <created>1703203904276</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1703203904276</updated>
+    </task>
+    <task id="LOCAL-00063" summary="simulation resets correctly">
+      <option name="closed" value="true" />
+      <created>1703205356935</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1703205356935</updated>
+    </task>
+    <task id="LOCAL-00064" summary="added some more comments">
+      <option name="closed" value="true" />
+      <created>1703205802472</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1703205802472</updated>
+    </task>
+    <task id="LOCAL-00065" summary="made sure to use package lookup function">
+      <option name="closed" value="true" />
+      <created>1703206457959</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1703206457959</updated>
+    </task>
+    <task id="LOCAL-00066" summary="ready for turn-in">
+      <option name="closed" value="true" />
+      <created>1703206657378</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1703206657378</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,14 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="sorting algorithm functions, total distance 49.1" />
-    <MESSAGE value="loads packages but does not count mileage correctly" />
-    <MESSAGE value="all mileage and paths counted and displayed correctly, does not take special package requirements and deadlines into account. Simulation still broken, best distance: 49.1" />
-    <MESSAGE value="mileage updated for return to hub, best distance 66.3" />
-    <MESSAGE value="refactored package_sorter to be more organized" />
-    <MESSAGE value="added README.txt" />
-    <MESSAGE value="small refactoring" />
-    <MESSAGE value="additional refactoring focusing on package_sorter, added special package sorting" />
     <MESSAGE value="removing unneeded args, passing in just truck" />
     <MESSAGE value="tracking truck miles and last address using truck variables, removed unneeded returns" />
     <MESSAGE value="more refactoring to use truck variables for better encapsulation" />
@@ -534,7 +522,15 @@
     <MESSAGE value="minor changes" />
     <MESSAGE value="ready for testing why evaluator has issues" />
     <MESSAGE value="removed data folder and moved csv files to root to avoid error" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed data folder and moved csv files to root to avoid error" />
+    <MESSAGE value="simplified some input variables to just time" />
+    <MESSAGE value="refactored many things into SimulationManager" />
+    <MESSAGE value="refactored all initialization into SimulationManager" />
+    <MESSAGE value="can now print an individual package at a set time" />
+    <MESSAGE value="simulation resets correctly" />
+    <MESSAGE value="added some more comments" />
+    <MESSAGE value="made sure to use package lookup function" />
+    <MESSAGE value="ready for turn-in" />
+    <option name="LAST_COMMIT_MESSAGE" value="ready for turn-in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
