@@ -11,8 +11,10 @@ class SimulationManager:
         self.num_drivers = num_drivers
         self.num_trucks = num_trucks
         self.current_date = datetime.now().date()
-        self.current_time = datetime.combine(self.current_date, start_time)
-        self.end_time = datetime.combine(self.current_time, end_time)
+        self.start_time = start_time
+        self.current_time = datetime.combine(self.current_date, self.start_time)
+        self.end_time = end_time
+        self.end_date_time = datetime.combine(self.current_time, end_time)
         self.corrected_packages = corrected_packages
         self.time_step = time_step  # Time step in seconds
 
@@ -26,23 +28,20 @@ class SimulationManager:
         self.package_id_to_check = None
         self.status_check_time = None
 
-        self.all_truck_miles_driven = 0.0
-
         from managers import PackageManager, TruckManager, DriverManager
         self.driver_manager = DriverManager(num_drivers)
         self.truck_manager = TruckManager(num_trucks, self.algorithm, self.package_data_loader, 16)
         self.package_manager = PackageManager(self.algorithm, self.package_data_loader, self.truck_manager)
         self.driver_manager.assign_all_drivers_to_trucks(self.truck_manager)
-        self.reset_simulation()
 
-
-    def reset_simulation(self):
-        self.all_truck_miles_driven = 0.0
         for truck in self.truck_manager.trucks:
             truck.total_miles_driven = 0.0
-        self.all_package_status_checks = []
-        self.package_id_to_check = None
-        self.status_check_time = None
+        self.all_truck_miles_driven = 0.0
+
+    # Reinitializes all parts of the simulation to use in __main__ loop
+    def reset_simulation(self):
+        self.__init__(self.num_drivers, self.num_trucks, self.start_time, self.end_time, self.time_step,
+                      self.corrected_packages)
 
     def advance_time(self):
         self.current_time = self.current_time + timedelta(0, self.time_step)
@@ -69,6 +68,7 @@ class SimulationManager:
         for truck in self.truck_manager.trucks:
             truck.drive_to_next_address_id(self.time_step, self.current_time)
             self.all_truck_miles_driven += truck.total_miles_driven
+
     def print_all_package_status(self):
         all_packages_on_time = True
         print(f"\n*****ALL PACKAGE STATUS UPDATE***** Current time: {self.current_time.strftime('%H:%M')}")
@@ -81,6 +81,7 @@ class SimulationManager:
     def check_package_status_at_time(self):
         if self.status_check_time and self.current_time == self.status_check_time:
             self.print_package_status(self.package_id_to_check)
+
     def print_package_status(self, package_id):
         package = self.package_data_loader.package_hash_table.search(package_id)
         address_id = package.address_id
@@ -126,7 +127,8 @@ class SimulationManager:
     def reassign_trucks(self):
         for truck in self.truck_manager.trucks[:-1]:
             if truck.finished_delivery_at_hub and self.truck_manager.trucks[-1].assigned_driver_id == 0:
-                self.driver_manager.assign_driver_to_truck(truck.assigned_driver_id, self.truck_manager.trucks[-1].truck_id, self.truck_manager)
+                self.driver_manager.assign_driver_to_truck(truck.assigned_driver_id,
+                                                           self.truck_manager.trucks[-1].truck_id, self.truck_manager)
                 truck.assigned_driver_id = 0
 
     def check_all_package_statuses(self, status_check_times):
@@ -135,20 +137,19 @@ class SimulationManager:
                 self.print_all_package_status()
 
     def simulate_deliveries(self):
-        self.advance_time()
         self.reassign_trucks()
         self.correct_all_packages(self.corrected_packages)
         self.update_unarrived_packages()
-        self.check_all_package_statuses(self.all_package_status_checks)
-        self.check_package_status_at_time()
+        self.check_all_package_statuses(self.all_package_status_checks)  # Will print all packages
+        self.check_package_status_at_time()  # Will print just one package
+        self.advance_time()
 
     def simulate_delivery_day(self):
-        while self.current_time <= self.end_time:
+        while self.current_time <= self.end_date_time:
             self.simulate_deliveries()
 
     def prompt_user_status_checks(self):
         num_status_checks = int(input("How many times would you like to check package status? "))
-        print("What times would you like to check the package statuses?")
         for i in range(num_status_checks):
             self.append_status_check()
 
@@ -159,7 +160,7 @@ class SimulationManager:
         self.status_check_time = datetime.combine(self.current_date, time(hours, minutes))
 
     def append_status_check(self):
-        status_check_time_str = input('HH:MM: ')
+        status_check_time_str = input('What time to check (HH:MM)? ')
         hours, minutes = map(int, status_check_time_str.split(':'))
         status_check_date_time = datetime.combine(self.current_date, time(hours, minutes))
         self.all_package_status_checks.append(status_check_date_time)
