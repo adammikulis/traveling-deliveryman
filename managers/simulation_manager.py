@@ -60,8 +60,7 @@ class SimulationManager:
         for corrected_package in corrected_packages:
             self.correct_package_address(corrected_package)
 
-
-    # Make packages available at hub when the arrive
+    # Make packages available at hub when they arrive
     def update_unarrived_packages(self):
         for package_id in self.package_data_loader.package_id_list:
             package = self.package_data_loader.package_hash_table.search(package_id)
@@ -136,7 +135,6 @@ class SimulationManager:
                 return truck.total_miles_driven, truck.package_id_list
         return None
 
-
     # Assigns returning driver to next open truck
     def reassign_drivers(self):
         for truck in self.truck_manager.trucks[:-1]:
@@ -169,7 +167,6 @@ class SimulationManager:
         num_status_checks = int(input("How many times would you like to check package status? "))
         for i in range(num_status_checks):
             self.append_status_check()
-
 
     # Used for checking a single package
     def prompt_user_individual_package_check(self):
