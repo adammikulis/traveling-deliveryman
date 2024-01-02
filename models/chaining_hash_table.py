@@ -5,12 +5,12 @@
 class ChainingHashTable:
     def __init__(self, initial_capacity):
         self.table = [[] for i in range(initial_capacity)]
-        self.package_id_index = []
+        self.id_index = []
 
     # Inserts new item into hash graph
     def insert(self, key, item):
-        if key not in self.package_id_index:
-            self.package_id_index.append(key)
+        if key not in self.id_index:
+            self.id_index.append(key)
 
         # Get bucket list where item will be added
         bucket = hash(key) % len(self.table)  # Use key for hashing rather than item for consistency

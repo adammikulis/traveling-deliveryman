@@ -11,7 +11,7 @@
 #
 #         self.truck_manager = truck_manager
 #         self.current_address_id = 0
-#         self.package_id_list = self.package_hash_table.package_id_index
+#         self.package_id_list = self.package_hash_table.id_index
 #         self.special_list_weight = 1 # Used to prioritize special packages
 #
 #     def load_special_package_lists(self):

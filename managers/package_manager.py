@@ -7,7 +7,7 @@ class PackageManager:
         self.package_data_loader = package_data_loader
         self.package_hash_table = package_data_loader.package_hash_table
         self.truck_manager = truck_manager
-        self.package_id_list = self.package_hash_table.package_id_index
+        self.package_id_list = self.package_hash_table.id_index
         self.early_deadline_package_id_list = []
         self.next_package_distance_list = []
         self.current_date = datetime.now().date()
