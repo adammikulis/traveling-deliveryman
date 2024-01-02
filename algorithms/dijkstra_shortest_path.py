@@ -1,19 +1,27 @@
 # This code is adapted from the webinar "How to Dijkstra"
+from models import ChainingHashTable
+
+# Used as alternative to dictionary for storing table of paths
+class PathInfo:
+    def __init__(self, path, distance):
+        self.path = path
+        self.distance = distance
 
 # This class implements Dijkstra's Shortest Path algorithm with storage for precomputed paths
 class DijkstraShortestPath:
     def __init__(self, graph_data_loader):
         self.graph = graph_data_loader.graph
-        self.paths = {}  # Dictionary to store precomputed paths
-        self.previous_vertex_maps = {}  # Dictionary to store previous vertex maps for precomputed paths
+        self.paths = ChainingHashTable(100)  # Dictionary to store precomputed paths
+        self.previous_vertex_table = ChainingHashTable(100)  # Dictionary to store previous vertex maps for precomputed paths
         self.precompute_all_paths()
 
     def initialize_dijkstra_shortest_path(self, start_vertex_label='0'):
-        # Initialize a new previous vertex map for this start vertex
-        previous_vertex_map = {}
+        # Initialize a new previous vertex table for this start vertex using ChainingHashTable
+        previous_vertex_table = ChainingHashTable(100)  # Adjust the initial capacity as needed
+
         for vertex in self.graph.adjacency_list.keys():
             vertex.distance = float('inf')
-            previous_vertex_map[vertex] = None
+            previous_vertex_table.insert(vertex, None)  # Use the custom hash table instead of a dictionary
 
         start_vertex = self.graph.get_vertex(start_vertex_label)
         start_vertex.distance = 0
@@ -35,10 +43,10 @@ class DijkstraShortestPath:
 
                 if alternative_path_distance < adj_vertex.distance:
                     adj_vertex.distance = alternative_path_distance
-                    previous_vertex_map[adj_vertex] = current_vertex
+                    previous_vertex_table.insert(adj_vertex, current_vertex)  # Update the table
 
-        # Store the computed previous vertex map
-        self.previous_vertex_maps[start_vertex_label] = previous_vertex_map
+        # Store the computed previous vertex table
+        self.previous_vertex_table.insert(start_vertex_label, previous_vertex_table)
 
     def compute_path_and_distance(self, start_vertex_label, end_vertex_label):
         path = []
@@ -46,11 +54,11 @@ class DijkstraShortestPath:
         path_distance = 0.0
 
         # Retrieve the appropriate previous vertex map
-        previous_vertex_map = self.previous_vertex_maps[start_vertex_label]
+        previous_vertex_table = self.previous_vertex_table.search(start_vertex_label)
 
         while current_vertex is not None and current_vertex.label != start_vertex_label:
             path.append(current_vertex.label)
-            prev_vertex = previous_vertex_map[current_vertex]
+            prev_vertex = previous_vertex_table.search(current_vertex)
 
             if prev_vertex is not None:
                 edge = (prev_vertex, current_vertex)
@@ -75,21 +83,25 @@ class DijkstraShortestPath:
             for end_vertex in self.graph.adjacency_list.keys():
                 end_vertex_label = end_vertex.label
                 path, distance = self.compute_path_and_distance(start_vertex_label, end_vertex_label)
-                self.paths[(start_vertex_label, end_vertex_label)] = {'path': path, 'distance': distance}
+                path_info = PathInfo(path, distance)
+                self.paths.insert((start_vertex_label, end_vertex_label), path_info)
 
     # Retrieves shortest path from pre-populated database
     def get_shortest_path(self, start_vertex_label, end_vertex_label):
-        if (start_vertex_label, end_vertex_label) in self.paths:
-            path_info = self.paths[(start_vertex_label, end_vertex_label)]
-            # print(path_info['path'], path_info['distance'])
-            return path_info['path'], path_info['distance']
+        # Search for the path info in the ChainingHashTable
+        path_info = self.paths.search((start_vertex_label, end_vertex_label))
+
+        if path_info:
+            # If the path is found in the hash table, return it
+            return path_info.path, path_info.distance
 
         # Fallback if the path is not precomputed
         self.initialize_dijkstra_shortest_path(start_vertex_label)
         start_vertex = self.graph.get_vertex(start_vertex_label)
         end_vertex = self.graph.get_vertex(end_vertex_label)
-        path, distance = self.compute_path_and_distance(start_vertex, end_vertex)
+        path, distance = self.compute_path_and_distance(start_vertex_label, end_vertex_label)
 
-        # Store this path for future reference
-        self.paths[(start_vertex_label, end_vertex_label)] = {'path': path, 'distance': distance}
+        # Store this new path for future reference in the ChainingHashTable
+        path_info = PathInfo(path, distance)
+        self.paths.insert((start_vertex_label, end_vertex_label), path_info)
         return path, distance

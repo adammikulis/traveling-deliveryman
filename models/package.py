@@ -29,7 +29,7 @@ class Package:
 
     # Part B required lookup function
     def package_status_lookup(self):
-        return self.delivery_deadline, self.address_id, self.weight, self.status, self.delivered_at
+        return self.delivery_deadline, self.address_id, self.weight, self.status, self.delivered_at  # address_id is referenced to obtain address, city, and zip code
 
     # Printable representation of object
     def __str__(self):

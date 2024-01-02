@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="ready for turn-in">
+    <list default="true" id="f5c54da2-43b6-4011-a652-2f97587ffa89" name="Changes" comment="updated comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/simulation_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/managers/simulation_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/dijkstra_shortest_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/package.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,22 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701976877332</updated>
-    </task>
-    <task id="LOCAL-00018" summary="redoing greedy">
-      <option name="closed" value="true" />
-      <created>1702329248460</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1702329248460</updated>
-    </task>
-    <task id="LOCAL-00019" summary="can load special packages into a special list on trucks to ensure they are there, to then be loaded onto truck's regular list">
-      <option name="closed" value="true" />
-      <created>1702338497022</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1702338497022</updated>
     </task>
     <task id="LOCAL-00020" summary="trucks load all packages/special package according to greedy, does not yet consider deliver_deadline">
       <option name="closed" value="true" />
@@ -489,7 +473,23 @@
       <option name="project" value="LOCAL" />
       <updated>1703206657378</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="updated comments">
+      <option name="closed" value="true" />
+      <created>1703276035098</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1703276035098</updated>
+    </task>
+    <task id="LOCAL-00068" summary="updated comments">
+      <option name="closed" value="true" />
+      <created>1703697169766</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1703697169766</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removing unneeded args, passing in just truck" />
     <MESSAGE value="tracking truck miles and last address using truck variables, removed unneeded returns" />
     <MESSAGE value="more refactoring to use truck variables for better encapsulation" />
     <MESSAGE value="trucks now load special packages according to rules correctly, does not account for deadline/available time. Total distance: 93.0" />
@@ -530,7 +529,8 @@
     <MESSAGE value="added some more comments" />
     <MESSAGE value="made sure to use package lookup function" />
     <MESSAGE value="ready for turn-in" />
-    <option name="LAST_COMMIT_MESSAGE" value="ready for turn-in" />
+    <MESSAGE value="updated comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
