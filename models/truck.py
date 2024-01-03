@@ -83,9 +83,11 @@ class Truck:
         self.total_miles_driven += drive_distance
         self.next_address_distance_driven += drive_distance
 
+    # Load package onto truck
     def load_package(self, package_id):
         self.package_id_list.append(package_id)
 
+    # Unload package from truck
     def unload_package(self, package_id):
         self.package_id_list.remove(package_id)
 
@@ -112,9 +114,11 @@ class Truck:
     def unload_special_package_id_list(self, package_id):
         self.special_package_id_list.remove(package_id)
 
+    # Determines if the truck has room for another package
     def can_load_package(self, package):
         return len(self.package_id_list) < self.max_packages and package.required_truck in [0, self.truck_id]
 
+    # Full if all packages are loaded onto list
     def is_full(self):
         return self.max_packages == len(self.package_id_list) # Only full if regular list is full
 

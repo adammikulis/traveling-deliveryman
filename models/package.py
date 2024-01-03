@@ -43,6 +43,7 @@ class Package:
             case "At-hub":
                 return f"Package ID: {self.package_id},\tStatus: At-hub"
 
+# This class is used for correcting a wrong address_id at a certain time
 class CorrectedPackage:
     def __init__(self, package_id, correct_address_id, correction_time):
         self.package_id = package_id
