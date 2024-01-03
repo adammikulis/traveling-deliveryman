@@ -141,22 +141,22 @@ class PackageManager:
 
 
     # Only needed if prioritizing by deadline, currently unused
-    def normalize_deadline(self, deadline):
-
-        start_time = datetime.combine(deadline.date(), time(8, 0))  # 8:00 AM
-        end_time = datetime.combine(deadline.date(), time(17, 0))  # 5:00 PM
-
-        # Total range in minutes
-        total_range_minutes = (end_time - start_time).total_seconds() / 60
-
-        # Deadline time in minutes from midnight
-        deadline_minutes = (deadline - datetime.combine(deadline.date(), time(0, 0))).total_seconds() / 60
-
-        # Start time in minutes from midnight
-        start_time_minutes = (start_time - datetime.combine(start_time.date(), time(0, 0))).total_seconds() / 60
-
-        # Normalize the deadline
-        normalized_value = (start_time_minutes - deadline_minutes) / total_range_minutes
-        normalized_value = min(max(normalized_value, 0), 1)
-
-        return normalized_value
+    # def normalize_deadline(self, deadline):
+    #
+    #     start_time = datetime.combine(deadline.date(), time(8, 0))  # 8:00 AM
+    #     end_time = datetime.combine(deadline.date(), time(17, 0))  # 5:00 PM
+    #
+    #     # Total range in minutes
+    #     total_range_minutes = (end_time - start_time).total_seconds() / 60
+    #
+    #     # Deadline time in minutes from midnight
+    #     deadline_minutes = (deadline - datetime.combine(deadline.date(), time(0, 0))).total_seconds() / 60
+    #
+    #     # Start time in minutes from midnight
+    #     start_time_minutes = (start_time - datetime.combine(start_time.date(), time(0, 0))).total_seconds() / 60
+    #
+    #     # Normalize the deadline
+    #     normalized_value = (start_time_minutes - deadline_minutes) / total_range_minutes
+    #     normalized_value = min(max(normalized_value, 0), 1)
+    #
+    #     return normalized_value

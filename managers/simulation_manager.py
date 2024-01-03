@@ -89,7 +89,7 @@ class SimulationManager:
         if self.status_check_time and self.current_time == self.status_check_time:
             self.print_package_status(self.package_id_to_check)
 
-    # Used for user-determined status reports
+    # Used for user-determined status reports, returns False if package is delivered late
     def print_package_status(self, package_id):
         package = self.package_data_loader.package_hash_table.search(package_id)
         delivery_deadline, address_id, weight, status, delivered_at = package.package_status_lookup()
