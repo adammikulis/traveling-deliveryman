@@ -11,17 +11,16 @@ class PathInfo:
 class DijkstraShortestPath:
     def __init__(self, graph_data_loader):
         self.graph = graph_data_loader.graph
-        self.paths = ChainingHashTable(100)  # Dictionary to store precomputed paths
-        self.previous_vertex_table = ChainingHashTable(100)  # Dictionary to store previous vertex maps for precomputed paths
+        self.paths = ChainingHashTable(100)
+        self.previous_vertex_table = ChainingHashTable(100)
         self.precompute_all_paths()
 
     def initialize_dijkstra_shortest_path(self, start_vertex_label='0'):
-        # Initialize a new previous vertex table for this start vertex using ChainingHashTable
-        previous_vertex_table = ChainingHashTable(100)  # Adjust the initial capacity as needed
+        previous_vertex_table = ChainingHashTable(100)
 
         for vertex in self.graph.adjacency_list.keys():
             vertex.distance = float('inf')
-            previous_vertex_table.insert(vertex, None)  # Use the custom hash table instead of a dictionary
+            previous_vertex_table.insert(vertex, None)
 
         start_vertex = self.graph.get_vertex(start_vertex_label)
         start_vertex.distance = 0
@@ -97,8 +96,6 @@ class DijkstraShortestPath:
 
         # Fallback if the path is not precomputed
         self.initialize_dijkstra_shortest_path(start_vertex_label)
-        start_vertex = self.graph.get_vertex(start_vertex_label)
-        end_vertex = self.graph.get_vertex(end_vertex_label)
         path, distance = self.compute_path_and_distance(start_vertex_label, end_vertex_label)
 
         # Store this new path for future reference in the ChainingHashTable
